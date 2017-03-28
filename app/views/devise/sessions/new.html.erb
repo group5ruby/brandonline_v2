@@ -1,0 +1,34 @@
+<%= stylesheet_link_tag "home" %>
+<div class="ui one column center aligned grid">
+  <div class="column six wide form-holder">
+    <h2 class="center aligned header form-head">Log in</h2>
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <div class="ui form">
+      <div class="field">
+        <%= f.email_field :email, autofocus: true %>
+      </div>
+
+      <div class="field">
+        <%= f.password_field :password, autocomplete: "off" %>
+      </div>
+
+      <% if devise_mapping.rememberable? -%>
+      <div class="inline field">
+        <div class="ui checkbox">
+          <input type="checkbox">
+          <label>Remember me</label>
+        </div>
+      </div>
+      <% end -%>
+
+      <div class="actions">
+        <%= f.submit "Log in",  value: "sign in", class:"ui button large fluid green" %>
+      </div>
+      <% end %>
+    </div>
+
+    <%= render "devise/shared/links" %>
+  </div>
+</div>
+
+
