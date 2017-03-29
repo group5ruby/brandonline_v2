@@ -1,34 +1,40 @@
-
+<%= filepicker_js_include_tag %>
 <div class="ui grid">
 
 	<div class="sixteen wide column">
 		<div class="ui fluid card">
 			<div class="content">
 				<div class="ui header">Welcome, <%= current_user.user_name %> ! This is your private controller</div>
+				
 				<li><b>Full name:</b> <%= current_user.user_name %>
-				<i class="<%= User.is_verified(current_user.identity_number) %>"> </i></li>
+					<i class="<%= User.is_verified(current_user.identity_number) %>"> </i></li>
+					<%= filepicker_image_tag @user.filepicker_url, w: 160, h: 160, fit: 'clip' %>
+					<li><b>Email:</b> <%= current_user.email %>
+						<i class="<%= User.is_verified(current_user.is_verified) %>"> </i></li>
 
-				<li><b>Email:</b> <%= current_user.email %>
-				<i class="<%= User.is_verified(current_user.is_verified) %>"> </i></li>
-				<li>sdfsdfsdf</li>
-				<li>sdfsdfsdf</li>
-				<li>sdfsdfsdf</li>
-				<li>sdfsdfsdf</li>
-				<li>sdfsdfsdf</li>
-				<li>sdfsdfsdf</li>
-				<li>sdfsdfsdf</li>
-				<li>sdfsdfsdf</li>
-			</div>
-			<div class="extra content">
-				<span class="right floated">
-					<i>Started since  <%= current_user.created_at.month %>/<%= current_user.created_at.year  %></i>
-				</span>
-				<span>
-					<i class="user icon"></i>
-					151 Friends
-				</span>
-			</div>
+						<%= form_for @user do |f| %>
+						<div>
+							<%= f.label :filepicker_url, "Upload Your Avatar: ---- Tested, so dont upload to much because we only have limited counts" %>
+							<%= f.filepicker_field :filepicker_url %> <!-- User#filepicker_url is a regular string column -->
+						</div>
+						<%= f.submit %>
+						<% end %>
 
+						<li>sdfsdfsdf</li>
+						<li>sdfsdfsdf</li>
+						<li>sdfsdfsdf</li>
+						<li>sdfsdfsdf</li>
+					</div>
+					<div class="extra content">
+						<span class="right floated">
+							<i>Started since  <%= current_user.created_at.month %>/<%= current_user.created_at.year  %></i>
+						</span>
+						<span>
+							<i class="user icon"></i>
+							151 Friends
+						</span>
+					</div>
+
+				</div>
+			</div>
 		</div>
-	</div>
-</div>
