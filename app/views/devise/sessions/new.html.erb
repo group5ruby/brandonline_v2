@@ -22,11 +22,16 @@
       <% end -%>
 
       <div class="actions">
-        <%= f.submit "Log in",  value: "sign in", class:"ui button large fluid green" %>
+        <%= f.submit "Loging in...",  value: "Sign In", class: "ui button large fluid green" %>
+      </div>
+      <hr>
+      <div class="field">
+        <%= link_to "Login with Facebook",user_facebook_omniauth_authorize_path, class: 'ui button large fluid blue', data: {disable_with: "Loging in via Facebook..."} %>
       </div>
       <% end %>
-    </div>
 
+      </div>
+      <hr>Or 
     <%= render "devise/shared/links" %>
   </div>
 </div>

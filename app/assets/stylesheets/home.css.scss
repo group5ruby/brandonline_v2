@@ -9,6 +9,7 @@ margin: 0;
 opacity: 0.6;
 }
 
+
 .form-holder {
 background: rgba(255,255,255,0.2);
 margin-top: 10%;
@@ -29,5 +30,9 @@ text-align: left;
 }
 .ui.checkbox label {
 color: #ddd;
+}
+
+.ui.inverted.button {
+	margin: 4px;
 }
 

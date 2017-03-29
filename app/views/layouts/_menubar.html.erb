@@ -1,20 +1,25 @@
 <div class="ui inverted menu">
-<div class="ui container">
-  <div class="header item">
-    <img src="http://www.iconsdb.com/icons/preview/caribbean-blue/checked-user-xxl.png">
-  </div>
-  <div class="header item">SeeMe</div>
-  <div class="right menu">
-    <div class="item">
-      <div class="ui transparent inverted icon input">
-        <i class="search icon"></i>
-        <input type="text" placeholder="Search">
-      </div>
+  <div class="ui container">
+    <a class="header item" href="/">
+     <%= image_tag "logo.png" %>
+     <big><b><i>SeeMe</b></i></big>
+   </a >
+
+   <div class="item">
+    <div class="ui transparent inverted icon input">
+      <i class="search icon"></i>
+      <input type="text" placeholder="Search">
     </div>
-    <a class="item ui inverted orange button " style="width: 75px;" href="/users/sign_in" >Login</a>
-    <a class="ui inverted button item" style="width: 75px;">Sign up</a>
   </div>
+
+  <div class="right menu">
+    <a class="item ui inverted blue button" style="width: 75px;" href="/users/sign_in" >Login</a>
+    <a class="ui inverted button green item" style="width: 75px;" href="/users/sign_up">Sign up</a>
+  
+    <a><%= link_to "Sign out", destroy_user_session_path, method: :delete, class: "item ui inverted gray button" %></a>
+  
   </div>
+</div>
 </div>
 er
 <!-- Sidebar Menu -->

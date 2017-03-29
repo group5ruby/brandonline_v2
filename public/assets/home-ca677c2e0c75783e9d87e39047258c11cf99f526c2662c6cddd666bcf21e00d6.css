@@ -1,0 +1,44 @@
+/* line 1, /home/letoan/brandonline_v2/app/assets/stylesheets/home.css.scss */
+body {
+  background: url("https://espaceless.com/images/img1.jpg") fixed;
+  background-size: cover;
+  padding: 0;
+  margin: 0;
+}
+
+/* line 8, /home/letoan/brandonline_v2/app/assets/stylesheets/home.css.scss */
+.ui.inverted.menu {
+  opacity: 0.6;
+}
+
+/* line 13, /home/letoan/brandonline_v2/app/assets/stylesheets/home.css.scss */
+.form-holder {
+  background: rgba(255, 255, 255, 0.2);
+  margin-top: 10%;
+  border-radius: 3px;
+}
+
+/* line 19, /home/letoan/brandonline_v2/app/assets/stylesheets/home.css.scss */
+.form-head {
+  font-size: 30px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #fff;
+  text-shadow: 0 0 30px #000;
+  margin: 15px auto 30px auto;
+}
+
+/* line 28, /home/letoan/brandonline_v2/app/assets/stylesheets/home.css.scss */
+.remember-me {
+  text-align: left;
+}
+
+/* line 31, /home/letoan/brandonline_v2/app/assets/stylesheets/home.css.scss */
+.ui.checkbox label {
+  color: #ddd;
+}
+
+/* line 35, /home/letoan/brandonline_v2/app/assets/stylesheets/home.css.scss */
+.ui.inverted.button {
+  margin: 4px;
+}

@@ -1,12 +1,33 @@
 //= require jquery
-//= require semantic-ui
 //= require jquery_ujs
 //= require turbolinks
-//= require_tree .
-
+//= require semantic-ui
+//=require_self
 $('.ui.dropdown')
   .dropdown()
 ;
-$('.ui.checkbox')
-  .checkbox()
+
 ;
+$('.ui .message .close')
+  .on('click', function() {
+    $(this)
+      .closest('.message')
+      .transition('fade')
+    ;
+  })
+;
+
+$(".close .icon").click(function(){
+  $(this).parent().hide();
+});
+
+$(document).ready(function(){
+	$('.ui .message .close')
+  .on('click', function() {
+    $(this)
+      .closest('.message')
+      .transition('fade')
+    ;
+  })
+;
+})
