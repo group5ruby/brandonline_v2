@@ -5,3 +5,9 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+AccountStatus.create(status: "Unknown")
+AccountStatus.create(status: "Good")
+AccountStatus.create(status: "Excellent")
+AccountStatus.create(status: "Not guaranteed")
+AccountStatus.create(status: "Closed")
+AccountStatus.create(status: "Limited")

@@ -6,5 +6,7 @@ Rails.application.routes.draw do
         registrations: 'users/registrations'
       }
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  get "feed" => "users#feed"
+  resources :users
   root "home#index" 
 end

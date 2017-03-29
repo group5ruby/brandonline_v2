@@ -26,4 +26,13 @@ end
     end
   end
 
+  def self.is_verified(b)
+    if b  == true
+    return "checkmark icon verified"
+  else
+    return "help circle icon"
+  end
+  end
+
+
 end
