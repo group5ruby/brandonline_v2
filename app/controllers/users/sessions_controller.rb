@@ -24,7 +24,7 @@ class Users::SessionsController < Devise::SessionsController
   # end
   def callback
     if user = User.from_omniauth(env["omniauth.auth"])
-     
+      
     else
       # don't log user in
     end
