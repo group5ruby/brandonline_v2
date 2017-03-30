@@ -1,5 +1,5 @@
 <%= filepicker_js_include_tag %>
-<div class="ui grid">
+<div class="ui grid cards">
 
 	<div class="ten wide column">
 		<div class="ui fluid card">
@@ -8,7 +8,7 @@
 				
 				<li><b>Full name:</b> <%= current_user.user_name %>
 					<i class="<%= User.is_verified(current_user.identity_number) %>"> </i></li>
-					 <%= filepicker_image_tag avatar(@user.filepicker_url), w: 160, h: 160, fit: 'clip' %>
+					<%= filepicker_image_tag avatar(@user.filepicker_url), w: 160, h: 160, fit: 'clip' %>
 					<li><b>Email:</b> <%= current_user.email %>
 						<i class="<%= User.is_verified(current_user.is_verified) %>"> </i></li>
 
@@ -36,12 +36,38 @@
 					</div>
 
 				</div>
+
+				<div class="ui fluid card">
+					<div class="container p3">
+						<br>
+						<h4 class="ui sub header">Bank account </h4>
+							<div class="content">
+								XXXXXXXX
+							</div>						
+						<h4 class="ui sub header">Bank account </h4>
+							<div class="content">
+								XXXXXXXX
+							</div>
+						<br>
+				</div>
+		</div>
+				
 			</div>
 
-		<div class="five wide column">
-			<div class="ui fluid card">
-				<ul><h4>Your verify status: <font color="red"><%= @is_verified  %></font></h4></ul>
-				<ul><h4>Your account status: <font color="green"> <%= @account_status.status  %> </font>
-			</div>
-		</div>
+			<div class="five wide column p2">
+				<div class="ui fluid card">
+					<ul><h4>Your verify status: <font color="red"><%= @is_verified  %></font></h4></ul>
+					<ul><h4>Your account status: <font color="green"> <%= @account_status.status  %> </font>
+					</ul>
+					<ul><h4>Positive Feedback: </h4></ul>
+					<ul><h4>Negative Feedback: </h4></ul>
+
+				</div>
+				<div class="ui fluid card-3">
+					<div class="content p3">
+						<div class="ui header">Feedback</div>
+					</div>
+				</div>
+			</div>	
 </div>
+
