@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 	def show
-		@user = User.find(current_user.id)
 		check_session
+		@user = User.find(current_user.id)
 		if current_user.is_verified == true
 			@is_verified = "Verified" 
 		else

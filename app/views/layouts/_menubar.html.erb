@@ -17,35 +17,39 @@
   <div class="right menu">
     <% unless current_user %>
     <a class="item ui inverted blue button" style="width: 85px; padding-left: 25px;" href="/users/sign_in" ><b>Login</b></a>
-    <a class="ui inverted button white item" style="width: 85px; padding-left: 20px;" href="/users/sign_up"><b>Sign up</b></a>
-    
+    <a class="item ui inverted black button" style="width: 85px; padding-left: 20px;" href="/users/sign_up"><b>Sign up</b></a>
+
     <% else %>
-    <a class="ui icon item">
+
+    <div class="ui icon item">
       <span>
         <div class="ui inline dropdown">
           <div class="text">
-            <img class="ui avatar image" src="http://static.appstore.vn/a/uploads/thumbnails/122015/devo-icon-pack_icon.png">
+            <img class="ui avatar image" src="<%= avatar(current_user.filepicker_url) %>">
             <%= current_user.user_name  %>
           </div>
           <i class="dropdown icon"></i>
-          <div class="menu">
 
-            <a class="item">
+          <div class="menu">
+            <a class="item" href="<%= user_path(id: current_user.id) %>">
               <i class="setting icon"></i>
               Profile 
             </a>
+
             <a class="item" href="http://www.google.com">
               <i class="comments icon"></i>
               Message
             </a>
+
             <a class="item" rel="nofollow" data-method="delete" href="/users/sign_out">
               <i class="sign out icon"></i>
               Log out
             </a>
           </div>
+
         </div>
       </span>
-    </a>
+    </div>
 
     <a class="ui icon item" rel="nofollow" data-method="delete" href="/users/sign_out">
       <i class="sign out icon"> </i>

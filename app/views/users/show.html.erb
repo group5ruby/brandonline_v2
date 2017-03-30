@@ -3,35 +3,43 @@
 
 	<div class="ten wide column">
 		<div class="ui fluid card">
-			<div class="content">
-				<div class="ui header">Welcome, <%= current_user.user_name %> ! This is your private controller</div>
-				
-				<li><b>Full name:</b> <%= current_user.user_name %>
-					<i class="<%= User.is_verified(current_user.identity_number) %>"> </i></li>
-					<%= filepicker_image_tag avatar(@user.filepicker_url), w: 160, h: 160, fit: 'clip' %>
-					<li><b>Email:</b> <%= current_user.email %>
-						<i class="<%= User.is_verified(current_user.is_verified) %>"> </i></li>
+			<div class="content header">
+				<div class="ui header">
+					<center> <i class="user icon"></i><%= current_user.user_name %> Profile </center>
+				</div>
+			</div>
 
-						<%= form_for @user do |f| %>
-						<div>
-							<%= f.label :filepicker_url, "Upload Your Avatar: ---- Tested, so dont upload to much because we only have limited counts" %>
-							<%= f.filepicker_field :filepicker_url %> <!-- User#filepicker_url is a regular string column -->
+			<div class="ui grid">
+
+				<div class="five wide column" style="padding-top: 24px; padding-left: 24px;">
+					<div class="card">
+						<div class="image" >
+							<img src="<%= avatar(@user.filepicker_url)%>" style="width:170px;height:130px;">
 						</div>
-						<%= f.submit %>
-						<% end %>
+						<div class="extra">
 
-						<li>Address: <%= @user.address %></li>
-						<li></li>
-						<li>sdfsdfsdf</li>
-						<li>sdfsdfsdf</li>
+						</div>
 					</div>
+				</div>
+
+				<div class="eleven wide column">
+					<ul>
+						<li><b>Full name:</b> <%= current_user.user_name %>
+							<i class="<%= User.is_verified(current_user.identity_number) %>"> </i></li>
+							<li><b>Email:</b> <%= current_user.email %>
+								<i class="<%= User.is_verified(current_user.is_verified) %>"> </i></li>
+							</ul>
+						</div>
+					</div>
+
+
 					<div class="extra content">
-						<span class="right floated">
-							<i>Started since  <%= current_user.created_at.month %>/<%= current_user.created_at.year  %></i>
-						</span>
+						<a class="right floated edituser">
+							<i class="edit icon"></i>
+							Edit
+						</a>
 						<span>
-							<i class="user icon"></i>
-							151 Friends
+							<i>Started since  <%= current_user.created_at.month %>/<%= current_user.created_at.year  %></i>
 						</span>
 					</div>
 
@@ -40,18 +48,29 @@
 				<div class="ui fluid card">
 					<div class="container p3">
 						<br>
-						<h4 class="ui sub header">Bank account </h4>
-							<div class="content">
-								XXXXXXXX
-							</div>						
-						<h4 class="ui sub header">Bank account </h4>
-							<div class="content">
-								XXXXXXXX
-							</div>
+						<h4 class="ui sub header">
+							<i class="university icon"></i>
+							Bank account 
+						</h4>
+						<div class="content">
+							XXXXXXXX
+						</div>						
+						<h4 class="ui sub header">
+							<i class="university icon"></i>
+							Bank account 
+						</h4>
+						<div class="content">
+							XXXXXXXX
+						</div>
 						<br>
+					</div>
+					<div class="extra content">
+						<a class="right floated editbank">
+							<i class="edit bank icon"></i>
+							Edit
+						</a>
+					</div>
 				</div>
-		</div>
-				
 			</div>
 
 			<div class="five wide column p2">
@@ -69,5 +88,77 @@
 					</div>
 				</div>
 			</div>	
-</div>
+		</div>
 
+
+		<!--  Modal Javascript -->
+
+		<div class="ui modal edituser">
+			<i class="close icon"></i>
+			<div class="header">
+				Edit User
+			</div>
+			<div class="image content">
+				<div class="ui medium image">
+					<img src="<%= avatar(@user.filepicker_url)%>" style="width:170px;height:130px;">
+				</div>
+				<div class="description">
+					<div class="ui header">This is edit user information form. find this in "Show.html.erb"</div>
+					<p>We've grabbed the following image from the <a href="https://www.gravatar.com" target="_blank">gravatar</a> image associated with your registered e-mail address.</p>
+					<p>Is it okay to use this photo?</p>
+				</div>
+				<center>
+								<%= form_for @user do |f| %>
+								<div>
+									<%= f.label :filepicker_url, "Upload Your Avatar" %>
+									<%= f.filepicker_field :filepicker_url %>
+								</div>
+								<!--<%= f.submit %> -->
+								<% end %>
+				</center>
+				<br>
+				<%= form_for @user do |f| %>
+								<div>
+									<%= f.label :filepicker_url, "Upload Your Certificate Images" %>
+									<%= f.filepicker_field :filepicker_url %>
+								</div>
+								<!--<%= f.submit %> -->
+								<% end %>
+	
+			</div>
+			<div class="actions">
+				<div class="ui black deny button">
+					Cancle
+				</div>
+				<div class="ui positive right labeled icon button">
+					Update 
+					<i class="checkmark icon"></i>
+				</div>
+			</div>
+		</div>
+
+		<div class="ui modal editbank">
+			<i class="close icon"></i>
+			<div class="header">
+				Edit bank
+			</div>
+			<div class="image content">
+				<div class="ui medium image">
+					<img src="/images/avatar/large/chris.jpg">
+				</div>
+				<div class="description">
+					<div class="ui header">This is edit bank information form. find this in "Show.html.erb"</div>
+					<p>We've grabbed the following image from the <a href="https://www.gravatar.com" target="_blank">gravatar</a> image associated with your registered e-mail address.</p>
+					<p>Is it okay to use this photo?</p>
+				</div>
+			</div>
+			<div class="actions">
+				<div class="ui black deny button">
+					Cancle
+				</div>
+				<div class="ui positive right labeled icon button">
+					Update 
+					<i class="checkmark icon"></i>
+				</div>
+			</div>
+		</div>

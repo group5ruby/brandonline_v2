@@ -1,46 +1,56 @@
 
-<div class="ui grid">
+<div class="ui grid notification">
 	<div class="sixteen wide column">
 		<div class="ui fluid card">
-			<div class="content">
-				<div class="ui header">Welcome, <%= current_user.user_name %> ! </div>
-				
-				<ul><h4>Your verify status: <font color="red"><%= @is_verified  %></font></h4></ul>
-				<ul><h4>Your account status: <font color="green"> <%= @account_status.status  %> </font></h4></ul>
-				<li>sdfsdfsdf</li>
-				<li>sdfsdfsdf</li>
+			<div class="content header">
+
+
+				<div class="ui header">Welcome, <%= current_user.user_name %> ! 
+					<a class="right floated meta">
+						<i class="icon remove"></i>
+					</a>
+				</div>
 			</div>
-			<div class="extra content">
-				<span class="right floated">
-					<i class="arrow circle outline right icon"> </i>
-					<%= link_to "go to your private settings", user_path(id: current_user.id), class:'ui' %>
-				</span>
+			<div class="content notification">
+				<div class="content">
+					<big>Your verify status: <font color="red"><%= @is_verified  %></font></big><br>
+					<big>Your account status: <font color="green"> <%= @account_status.status %> </font></big>
+					<li>sdfsdfsdf</li>
+					<li>sdfsdfsdf</li>
+				</div>
+				<div class="extra content">
+        <span class="right floated">
+						<i class="arrow circle outline right icon"> </i>
+						<%= link_to "go to your settings", user_path(id: current_user.id), class:'ui' %>
+					</span>
+				</div>
 			</div>
 		</div>
 	</div>
 </div>
 <div class="ui grid">
 	<div class="five wide column">
-	<div class="ui fluid card">
-		<div class="content">
-			<div class="ui header">Messages</div>
+		<div class="ui fluid card">
+			<div class="content">
+				<div class="ui header">Messages</div>
+			</div>
 		</div>
-	</div>
 	</div>
 
 	<div class="six wide column">
-	<div class="ui fluid card">
-		<div class="content">
-			<div class="ui header">Your friends activities </div>
+		<div class="ui fluid card">
+			<div class="content">
+				<div class="ui header">Your friends activities </div>
+			</div>
 		</div>
-	</div>
 	</div>
 
 	<div class="five wide column">
-	<div class="ui fluid card">
-		<div class="content">
-			<div class="ui header"> Your received feedback </div>
+		<div class="ui fluid card">
+			<div class="content">
+				<div class="ui header"> Your received feedback </div>
+			</div>
 		</div>
 	</div>
-	</div>
-	</div>
+</div>
+
