@@ -1,7 +1,7 @@
 <%= filepicker_js_include_tag %>
 <div class="ui grid">
 
-	<div class="sixteen wide column">
+	<div class="ten wide column">
 		<div class="ui fluid card">
 			<div class="content">
 				<div class="ui header">Welcome, <%= current_user.user_name %> ! This is your private controller</div>
@@ -37,4 +37,11 @@
 
 				</div>
 			</div>
+
+		<div class="five wide column">
+			<div class="ui fluid card">
+				<ul><h4>Your verify status: <font color="red"><%= @is_verified  %></font></h4></ul>
+				<ul><h4>Your account status: <font color="green"> <%= @account_status.status  %> </font>
+			</div>
 		</div>
+</div>

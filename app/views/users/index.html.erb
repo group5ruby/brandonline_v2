@@ -1,22 +1,33 @@
 <h1>Find user </h1>
+<div class="container p1">
+  <div class="ui grid cards">
   <% if @visits.blank? %>
     <h4>There are no user " <%= params[:search] %>".</h4>    
   <% else %>
-    <% @visits.each do |v| %>
-    <div class="ui grid">
+    <% @visits.each do |v| %>    
       <div class="four wide column">
-        <div class="card">
+        <div class="ui fluid card">
           <div class="content">
-            <%= filepicker_image_tag avatar(v.filepicker_url), w: 100, h: 100, fit: 'clip' %> 
-            <div class="header">
-              <%= v.user_name %>
-            </div>
+              <div class="photo3">
+                <%= filepicker_image_tag avatar(v.filepicker_url), w: 100, h: 100, fit: 'clip' %> 
+              <div class="header">
+              </div>
+                <%= v.user_name %>
+              </div>
             <div class="meta">
               <%= v.business %>
             </div>
           </div>
+           <div class="extra content">
+            <div class="ui two buttons">
+              <div class="ui basic green button">Detail</div>
+              <div class="ui basic blue button">Follow</div>
+            </div>
+          </div>
         </div>
       </div>
+    
       <% end %>
   <% end %>
-
+  </div>  
+</div>
