@@ -8,7 +8,7 @@
 				
 				<li><b>Full name:</b> <%= current_user.user_name %>
 					<i class="<%= User.is_verified(current_user.identity_number) %>"> </i></li>
-					<%= filepicker_image_tag @user.filepicker_url, w: 160, h: 160, fit: 'clip' %>
+					 <%= filepicker_image_tag @user.filepicker_url || "http://i.imgur.com/P2u37kw.png", w: 160, h: 160, fit: 'clip' %>
 					<li><b>Email:</b> <%= current_user.email %>
 						<i class="<%= User.is_verified(current_user.is_verified) %>"> </i></li>
 
@@ -20,8 +20,8 @@
 						<%= f.submit %>
 						<% end %>
 
-						<li>sdfsdfsdf</li>
-						<li>sdfsdfsdf</li>
+						<li>Address: <%= @user.address %></li>
+						<li></li>
 						<li>sdfsdfsdf</li>
 						<li>sdfsdfsdf</li>
 					</div>

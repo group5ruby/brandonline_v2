@@ -4,13 +4,15 @@
      <%= image_tag "logo.png" %>
      <big><b><i>SeeMe</b></i></big>
    </a >
-
-   <div class="item">
+   <%= form_tag(users_path, method: 'get', class: 'item navbar-form navbar-right') do %>
+   <div class="ui user search">
     <div class="ui icon input">
+      <%= search_field_tag :search, nil , placeholder:"Search user..." ,type:"text" %>
       <i class="search icon"></i>
-      <input type="text text-primary" placeholder="Search">
     </div>
+    <div class="results"></div>
   </div>
+  <% end %> 
 
   <div class="right menu">
     <% unless current_user %>
@@ -27,9 +29,9 @@
           </div>
           <i class="dropdown icon"></i>
           <div class="menu">
-                          
+
             <a class="item">
-            <i class="setting icon"></i>
+              <i class="setting icon"></i>
               Profile 
             </a>
             <a class="item" href="http://www.google.com">

@@ -9,6 +9,10 @@ class UsersController < ApplicationController
 		end
 		@account_status = AccountStatus.find(current_user.account_status)
 		@icon = User.is_verified(current_user.identity_number)
+		if params[:search]
+       @visits = @User.search(params[:search]).order("created_at DESC")      
+    end
+    
 	end
 
 	def update
@@ -27,9 +31,19 @@ class UsersController < ApplicationController
 		end
 		@account_status = AccountStatus.find(current_user.account_status)
 	end
+	
+	def avatar
+		set_user
+		@user.filepicker_url || "http://i.imgur.com/P2u37kw.png"
+
+	end
 
 	private
 	def check_session
 		redirect_to root_path unless current_user
+	end
+
+	def set_user
+		@user = current_user
 	end
 end

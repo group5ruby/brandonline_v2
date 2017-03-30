@@ -35,5 +35,10 @@ end
   end
   end
 
+  def self.search(search)
+    where("username LIKE ?","%#{search}%")
+  end
+  
+
 
 end
