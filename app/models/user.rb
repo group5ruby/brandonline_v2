@@ -36,7 +36,7 @@ end
   end
 
   def self.search(search)
-    where("username LIKE ?","%#{search}%")
+    where("user_name LIKE ?","%#{search}%").or(where("email LIKE ?","%#{search}%"))
   end
   
 
