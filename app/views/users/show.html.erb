@@ -25,14 +25,22 @@
 				<div class="eleven wide column">
 					<ul>
 						<li><b>Full name:</b> <%= current_user.user_name %>
-							<i class="<%= User.is_verified(current_user.identity_number) %>"> </i></li>
+							<i class="<%= is_verify(current_user.identity_number) %>"> </i></li>
+							
 							<li><b>Email:</b> <%= current_user.email %>
-								<i class="<%= User.is_verified(current_user.is_verified) %>"> </i></li>
-								<li>Phone: <b><%= current_user.phone_number %></b></li>
-								<li>Address: <b><%= current_user.address %></b></li>
-								<li>Zalo: <b><%= current_user.zalo %></b></li>
-								<li>Career:<b><%= current_user.career %></b></li>
-								<li>Indentify_Number:<b><%= current_user.identity_number %></b></li>
+								<i class="<%= is_verify(current_user.is_verified) %>"> </i></li>
+								
+								<li>Phone: <b><%= current_user.phone_number %></b>
+								<i class="<%= is_verify(current_user.phone_number) %>"></i></li>
+								
+								<li>Address: <b><%= current_user.address %></b>
+								<i class="<%= is_verify(current_user.address) %>"></i></li>
+								<li>Zalo: <b><%= current_user.zalo %></b>
+								<i class="<%= is_verify(current_user.zalo) %>"></i></li>
+								<li>Career:<b><%= current_user.career %></b>
+								<i class="<%= is_verify(current_user.career) %>"></i></li>
+								<li>Indentify_Number:<b><%= current_user.identity_number %></b>
+								<i class="<%= is_verify(current_user.identity_number) %>"></i></li>
 								<li></li>
 								<li></li>
 
