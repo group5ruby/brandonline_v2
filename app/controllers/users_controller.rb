@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-	before_action :authenticate_user!
+	
 	def show
 		check_session
 		@user = User.find(current_user.id)
