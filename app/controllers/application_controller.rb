@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
 
   helper_method :avatar
   helper_method :is_verify
+  helper_method :show_value
 
   def avatar(url)    
       url || "http://i.imgur.com/P2u37kw.png"
@@ -17,4 +18,9 @@ class ApplicationController < ActionController::Base
         return "help circle icon"
       end
   end
+
+  def show_value(value)
+      return "Not available" if value == nil
+      value.value || "Not available"
+  end  
 end

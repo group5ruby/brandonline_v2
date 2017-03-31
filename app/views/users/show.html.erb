@@ -30,154 +30,181 @@
 							<li><b>Email:</b> <%= current_user.email %>
 								<i class="<%= is_verify(current_user.is_verified) %>"> </i></li>
 								
-								<li>Phone: <b><%= current_user.phone_number %></b>
-								<i class="<%= is_verify(current_user.phone_number) %>"></i></li>
-								
-								<li>Address: <b><%= current_user.address %></b>
-								<i class="<%= is_verify(current_user.address) %>"></i></li>
-								<li>Zalo: <b><%= current_user.zalo %></b>
-								<i class="<%= is_verify(current_user.zalo) %>"></i></li>
-								<li>Career:<b><%= current_user.career %></b>
-								<i class="<%= is_verify(current_user.career) %>"></i></li>
-								<li>Indentify_Number:<b><%= current_user.identity_number %></b>
-								<i class="<%= is_verify(current_user.identity_number) %>"></i></li>
-								<li></li>
-								<li></li>
+								<li><b>Phone:</b> <% current_user.phone_number.each do |p|  %>
+									<%= p.value %> <br>
+									<% end %>
 
+									<i class="<%= is_verify(current_user.phone_number) %>"></i></li>
+
+									<li><b>Address:</b>
+										<%= show_value(current_user.address) %>
+										<i class="<%= is_verify(current_user.address) %>"></i>
+									</li>
+									<li><b>Zalo:</b>
+										<%= show_value(current_user.zalo) %>
+										<i class="<%= is_verify(current_user.zalo) %>"></i>
+									</li>
+									<li><b>Career:</b>
+										<%= show_value(current_user.career) %>
+										<i class="<%= is_verify(current_user.career) %>"></i>
+									</li>
+									<li><b>Indentify_Number:</b>
+										<%= show_value(current_user.identity_number) %>
+										<i class="<%= is_verify(current_user.identity_number) %>"></i></li>
+									<li><b>Sex:</b>  
+										<%= show_value(current_user.sex) %> 
+										<i class="<%= is_verify(current_user.sex) %>"></i>
+									</li>
+									<li><b>Hometown:</b>  
+										<%= show_value(current_user.hometown) %>
+										<i class="<%= is_verify(current_user.hometown) %>"></i>
+									</li>
+									<li><b>Work place:</b>  
+										<%= show_value(current_user.work_place) %>
+										<i class="<%= is_verify(current_user.work_place) %>"></i>
+									</li>
+									<li><b>Date of birth:</b>  
+										<%= show_value(current_user.date_of_birth) %>
+										<i class="<%= is_verify(current_user.date_of_birth) %>"></i>
+									</li>
+
+
+									<% raise %>
+
+									</ul>
+								</div>
+							</div>
+
+
+							<div class="extra content">
+								<a class="right floated edituser">
+									<i class="edit icon"></i>
+									Edit
+								</a>
+								<span>
+									<i>Started since  <%= current_user.created_at.month %>/<%= current_user.created_at.year  %></i>
+								</span>
+							</div>
+
+						</div>
+
+						<div class="ui fluid card">
+							<div class="container p3">
+								<br>
+								<h4 class="ui sub header">
+									<i class="university icon"></i>
+									Bank account 
+								</h4>
+								<div class="content">
+									XXXXXXXX
+								</div>						
+								<h4 class="ui sub header">
+									<i class="university icon"></i>
+									Bank account 
+								</h4>
+								<div class="content">
+									XXXXXXXX
+								</div>
+								<br>
+							</div>
+							<div class="extra content">
+								<a class="right floated editbank">
+									<i class="edit bank icon"></i>
+									Edit
+								</a>
+							</div>
+						</div>
+					</div>
+
+					<div class="five wide column p2">
+						<div class="ui fluid card">
+							<ul><h4>Your verify status: <font color="red"><%= @is_verified  %></font></h4></ul>
+							<ul><h4>Your account status: <font color="green"> <%= @account_status.status  %> </font>
 							</ul>
+							<ul><h4>Positive Feedback: </h4></ul>
+							<ul><h4>Negative Feedback: </h4></ul>
+
 						</div>
-					</div>
-
-
-					<div class="extra content">
-						<a class="right floated edituser">
-							<i class="edit icon"></i>
-							Edit
-						</a>
-						<span>
-							<i>Started since  <%= current_user.created_at.month %>/<%= current_user.created_at.year  %></i>
-						</span>
-					</div>
-
-				</div>
-
-				<div class="ui fluid card">
-					<div class="container p3">
-						<br>
-						<h4 class="ui sub header">
-							<i class="university icon"></i>
-							Bank account 
-						</h4>
-						<div class="content">
-							XXXXXXXX
-						</div>						
-						<h4 class="ui sub header">
-							<i class="university icon"></i>
-							Bank account 
-						</h4>
-						<div class="content">
-							XXXXXXXX
+						<div class="ui fluid card-3">
+							<div class="content p3">
+								<div class="ui header">Feedback</div>
+								<% @feedbacks.each do |feed| %>
+								<li><%= feed.guest.user_name %> : <%= feed.content %></li>							
+								<% end %>
+							</div>
 						</div>
+					</div>	
+				</div>
+
+
+				<!--  Modal Javascript -->
+
+				<div class="ui modal edituser">
+					<i class="close icon"></i>
+					<div class="header">
+						Edit User
+					</div>
+					<div class="image content">
+						<div class="ui medium image">
+							<img src="<%= avatar(@user.filepicker_url)%>" style="width:170px;height:130px;">
+						</div>
+						<div class="description">
+							<div class="ui header">This is edit user information form. find this in "Show.html.erb"</div>
+							<p>We've grabbed the following image from the <a href="https://www.gravatar.com" target="_blank">gravatar</a> image associated with your registered e-mail address.</p>
+							<p>Is it okay to use this photo?</p>
+						</div>
+						<center>
+							<%= form_for @user do |f| %>
+							<div>
+								<%= f.label :filepicker_url, "Upload Your Avatar" %>
+								<%= f.filepicker_field :filepicker_url %>
+							</div>
+							<!--<%= f.submit %> -->
+							<% end %>
+						</center>
 						<br>
-					</div>
-					<div class="extra content">
-						<a class="right floated editbank">
-							<i class="edit bank icon"></i>
-							Edit
-						</a>
-					</div>
-				</div>
-			</div>
-
-			<div class="five wide column p2">
-				<div class="ui fluid card">
-					<ul><h4>Your verify status: <font color="red"><%= @is_verified  %></font></h4></ul>
-					<ul><h4>Your account status: <font color="green"> <%= @account_status.status  %> </font>
-					</ul>
-					<ul><h4>Positive Feedback: </h4></ul>
-					<ul><h4>Negative Feedback: </h4></ul>
-
-				</div>
-				<div class="ui fluid card-3">
-					<div class="content p3">
-						<div class="ui header">Feedback</div>
-						<% @feedbacks.each do |feed| %>
-						<li><%= feed.guest.user_name %> : <%= feed.content %></li>							
+						<%= form_for @user do |f| %>
+						<div>
+							<%= f.label :filepicker_url, "Upload Your Certificate Images" %>
+							<%= f.filepicker_field :filepicker_url %>
+						</div>
+						<!--<%= f.submit %> -->
 						<% end %>
+
+					</div>
+					<div class="actions">
+						<div class="ui black deny button">
+							Cancle
+						</div>
+						<div class="ui positive right labeled icon button">
+							Update 
+							<i class="checkmark icon"></i>
+						</div>
 					</div>
 				</div>
-			</div>	
-		</div>
 
-
-		<!--  Modal Javascript -->
-
-		<div class="ui modal edituser">
-			<i class="close icon"></i>
-			<div class="header">
-				Edit User
-			</div>
-			<div class="image content">
-				<div class="ui medium image">
-					<img src="<%= avatar(@user.filepicker_url)%>" style="width:170px;height:130px;">
-				</div>
-				<div class="description">
-					<div class="ui header">This is edit user information form. find this in "Show.html.erb"</div>
-					<p>We've grabbed the following image from the <a href="https://www.gravatar.com" target="_blank">gravatar</a> image associated with your registered e-mail address.</p>
-					<p>Is it okay to use this photo?</p>
-				</div>
-				<center>
-					<%= form_for @user do |f| %>
-					<div>
-						<%= f.label :filepicker_url, "Upload Your Avatar" %>
-						<%= f.filepicker_field :filepicker_url %>
+				<div class="ui modal editbank">
+					<i class="close icon"></i>
+					<div class="header">
+						Edit bank
 					</div>
-					<!--<%= f.submit %> -->
-					<% end %>
-				</center>
-				<br>
-				<%= form_for @user do |f| %>
-				<div>
-					<%= f.label :filepicker_url, "Upload Your Certificate Images" %>
-					<%= f.filepicker_field :filepicker_url %>
+					<div class="image content">
+						<div class="ui medium image">
+							<img src="/images/avatar/large/chris.jpg">
+						</div>
+						<div class="description">
+							<div class="ui header">This is edit bank information form. find this in "Show.html.erb"</div>
+							<p>We've grabbed the following image from the <a href="https://www.gravatar.com" target="_blank">gravatar</a> image associated with your registered e-mail address.</p>
+							<p>Is it okay to use this photo?</p>
+						</div>
+					</div>
+					<div class="actions">
+						<div class="ui black deny button">
+							Cancle
+						</div>
+						<div class="ui positive right labeled icon button">
+							Update 
+							<i class="checkmark icon"></i>
+						</div>
+					</div>
 				</div>
-				<!--<%= f.submit %> -->
-				<% end %>
-
-			</div>
-			<div class="actions">
-				<div class="ui black deny button">
-					Cancle
-				</div>
-				<div class="ui positive right labeled icon button">
-					Update 
-					<i class="checkmark icon"></i>
-				</div>
-			</div>
-		</div>
-
-		<div class="ui modal editbank">
-			<i class="close icon"></i>
-			<div class="header">
-				Edit bank
-			</div>
-			<div class="image content">
-				<div class="ui medium image">
-					<img src="/images/avatar/large/chris.jpg">
-				</div>
-				<div class="description">
-					<div class="ui header">This is edit bank information form. find this in "Show.html.erb"</div>
-					<p>We've grabbed the following image from the <a href="https://www.gravatar.com" target="_blank">gravatar</a> image associated with your registered e-mail address.</p>
-					<p>Is it okay to use this photo?</p>
-				</div>
-			</div>
-			<div class="actions">
-				<div class="ui black deny button">
-					Cancle
-				</div>
-				<div class="ui positive right labeled icon button">
-					Update 
-					<i class="checkmark icon"></i>
-				</div>
-			</div>
-		</div>

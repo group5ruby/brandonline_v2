@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170331074013) do
+ActiveRecord::Schema.define(version: 20170331132439) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,6 +19,14 @@ ActiveRecord::Schema.define(version: 20170331074013) do
     t.string   "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "addresses", force: :cascade do |t|
+    t.string   "value"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_addresses_on_user_id", using: :btree
   end
 
   create_table "admins", force: :cascade do |t|
@@ -36,12 +44,60 @@ ActiveRecord::Schema.define(version: 20170331074013) do
     t.datetime "updated_at"
   end
 
+  create_table "careers", force: :cascade do |t|
+    t.string   "value"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_careers_on_user_id", using: :btree
+  end
+
+  create_table "date_of_births", force: :cascade do |t|
+    t.datetime "value"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_date_of_births_on_user_id", using: :btree
+  end
+
   create_table "feedbacks", force: :cascade do |t|
     t.integer  "guest_id"
     t.integer  "user_id"
     t.text     "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "hometowns", force: :cascade do |t|
+    t.string   "value"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_hometowns_on_user_id", using: :btree
+  end
+
+  create_table "identity_numbers", force: :cascade do |t|
+    t.string   "value"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_identity_numbers_on_user_id", using: :btree
+  end
+
+  create_table "phone_numbers", force: :cascade do |t|
+    t.string   "value"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_phone_numbers_on_user_id", using: :btree
+  end
+
+  create_table "sexes", force: :cascade do |t|
+    t.string   "value"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_sexes_on_user_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
@@ -80,4 +136,20 @@ ActiveRecord::Schema.define(version: 20170331074013) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  create_table "work_places", force: :cascade do |t|
+    t.string   "value"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_work_places_on_user_id", using: :btree
+  end
+
+  add_foreign_key "addresses", "users"
+  add_foreign_key "careers", "users"
+  add_foreign_key "date_of_births", "users"
+  add_foreign_key "hometowns", "users"
+  add_foreign_key "identity_numbers", "users"
+  add_foreign_key "phone_numbers", "users"
+  add_foreign_key "sexes", "users"
+  add_foreign_key "work_places", "users"
 end

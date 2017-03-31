@@ -10,7 +10,14 @@ class UsersController < ApplicationController
 		end
 		@account_status = AccountStatus.find(current_user.account_status)
 		@icon = User.is_verified(current_user.identity_number)
-		@feedbacks = Feedback.where(user_id: current_user.id)	
+		@feedbacks = Feedback.where(user_id: current_user.id)
+		
+		# @user.address => true
+		@user.toggle :address
+		@user.save
+
+
+
 	end
 
 	def profile

@@ -5,6 +5,20 @@ class User < ApplicationRecord
   :recoverable, :rememberable, :trackable, :validatable, :omniauthable, :omniauth_providers => [:facebook]
   has_many :feedbacks
   has_many :received_feedbacks, class_name: "Feedback", foreign_key: "user_id"
+  has_one :address
+  has_many :phone_number
+  has_one :work_place
+  has_one :identity_number
+  has_one :career
+  has_one :sex
+  has_one :hometown
+  has_one :date_of_birth
+
+
+
+
+
+
   def self.from_omniauth(auth)
   	where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
   		user.email = auth.info.email
