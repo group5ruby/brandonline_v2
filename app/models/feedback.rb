@@ -1,4 +1,4 @@
 class Feedback < ApplicationRecord
   belongs_to :user
-  belongs_to :friend, :class_name => "User"
+  belongs_to :guest, :class_name => "User"
 end

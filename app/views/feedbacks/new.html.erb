@@ -1,0 +1,16 @@
+<h1> Feedback for <i><%= @guest.user_name %></i> </h1>
+
+<div class="col-md-8">
+    <%= form_for (@feedback), url: user_feedbacks_path do |f| %>
+    <%= f.hidden_field :guest_id, :value => current_user.id %>    
+    <div class="form-group">
+      <%= f.label :content %>
+      <%= f.text_area :content, size: "50x10",class:"form-control" %>
+    </div>    
+    <div class="form-group row" style="padding-top:20px; margin-left: 10%;">
+      <%= f.submit "Send", class:"ui green button" %> |
+      <%= link_to "Back",root_path, class:"ui blue button" %>
+    </div>
+    <% end %>
+  </div>    
+

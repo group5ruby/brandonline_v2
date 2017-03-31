@@ -85,6 +85,9 @@
 				<div class="ui fluid card-3">
 					<div class="content p3">
 						<div class="ui header">Feedback</div>
+						<% @feedbacks.each do |feed| %>
+							<li><%= feed.guest.user_name %> : <%= feed.content %></li>							
+						<% end %>
 					</div>
 				</div>
 			</div>	

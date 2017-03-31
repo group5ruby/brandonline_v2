@@ -42,7 +42,7 @@
               </a>
 
               <div class="right floated">
-                  <%= link_to "Feedback", nil, class:"ui green button" %>
+                  <%= link_to "Feedback", new_user_feedback_path(@guest.id), class:"ui green button" %>
                 </div>
               <span>
                 <i>Started since  <%= @guest.created_at.month %>/<%= @guest.created_at.year  %></i>

@@ -9,7 +9,8 @@ class UsersController < ApplicationController
 			@is_verified = "Unverified"
 		end
 		@account_status = AccountStatus.find(current_user.account_status)
-		@icon = User.is_verified(current_user.identity_number)		
+		@icon = User.is_verified(current_user.identity_number)
+		@feedbacks = Feedback.where(user_id: current_user.id)	
 	end
 
 	def profile
