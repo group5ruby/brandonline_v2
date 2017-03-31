@@ -28,6 +28,14 @@
 							<i class="<%= User.is_verified(current_user.identity_number) %>"> </i></li>
 							<li><b>Email:</b> <%= current_user.email %>
 								<i class="<%= User.is_verified(current_user.is_verified) %>"> </i></li>
+								<li>Phone: <b><%= current_user.phone_number %></b></li>
+								<li>Address: <b><%= current_user.address %></b></li>
+								<li>Zalo: <b><%= current_user.zalo %></b></li>
+								<li>Career:<b><%= current_user.career %></b></li>
+								<li>Indentify_Number:<b><%= current_user.identity_number %></b></li>
+								<li></li>
+								<li></li>
+
 							</ul>
 						</div>
 					</div>
@@ -86,7 +94,7 @@
 					<div class="content p3">
 						<div class="ui header">Feedback</div>
 						<% @feedbacks.each do |feed| %>
-							<li><%= feed.guest.user_name %> : <%= feed.content %></li>							
+						<li><%= feed.guest.user_name %> : <%= feed.content %></li>							
 						<% end %>
 					</div>
 				</div>
@@ -111,23 +119,23 @@
 					<p>Is it okay to use this photo?</p>
 				</div>
 				<center>
-								<%= form_for @user do |f| %>
-								<div>
-									<%= f.label :filepicker_url, "Upload Your Avatar" %>
-									<%= f.filepicker_field :filepicker_url %>
-								</div>
-								<!--<%= f.submit %> -->
-								<% end %>
+					<%= form_for @user do |f| %>
+					<div>
+						<%= f.label :filepicker_url, "Upload Your Avatar" %>
+						<%= f.filepicker_field :filepicker_url %>
+					</div>
+					<!--<%= f.submit %> -->
+					<% end %>
 				</center>
 				<br>
 				<%= form_for @user do |f| %>
-								<div>
-									<%= f.label :filepicker_url, "Upload Your Certificate Images" %>
-									<%= f.filepicker_field :filepicker_url %>
-								</div>
-								<!--<%= f.submit %> -->
-								<% end %>
-	
+				<div>
+					<%= f.label :filepicker_url, "Upload Your Certificate Images" %>
+					<%= f.filepicker_field :filepicker_url %>
+				</div>
+				<!--<%= f.submit %> -->
+				<% end %>
+
 			</div>
 			<div class="actions">
 				<div class="ui black deny button">
