@@ -16,51 +16,62 @@
 						<div class="image" >
 							<img src="<%= avatar(@user.filepicker_url)%>" style="width:184px;height:150px;">
 						</div>
+						<div class="extra content">
+							<%= form_for @user do |f| %>
+						<div><center>
+							<%= f.label :filepicker_url, "Upload your avatar" %> <br>
+							<%= f.filepicker_field :filepicker_url , class: 'mini button ui' %>
+							</center>
+
+						</div>
+						<%= f.submit "update image", style: "display: none;" %> 
+						<% end %>
+						</div>
 					</div>
 				</div>
 
 				<div class="eleven wide column">
 					<ul>
-						<li><b>Full name:</b> <%= @user.user_name %>
+						<li><b>Full name:</b>&nbsp;&nbsp;&nbsp;&nbsp; <%= @user.user_name %>
 							<i class="<%= is_verify(@user[:identity_number]) %>"> </i></li>
 							
-							<li><b>Email:</b> <%= @user.email %>
+							<li><b>Email:</b> &nbsp;&nbsp;&nbsp;&nbsp; <%= @user.email %>
 								<i class="checkmark icon verified"> </i></li>
 								
-								<li><b>Phone:</b> <% @user.phone_number.each do |p|  %>
+								<li><b>Phone:</b> &nbsp;&nbsp;&nbsp;&nbsp;<% @user.phone_number.each do |p|  %>
 									<%= p.value %> <br>
 									<% end %>
 									<i class="<%= is_verify(@user[:phone_number]) %>"></i></li>
 
 									<li><b>Address:</b>
-										<%= show_value(@user.address) %>
+										&nbsp;&nbsp;&nbsp;&nbsp;<%= show_value(@user.address) %>
 										<i class="<%= is_verify(@user[:address]) %>"></i>
 									</li>
 									<li><b>Zalo:</b>
-										<%= show_value(@user.zalo) %>
+										&nbsp;&nbsp;&nbsp;&nbsp;<%= show_value(@user.zalo) %>
 										<i class="<%= is_verify(@user[:zalo]) %>"></i>
 									</li>
 									<li><b>Career:</b>
-										<%= show_value(@user.career) %>
+										&nbsp;&nbsp;&nbsp;&nbsp;<%= show_value(@user.career) %>
 										<i class="<%= is_verify(@user[:career]) %>"></i>
 									</li>
 									<li><b>Indentify_Number:</b>
-										<%= show_value(@user.identity_number) %>
+										&nbsp;&nbsp;&nbsp;&nbsp;<%= show_value(@user.identity_number) %>
 										<i class="<%= is_verify(@user[:identity_number]) %>"></i></li>
 									<li><b>Sex:</b>  
-										<%= show_value(@user.sex) %> 
+										&nbsp;&nbsp;&nbsp;&nbsp;<%= show_value(@user.sex) %> 
 										<i class="<%= is_verify(@user[:sex]) %>"></i>
 									</li>
 									<li><b>Hometown:</b>  
-										<%= show_value(@user.hometown) %>
+										&nbsp;&nbsp;&nbsp;&nbsp;<%= show_value(@user.hometown) %>
 										<i class="<%= is_verify(@user[:hometown]) %>"></i>
 									</li>
 									<li><b>Work place:</b>  
-										<%= show_value(@user.work_place) %>
+										&nbsp;&nbsp;&nbsp;&nbsp;<%= show_value(@user.work_place) %>
 										<i class="<%= is_verify(@user[:work_place]) %>"></i>
 									</li>
 									<li><b>Date of birth:</b>  
-										<%= show_value(@user.date_of_birth) %>
+										&nbsp;&nbsp;&nbsp;&nbsp;<%= show_value(@user.date_of_birth) %>
 										<i class="<%= is_verify(@user[:date_of_birth]) %>"></i>
 									</li>
 
@@ -141,33 +152,30 @@
 						Edit User
 					</div>
 					<div class="image content">
-						<div class="ui medium image">
-							<img src="<%= avatar(@user.filepicker_url)%>" style="width:170px;height:130px;">
-						</div>
-						<div class="description">
-							<div class="ui header">This is edit user information form. find this in "Show.html.erb"</div>
-							<p>We've grabbed the following image from the <a href="https://www.gravatar.com" target="_blank">gravatar</a> image associated with your registered e-mail address.</p>
-							<p>Is it okay to use this photo?</p>
-						</div>
-						<center>
-							<%= form_for @user do |f| %>
-							<div>
-								<%= f.label :filepicker_url, "Upload Your Avatar" %>
-								<%= f.filepicker_field :filepicker_url %>
-							</div>
-							<!--<%= f.submit %> -->
-							<% end %>
-						</center>
-						<br>
 						<%= form_for @user do |f| %>
 						<div>
-							<%= f.label :filepicker_url, "Upload Your Certificate Images" %>
+							<%= f.label :filepicker_url, "Upload Your Certificate" %> <br>
 							<%= f.filepicker_field :filepicker_url %>
 						</div>
-						<!--<%= f.submit %> -->
+						<!--<%= f.submit "update image" %>--> 
 						<% end %>
+						<div class="description">
+							<div class="ui header">Edit your profile</div>
+							asdasdasdasdasd
+							asdasdasd
+							asdasdasd
+							asdasdasd
+							asdasdasd
+						</div>
+						<center>
+							
+						</center>
+						<br>
+						
 
 					</div>
+					
+					
 					<div class="actions">
 						<div class="ui black deny button">
 							Cancle

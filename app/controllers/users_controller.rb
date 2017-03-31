@@ -50,8 +50,10 @@ class UsersController < ApplicationController
 
 	def update
 		@user = User.find(current_user.id)
-		if @user.update(filepicker_url: params[:user][:filepicker_url])
-			redirect_to root_path
+		if params[:commit] == "update image"
+			if @user.update(filepicker_url: params[:user][:filepicker_url])
+				redirect_back(fallback_location: root_path)
+			end
 		end
 	end 
 

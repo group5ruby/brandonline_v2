@@ -37,6 +37,9 @@ $(document).ready(function(){
   $('.ui.dropdown')
     .dropdown()
   ;
-
+  $("input[name='user[filepicker_url]']").change(function() { 
+    $("input[name='commit']").click();
+    
+  });
 
 })
