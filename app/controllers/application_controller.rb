@@ -12,7 +12,6 @@ class ApplicationController < ActionController::Base
   
   def is_verify(value)
       if value == true
-
         return "checkmark icon verified"
       else
         return "help circle icon"

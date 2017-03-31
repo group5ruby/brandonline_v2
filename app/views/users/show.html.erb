@@ -5,71 +5,67 @@
 		<div class="ui fluid card">
 			<div class="content header">
 				<div class="ui header">
-					<center> <i class="user icon"></i><%= current_user.user_name %> Profile </center>
+					<center> <i class="user icon"></i><%= @user.user_name %> Profile </center>
 				</div>
 			</div>
 
 			<div class="ui grid">
 
 				<div class="five wide column" style="padding-top: 24px; padding-left: 24px;">
-					<div class="card">
+					<div class="ui card">
 						<div class="image" >
-							<img src="<%= avatar(@user.filepicker_url)%>" style="width:170px;height:130px;">
-						</div>
-						<div class="extra">
-
+							<img src="<%= avatar(@user.filepicker_url)%>" style="width:184px;height:150px;">
 						</div>
 					</div>
 				</div>
 
 				<div class="eleven wide column">
 					<ul>
-						<li><b>Full name:</b> <%= current_user.user_name %>
-							<i class="<%= is_verify(current_user.identity_number) %>"> </i></li>
+						<li><b>Full name:</b> <%= @user.user_name %>
+							<i class="<%= is_verify(@user[:identity_number]) %>"> </i></li>
 							
-							<li><b>Email:</b> <%= current_user.email %>
-								<i class="<%= is_verify(current_user.is_verified) %>"> </i></li>
+							<li><b>Email:</b> <%= @user.email %>
+								<i class="checkmark icon verified"> </i></li>
 								
-								<li><b>Phone:</b> <% current_user.phone_number.each do |p|  %>
+								<li><b>Phone:</b> <% @user.phone_number.each do |p|  %>
 									<%= p.value %> <br>
 									<% end %>
-
-									<i class="<%= is_verify(current_user.phone_number) %>"></i></li>
+									<i class="<%= is_verify(@user[:phone_number]) %>"></i></li>
 
 									<li><b>Address:</b>
-										<%= show_value(current_user.address) %>
-										<i class="<%= is_verify(current_user.address) %>"></i>
+										<%= show_value(@user.address) %>
+										<i class="<%= is_verify(@user[:address]) %>"></i>
 									</li>
 									<li><b>Zalo:</b>
-										<%= show_value(current_user.zalo) %>
-										<i class="<%= is_verify(current_user.zalo) %>"></i>
+										<%= show_value(@user.zalo) %>
+										<i class="<%= is_verify(@user[:zalo]) %>"></i>
 									</li>
 									<li><b>Career:</b>
-										<%= show_value(current_user.career) %>
-										<i class="<%= is_verify(current_user.career) %>"></i>
+										<%= show_value(@user.career) %>
+										<i class="<%= is_verify(@user[:career]) %>"></i>
 									</li>
 									<li><b>Indentify_Number:</b>
-										<%= show_value(current_user.identity_number) %>
-										<i class="<%= is_verify(current_user.identity_number) %>"></i></li>
+										<%= show_value(@user.identity_number) %>
+										<i class="<%= is_verify(@user[:identity_number]) %>"></i></li>
 									<li><b>Sex:</b>  
-										<%= show_value(current_user.sex) %> 
-										<i class="<%= is_verify(current_user.sex) %>"></i>
+										<%= show_value(@user.sex) %> 
+										<i class="<%= is_verify(@user[:sex]) %>"></i>
 									</li>
 									<li><b>Hometown:</b>  
-										<%= show_value(current_user.hometown) %>
-										<i class="<%= is_verify(current_user.hometown) %>"></i>
+										<%= show_value(@user.hometown) %>
+										<i class="<%= is_verify(@user[:hometown]) %>"></i>
 									</li>
 									<li><b>Work place:</b>  
-										<%= show_value(current_user.work_place) %>
-										<i class="<%= is_verify(current_user.work_place) %>"></i>
+										<%= show_value(@user.work_place) %>
+										<i class="<%= is_verify(@user[:work_place]) %>"></i>
 									</li>
 									<li><b>Date of birth:</b>  
-										<%= show_value(current_user.date_of_birth) %>
-										<i class="<%= is_verify(current_user.date_of_birth) %>"></i>
+										<%= show_value(@user.date_of_birth) %>
+										<i class="<%= is_verify(@user[:date_of_birth]) %>"></i>
 									</li>
 
 
-									<% raise %>
+									
 
 									</ul>
 								</div>
@@ -82,7 +78,7 @@
 									Edit
 								</a>
 								<span>
-									<i>Started since  <%= current_user.created_at.month %>/<%= current_user.created_at.year  %></i>
+									<i>Started since  <%= @user.created_at.month %>/<%= @user.created_at.year  %></i>
 								</span>
 							</div>
 

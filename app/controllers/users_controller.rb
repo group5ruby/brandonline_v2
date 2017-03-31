@@ -12,9 +12,14 @@ class UsersController < ApplicationController
 		@icon = User.is_verified(current_user.identity_number)
 		@feedbacks = Feedback.where(user_id: current_user.id)
 		
-		# @user.address => true
-		@user.toggle :address
-		@user.save
+		
+		# @user.toggle :identity_number
+		# @user.toggle :phone_number
+		# @user.toggle :date_of_birth
+		# @user.toggle :work_place
+		# @user.toggle :career
+		# @user.toggle :hometown
+		# @user.save
 
 
 
