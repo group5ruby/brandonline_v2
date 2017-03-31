@@ -8,6 +8,7 @@ Rails.application.routes.draw do
       }
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   get "feed" => "users#feed"
+  get "profile" => "users#profile"
   resources :users
   root "home#index" 
 end

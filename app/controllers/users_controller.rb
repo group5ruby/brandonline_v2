@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-	
+
 	def show
 		check_session
 		@user = User.find(current_user.id)
@@ -10,6 +10,21 @@ class UsersController < ApplicationController
 		end
 		@account_status = AccountStatus.find(current_user.account_status)
 		@icon = User.is_verified(current_user.identity_number)		
+	end
+
+	def profile
+		if (params[:id]) == current_user.id.to_s
+			return redirect_to user_path(params[:id])			
+		end 	
+		@guest = User.find(params[:id])		
+		if @guest.is_verified == true
+			@is_verified = "Verified" 
+		else
+			@is_verified = "Unverified"
+		end
+
+		@account_status = AccountStatus.find(@guest.account_status)
+		@icon = User.is_verified(@guest.identity_number)
 	end
 
 	def index

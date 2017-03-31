@@ -12,7 +12,7 @@
                 <%= filepicker_image_tag avatar(v.filepicker_url), w: 100, h: 100, fit: 'clip' %> 
               <div class="header">
               </div>
-                <%= v.user_name %>
+                <%= link_to v.user_name, profile_path(id: v.id) %>
               </div>
             <div class="meta">
               <%= v.business %>
