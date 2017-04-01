@@ -12,52 +12,52 @@
 			<div class="ui grid">
 
 				<div class="five wide column" style="padding-top: 24px; padding-left: 24px;">
-					<div class="ui card">
+					<div class="ui card" >
 						<div class="image" >
-							<img src="<%= avatar(@user.filepicker_url)%>" style="width:184px;height:150px;">
+							<img src="<%= avatar(@user.filepicker_url)%>" >
 						</div>
 						<div class="extra content">
-							<%= form_for @user do |f| %>
-						<div><center>
-							<%= f.label :filepicker_url, "Upload your avatar" %> <br>
-							<%= f.filepicker_field :filepicker_url , class: 'mini button ui' %>
+							<%= form_for @user, :id => 'my-form' do |f| %>
+							<div><center>
+								<%= f.label :filepicker_url, "Upload your avatar" %> <br>
+								<%= f.filepicker_field :filepicker_url , class: 'mini button ui' %>
 							</center>
 
 						</div>
-						<%= f.submit "update image", style: "display: none;" %> 
+						<%= f.submit "update image", type:'submit', id:'submitImage', style: "display: none;" %> 
 						<% end %>
-						</div>
 					</div>
 				</div>
+			</div>
 
-				<div class="eleven wide column">
-					<ul>
-						<li><b>Full name:</b>&nbsp;&nbsp;&nbsp;&nbsp; <%= @user.user_name %>
-							<i class="<%= is_verify(@user[:identity_number]) %>"> </i></li>
-							
-							<li><b>Email:</b> &nbsp;&nbsp;&nbsp;&nbsp; <%= @user.email %>
-								<i class="checkmark icon verified"> </i></li>
-								
-								<li><b>Phone:</b> &nbsp;&nbsp;&nbsp;&nbsp;<% @user.phone_number.each do |p|  %>
-									<%= p.value %> <br>
-									<% end %>
-									<i class="<%= is_verify(@user[:phone_number]) %>"></i></li>
+			<div class="eleven wide column">
+				<ul>
+					<li><b>Full name:</b>&nbsp;&nbsp;&nbsp;&nbsp; <%= @user.user_name %>
+						<i class="<%= is_verify(@user[:identity_number]) %>"> </i></li>
 
-									<li><b>Address:</b>
-										&nbsp;&nbsp;&nbsp;&nbsp;<%= show_value(@user.address) %>
-										<i class="<%= is_verify(@user[:address]) %>"></i>
-									</li>
-									<li><b>Zalo:</b>
-										&nbsp;&nbsp;&nbsp;&nbsp;<%= show_value(@user.zalo) %>
-										<i class="<%= is_verify(@user[:zalo]) %>"></i>
-									</li>
-									<li><b>Career:</b>
-										&nbsp;&nbsp;&nbsp;&nbsp;<%= show_value(@user.career) %>
-										<i class="<%= is_verify(@user[:career]) %>"></i>
-									</li>
-									<li><b>Indentify_Number:</b>
-										&nbsp;&nbsp;&nbsp;&nbsp;<%= show_value(@user.identity_number) %>
-										<i class="<%= is_verify(@user[:identity_number]) %>"></i></li>
+						<li><b>Email:</b> &nbsp;&nbsp;&nbsp;&nbsp; <%= @user.email %>
+							<i class="checkmark icon verified"> </i></li>
+
+							<li><b>Phone:</b> &nbsp;&nbsp;&nbsp;&nbsp;<% @user.phone_numbers.each do |p|  %>
+								<%= p.value %> <br>
+								<% end %>
+								<i class="<%= is_verify(@user[:phone_number]) %>"></i></li>
+
+								<li><b>Address:</b>
+									&nbsp;&nbsp;&nbsp;&nbsp;<%= show_value(@user.address) %>
+									<i class="<%= is_verify(@user[:address]) %>"></i>
+								</li>
+								<li><b>Zalo:</b>
+									&nbsp;&nbsp;&nbsp;&nbsp;<%= show_value(@user.zalo) %>
+									<i class="<%= is_verify(@user[:zalo]) %>"></i>
+								</li>
+								<li><b>Career:</b>
+									&nbsp;&nbsp;&nbsp;&nbsp;<%= show_value(@user.career) %>
+									<i class="<%= is_verify(@user[:career]) %>"></i>
+								</li>
+								<li><b>Indentify_Number:</b>
+									&nbsp;&nbsp;&nbsp;&nbsp;<%= show_value(@user.identity_number) %>
+									<i class="<%= is_verify(@user[:identity_number]) %>"></i></li>
 									<li><b>Sex:</b>  
 										&nbsp;&nbsp;&nbsp;&nbsp;<%= show_value(@user.sex) %> 
 										<i class="<%= is_verify(@user[:sex]) %>"></i>
@@ -78,137 +78,135 @@
 
 									
 
-									</ul>
-								</div>
-							</div>
-
-
-							<div class="extra content">
-								<a class="right floated edituser">
-									<i class="edit icon"></i>
-									Edit
-								</a>
-								<span>
-									<i>Started since  <%= @user.created_at.month %>/<%= @user.created_at.year  %></i>
-								</span>
-							</div>
-
-						</div>
-
-						<div class="ui fluid card">
-							<div class="container p3">
-								<br>
-								<h4 class="ui sub header">
-									<i class="university icon"></i>
-									Bank account 
-								</h4>
-								<div class="content">
-									XXXXXXXX
-								</div>						
-								<h4 class="ui sub header">
-									<i class="university icon"></i>
-									Bank account 
-								</h4>
-								<div class="content">
-									XXXXXXXX
-								</div>
-								<br>
-							</div>
-							<div class="extra content">
-								<a class="right floated editbank">
-									<i class="edit bank icon"></i>
-									Edit
-								</a>
+								</ul>
 							</div>
 						</div>
+
+
+						<div class="extra content">
+							<a class="right floated edituser">
+								<i class="edit icon"></i>
+								Edit
+							</a>
+							<span>
+								<i>Started since  <%= @user.created_at.month %>/<%= @user.created_at.year  %></i>
+							</span>
+						</div>
+
 					</div>
 
-					<div class="five wide column p2">
-						<div class="ui fluid card">
-							<ul><h4>Your verify status: <font color="red"><%= @is_verified  %></font></h4></ul>
-							<ul><h4>Your account status: <font color="green"> <%= @account_status.status  %> </font>
-							</ul>
-							<ul><h4>Positive Feedback: </h4></ul>
-							<ul><h4>Negative Feedback: </h4></ul>
-
-						</div>
-						<div class="ui fluid card-3">
-							<div class="content p3">
-								<div class="ui header">Feedback</div>
-								<% @feedbacks.each do |feed| %>
-								<li><%= feed.guest.user_name %> : <%= feed.content %></li>							
-								<% end %>
-							</div>
-						</div>
-					</div>	
-				</div>
-
-
-				<!--  Modal Javascript -->
-
-				<div class="ui modal edituser">
-					<i class="close icon"></i>
-					<div class="header">
-						Edit User
-					</div>
-					<div class="image content">
-						<%= form_for @user do |f| %>
-						<div>
-							<%= f.label :filepicker_url, "Upload Your Certificate" %> <br>
-							<%= f.filepicker_field :filepicker_url %>
-						</div>
-						<!--<%= f.submit "update image" %>--> 
-						<% end %>
-						<div class="description">
-							<div class="ui header">Edit your profile</div>
-							asdasdasdasdasd
-							asdasdasd
-							asdasdasd
-							asdasdasd
-							asdasdasd
-						</div>
-						<center>
+					<div class="ui fluid card">
+						<div class="container p3">
+							<br>
+							<% @banks.each do |f| %>
+							<span>
+								<h4 class="ui sub header">
+									<i class="university icon"></i>
+									<%= f.name  %>
+								</h4>
+							</span>
+							<span>
+								<a class="right floated" style="padding-right: 5px;" rel="nofollow" data-method="delete" href="<%= bank_account_path(f.id) %>">
+									<i class="erase icon" ></i>
+									delete
+								</a>
+							</span>
 							
-						</center>
-						<br>
-						
-
-					</div>
-					
-					
-					<div class="actions">
-						<div class="ui black deny button">
-							Cancle
+							<div class="content">
+								<b>Number:</b> 
+								<%= f.account_number  %>
+							</div>	
+							<% end %>					
+							<br>
 						</div>
-						<div class="ui positive right labeled icon button">
-							Update 
-							<i class="checkmark icon"></i>
+						<div class="extra content">
+							<a class="right floated editbank">
+								<i class="edit bank icon"></i>
+								Add
+							</a>
 						</div>
 					</div>
 				</div>
 
-				<div class="ui modal editbank">
-					<i class="close icon"></i>
-					<div class="header">
-						Edit bank
+				<div class="five wide column p2">
+					<div class="ui fluid card">
+						<ul><h4>Your verify status: <font color="red"><%= @is_verified  %></font></h4></ul>
+						<ul><h4>Your account status: <font color="green"> <%= @account_status.status  %> </font>
+						</ul>
+						<ul><h4>Positive Feedback: </h4></ul>
+						<ul><h4>Negative Feedback: </h4></ul>
+
 					</div>
-					<div class="image content">
-						<div class="ui medium image">
-							<img src="/images/avatar/large/chris.jpg">
-						</div>
-						<div class="description">
-							<div class="ui header">This is edit bank information form. find this in "Show.html.erb"</div>
-							<p>We've grabbed the following image from the <a href="https://www.gravatar.com" target="_blank">gravatar</a> image associated with your registered e-mail address.</p>
-							<p>Is it okay to use this photo?</p>
+					<div class="ui fluid card-3">
+						<div class="content p3">
+							<div class="ui header">Feedback</div>
+							<% @feedbacks.each do |feed| %>
+							<li><%= feed.guest.user_name %> : <%= feed.content %></li>							
+							<% end %>
 						</div>
 					</div>
-					<div class="actions">
-						<div class="ui black deny button">
-							Cancle
-						</div>
-						<div class="ui positive right labeled icon button">
-							Update 
-							<i class="checkmark icon"></i>
-						</div>
+				</div>	
+			</div>
+
+
+			<!--  Modal Javascript -->
+
+			<div class="ui modal edituser">
+				<i class="close icon"></i>
+				<div class="header">
+					Edit User
+				</div>
+				<div class="image content">
+					<%= form_for @user do |f| %>
+					<div>
+						<%= f.label :filepicker_url, "Upload Your Certificate" %> <br>
+						<%= f.filepicker_field :filepicker_url %>
+					</div>
+					<!--<%= f.submit "update image" %>--> 
+					<% end %>
+					<div class="description">
+						<div class="ui header">Edit your profile</div>
+						asdasdasdasdasd
+						asdasdasd
+						asdasdasd
+						asdasdasd
+						asdasdasd
+					</div>
+					<center>
+					</center>
+					<br>
+				</div>
+				<div class="actions">
+					<div class="ui black deny button">
+						Cancle
+					</div>
+					<div class="ui positive right labeled icon button">
+						Update 
+						<i class="checkmark icon"></i>
 					</div>
 				</div>
+			</div>
+
+			<div class="ui large modal editbank">
+				<i class="close icon"></i>
+				<div class="header">
+					Add new bank
+				</div>
+				<div class="content">
+					<center>
+						<%= form_for @banks.new do |b| %>
+						<div class="ui form">
+							<div class="field">
+								<%= b.text_field :name, autofocus: true, placeholder:'Name' %>
+							</div>
+
+							<div class="field">
+								<%= b.text_field :account_number, placeholder:'Account number' %>
+							</div>
+							<%= b.submit "submit", class: 'ui button submitbank' %>
+							<% end %>
+						</div>
+
+					</center>
+				</div>
+			</div>

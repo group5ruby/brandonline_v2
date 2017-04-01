@@ -42,4 +42,8 @@ $(document).ready(function(){
     
   });
 
+  $('.ui.button.submitbank').on('click',function(){
+    $('.ui.modal.editbank').modal('hide');
+  });
+
 })

@@ -6,13 +6,14 @@ class User < ApplicationRecord
   has_many :feedbacks
   has_many :received_feedbacks, class_name: "Feedback", foreign_key: "user_id"
   has_one :address
-  has_many :phone_number
+  has_many :phone_numbers
   has_one :work_place
   has_one :identity_number
   has_one :career
   has_one :sex
   has_one :hometown
   has_one :date_of_birth
+  has_many :bank_accounts
 
 
 

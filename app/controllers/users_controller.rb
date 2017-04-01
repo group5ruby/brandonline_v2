@@ -1,8 +1,12 @@
 class UsersController < ApplicationController
+	def new
+
+	end
 
 	def show
 		check_session
 		@user = User.find(current_user.id)
+		@banks = @user.bank_accounts
 		if current_user.is_verified == true
 			@is_verified = "Verified" 
 		else
@@ -20,9 +24,6 @@ class UsersController < ApplicationController
 		# @user.toggle :career
 		# @user.toggle :hometown
 		# @user.save
-
-
-
 	end
 
 	def profile

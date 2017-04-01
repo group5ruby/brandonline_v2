@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   get "feed" => "users#feed"
   get "control" => "admins#control"
   get "profile" => "users#profile"  
+  resources :bank_accounts
   resources :users do
     resources :feedbacks
   end
