@@ -11,7 +11,8 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   get "feed" => "users#feed"
   get "control" => "admins#control"
-  get "profile" => "users#profile"  
+  get "profile" => "users#profile"
+  get "eprofile" => "admins#eprofile"  
   resources :bank_accounts
   resources :users do
     resources :feedbacks

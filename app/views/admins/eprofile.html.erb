@@ -1,0 +1,12 @@
+<div class="ui grid cards">
+  <div class="row">
+    <div class="column three wide">
+       <%= link_to "Send Message", nil ,class:"ui blue button" %>    
+    </div>
+    <div class="column three wide">
+       <%= link_to "Delete User", user_path(id: @guest.id), method: :delete, data: {confirm: 'Are you sure?'} ,class:"ui youtube button" %>
+    </div>
+  </div> 
+</div>
+<%= render 'users/view' %>
+

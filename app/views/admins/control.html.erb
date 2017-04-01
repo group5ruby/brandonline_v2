@@ -1,1 +1,51 @@
 <h1>Control</h1>
+
+<div class="ui three column grid">
+  <div class="column">
+    <div class="ui header">
+      Unverify Feedback
+    </div>
+    <hr>
+    <div class="ui cards">
+      <% @feedback.each do |feed| %>
+      <div class="card">
+       <div class="content">
+          <div class="description">From: <i>"<%= feed.guest.user_name %>"</i> To: <i>"<%= feed.user.user_name %>"</i>          
+          <div class="right floated">
+            <%= link_to "Action", user_feedback_path(user_id: feed.user_id, id: feed.id), class:"ui green button" %>
+          </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+    </div>
+  </div>
+  <div class="column">
+    <div class="ui header">
+      New User
+    </div>
+    <hr>
+    <div class="ui cards">
+      <% @users.each do |user| %>
+        <div class="card">
+          <div class="content">            
+            <div class="ui header"><%= user.user_name %></div>
+            <div class="ui meta right floated"><%= distance_of_time_in_words(Time.now,(user.created_at)) %> ago </p></div>
+            <div class="ui header"><%= user.email %></div>
+            <div class="ui right floated">
+              <%= link_to "View", eprofile_path(id: user.id) , class:"ui blue button" %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+
+  <div class="column">
+    <div class="ui header">
+      New Request
+    </div>
+    <hr>
+  </div>
+</div>

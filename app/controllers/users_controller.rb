@@ -33,14 +33,7 @@ class UsersController < ApplicationController
 				return redirect_to user_path(params[:id])			
 			end
 		end 	
-		@guest = User.find(params[:id])		
-		if @guest.is_verified == true
-			@is_verified = "Verified" 
-		else
-			@is_verified = "Unverified"
-		end
-
-		@account_status = AccountStatus.find(@guest.account_status)
+		@guest = User.find(params[:id])			
 		@icon = User.is_verified(@guest.identity_number)
 	end
 
@@ -72,11 +65,24 @@ class UsersController < ApplicationController
 		@account_status = AccountStatus.find(current_user.account_status)
 	end
 	
+	def destroy
+		set_user
+    @user.destroy
+      respond_to do |format|
+      format.html { redirect_to root_path, notice: 'User was successfully destroyed.' }
+      format.json { head :no_content }
+    end
+  end
+
 
 
 	private
 	def check_session
 		redirect_to root_path unless current_user
+	end
+
+	def set_user
+		@user = User.find(params[:id])
 	end
 
 	
