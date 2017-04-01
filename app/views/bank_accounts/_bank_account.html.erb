@@ -1,0 +1,18 @@
+	<span>
+		<h4 class="ui sub header">
+			<i class="university icon"></i>
+			<%= bank_account.name  %>
+		</h4>
+	</span>
+	<span>
+		<a class="right floated" style="padding-right: 5px;" rel="nofollow" data-method="delete" href="<%= bank_account_path(bank_account.id) %>">
+			<i class="erase icon" ></i>
+			delete
+		</a>
+	</span>
+	<div class="content">
+		<b>Number:</b> 
+		<%= bank_account.account_number  %>
+	</div>	
+	<br>
+	
