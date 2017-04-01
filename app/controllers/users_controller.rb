@@ -26,8 +26,10 @@ class UsersController < ApplicationController
 	end
 
 	def profile
-		if (params[:id]) == current_user.id.to_s
-			return redirect_to user_path(params[:id])			
+		if(current_user != nil)
+			if (params[:id] == current_user.id.to_s)
+				return redirect_to user_path(params[:id])			
+			end
 		end 	
 		@guest = User.find(params[:id])		
 		if @guest.is_verified == true

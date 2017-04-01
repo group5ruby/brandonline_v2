@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  before_action :authenticate_user!, except: [:index]
-
+  before_action :authenticate, :except=> [:welcome]
+  #before_action :check_admin_logged_in!, :except => [:index]
   helper_method :avatar
   helper_method :is_verify
   helper_method :show_value
@@ -21,5 +21,15 @@ class ApplicationController < ActionController::Base
   def show_value(value)
       return "Not available" if value == nil
       value.value || "Not available"
-  end  
+  end
+
+  protected
+
+  def authenticate
+    unless current_user || current_admin
+      authenticate_user!
+    end
+  end
+
+
 end
