@@ -96,31 +96,14 @@
 					</div>
 
 					<div class="ui fluid card">
+						
 						<div class="container p3">
 							<br>
-							<% @banks.each do |f| %>
-							<span>
-								<h4 class="ui sub header">
-									<i class="university icon"></i>
-									<%= f.name  %>
-								</h4>
-							</span>
-							<span>
-								<a class="right floated" style="padding-right: 5px;" rel="nofollow" data-method="delete" href="<%= bank_account_path(f.id) %>">
-									<i class="erase icon" ></i>
-									delete
-								</a>
-							</span>
-							
-							<div class="content">
-								<b>Number:</b> 
-								<%= f.account_number  %>
-							</div>	
-							<% end %>					
-							<br>
+							<%= render @bank_accounts %>
 						</div>
+
 						<div class="extra content">
-							<a class="right floated editbank">
+							<a class="right floated editbank" data-toggle="ui modal" data-target="#modaleditbank">
 								<i class="edit bank icon"></i>
 								Add
 							</a>
@@ -187,14 +170,14 @@
 				</div>
 			</div>
 
-			<div class="ui large modal editbank">
+			<div class="ui small modal editbank" id="modaleditbank">
 				<i class="close icon"></i>
 				<div class="header">
 					Add new bank
 				</div>
 				<div class="content">
 					<center>
-						<%= form_for @banks.new do |b| %>
+						<%= form_for @bank_accounts.new do |b| %>
 						<div class="ui form">
 							<div class="field">
 								<%= b.text_field :name, autofocus: true, placeholder:'Name' %>
@@ -203,7 +186,7 @@
 							<div class="field">
 								<%= b.text_field :account_number, placeholder:'Account number' %>
 							</div>
-							<%= b.submit "submit", class: 'ui button submitbank' %>
+							<%= b.submit "Submit", class: 'ui button submitbank' %>
 							<% end %>
 						</div>
 

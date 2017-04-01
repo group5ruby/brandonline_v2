@@ -6,7 +6,7 @@ class UsersController < ApplicationController
 	def show
 		check_session
 		@user = User.find(current_user.id)
-		@banks = @user.bank_accounts
+		@bank_accounts = @user.bank_accounts
 		if current_user.is_verified == true
 			@is_verified = "Verified" 
 		else

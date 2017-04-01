@@ -1,4 +1,8 @@
 class BankAccountsController < ApplicationController
+	def index
+	end
+
+
 	def new
 		@bank = BankAccount.new
 	end
