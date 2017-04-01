@@ -1,0 +1,3 @@
+$('.ui.modal.editbank').modal('hide');
+$('#bankaccount').append('<%= j render @bank_account %>');
+$('#bank_account_<%= @bank_account.id %>').hide().fadeIn(1000);

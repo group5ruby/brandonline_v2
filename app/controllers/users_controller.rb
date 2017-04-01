@@ -1,11 +1,12 @@
 class UsersController < ApplicationController
 	def new
-
+		# @bank_account = BankAccount.new
 	end
 
 	def show
 		check_session
 		@user = User.find(current_user.id)
+		@bank_account = BankAccount.new
 		@bank_accounts = @user.bank_accounts
 		if current_user.is_verified == true
 			@is_verified = "Verified" 
@@ -62,6 +63,7 @@ class UsersController < ApplicationController
 
 	def feed
 		check_session
+		@feedbacks = Feedback.where(user_id: current_user.id)
 		if current_user.is_verified == true
 			@is_verified = "Verified" 
 		else

@@ -1,6 +1,5 @@
 //= require jquery
 //= require jquery_ujs
-
 //= require semantic-ui
 //=require_self
 
@@ -35,15 +34,15 @@ $(document).ready(function(){
   $(".ui .message").fadeOut(3000);
 
   $('.ui.dropdown')
-    .dropdown()
-  ;
+    .dropdown();
+  
   $("input[name='user[filepicker_url]']").change(function() { 
     $("input[name='commit']").click();
     
   });
 
-  $('.ui.button.submitbank').on('click',function(){
-    $('.ui.modal.editbank').modal('hide');
-  });
+  // $('.ui.button.submitbank').on('click',function(){
+  //   $('.ui.modal.editbank').modal('hide');
+  // });
 
 })

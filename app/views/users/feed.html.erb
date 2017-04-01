@@ -19,7 +19,7 @@
 					<li>sdfsdfsdf</li>
 				</div>
 				<div class="extra content">
-        <span class="right floated">
+					<span class="right floated">
 						<i class="arrow circle outline right icon"> </i>
 						<%= link_to "go to your settings", user_path(id: current_user.id), class:'ui' %>
 					</span>
@@ -39,16 +39,41 @@
 
 	<div class="six wide column">
 		<div class="ui fluid card">
-			<div class="content">
-				<div class="ui header">Your friends activities </div>
+			<div class="content header">
+				<div class="ui header">Your friends activities</div>
 			</div>
+			<div class="content">
+			</div>
+
 		</div>
 	</div>
 
 	<div class="five wide column">
 		<div class="ui fluid card">
+			<div class="content header">
+				<div class="ui header">Feedback</div>
+			</div>
 			<div class="content">
-				<div class="ui header"> Your received feedback </div>
+				<div class="ui comments">
+					<% @feedbacks.each do |feed| %>
+					<div class="comment">
+
+						<a class="avatar">
+							<img src="<%= avatar(feed.guest.filepicker_url) %>">
+						</a>
+
+						<div class="content">
+							<a class="author"><%= feed.guest.user_name %></a>
+							<div class="metadata">
+								<span class="date"><%= feed.created_at %></span> 
+							</div>
+							<div class="text">
+								<%= feed.content %>
+							</div>
+						</div>
+					</div>
+					<% end %>
+				</div>
 			</div>
 		</div>
 	</div>

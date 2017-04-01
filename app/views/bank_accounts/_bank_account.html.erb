@@ -1,7 +1,9 @@
+	<br>
+	<div id="bank_account_<%= bank_account.id %>">
 	<span>
 		<h4 class="ui sub header">
 			<i class="university icon"></i>
-			<%= bank_account.name  %>
+			<%= bank_account.bank_name %>
 		</h4>
 	</span>
 	<span>
@@ -11,8 +13,11 @@
 		</a>
 	</span>
 	<div class="content">
-		<b>Number:</b> 
+		<b>Account Number:</b> 
 		<%= bank_account.account_number  %>
+		<br>
+		<b>Account Holder:</b>
+		<%= bank_account.name  %>
 	</div>	
-	<br>
+	</div>
 	
