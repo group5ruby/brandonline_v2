@@ -1,16 +1,22 @@
-<h2>Forgot your password?</h2>
-
+<%= stylesheet_link_tag "home" %>
+<div class="ui one column center aligned grid">
+  <div class="column six wide form-holder">
+    <h3 class="center aligned header form-head">Forgot your password?</h3>
 <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
   <%= devise_error_messages! %>
-
+<div class="ui form">
   <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
+    <%= f.label 'Enter Your Email' %>
+    <%= f.email_field :email, autofocus: true, placeholder: 'Email' %>
   </div>
 
   <div class="actions">
-    <%= f.submit "Send me reset password instructions" %>
+    <%= f.submit "Send me reset password instructions", class: 'ui small blue button' %>
   </div>
+</div>  
 <% end %>
-
+<hr>
 <%= render "devise/shared/links" %>
+</div>
+</div>
+</div>

@@ -1,33 +1,38 @@
-<h1>Find user </h1>
+<h1>There are <%= @visits.count %> results </h1>
 <div class="container p1">
-  <div class="ui grid cards">
-  <% if @visits.blank? %>
+
+    <% if @visits.blank? %>
     <h4>There are no user " <%= params[:search] %>".</h4>    
-  <% else %>
+    <% else %>
+     <div class="ui four special cards">
     <% @visits.each do |v| %>    
-      <div class="four wide column">
-        <div class="ui fluid card">
-          <div class="content">
-              <div class="photo3">
-                <%= filepicker_image_tag avatar(v.filepicker_url), w: 100, h: 100, fit: 'clip' %> 
-              <div class="header">
+   
+      <div class="card">
+        <div class="blurring dimmable image">
+          <div class="ui inverted dimmer">
+            <div class="content">
+              <div class="center">
+                <!-- <div class="ui primary button" se>See Details</div> -->
+                <%= link_to 'See Details', profile_path(id: v.id), class: 'ui primary button'  %>
               </div>
-                <%= link_to v.user_name, profile_path(id: v.id) %>
-              </div>
-            <div class="meta">
-              <%= v.business %>
             </div>
           </div>
-           <div class="extra content">
-            <div class="ui two buttons">
-              <div class="ui basic green button">Detail</div>
-              <div class="ui basic blue button">Follow</div>
-            </div>
+          <img src="<%= avatar(v.filepicker_url)  %>">
+        </div>
+        <div class="content">
+        <a class="header"><%= v.user_name %></a>
+          <div class="meta">
+            <%= v.business %>
           </div>
         </div>
+        <div class="extra content">
+          <a>
+            <i class="users icon"></i>
+            2 Members
+          </a>
+        </div>
       </div>
-    
       <% end %>
-  <% end %>
-  </div>  
+    <% end %>
+    </div>
 </div>

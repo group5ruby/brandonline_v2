@@ -50,7 +50,9 @@ $(document).ready(function(){
     $("input[name='commit']").click();
     
   });
-
+  $('.special.cards .image').dimmer({
+  on: 'hover'
+  });
   // $('.ui.button.submitbank').on('click',function(){
   //   $('.ui.modal.editbank').modal('hide');
   // });
