@@ -3,7 +3,7 @@
 <div class="ui grid cards">
 
 	<div class="ten wide column">
-		<div class="ui fluid card">
+		<div class="ui fluid raised card">
 			<div class="content header">
 				<div class="ui header">
 					<center> <i class="user icon"></i><%= @user.user_name %><i class="<%= is_verify(@user[:identity_number]) %>"> </i></li></center>
@@ -12,14 +12,13 @@
       <div class="content">
        <div class="ui grid">
         <div class="five wide column" style="padding-top: 24px;padding-left: 24px;padding-right: 0px;">
-         <div class="ui raised card" >
-          <div class="image" >
+         <div class="ui card" >
+          <div class="medium image">
            <img src="<%= avatar(@user.filepicker_url)%>" >
          </div>
          <div class="extra content">
            <%= form_for @user, :id => 'my-form' do |f| %>
            <div><center>
-            <%= f.label :filepicker_url, "Upload your avatar" %> <br>
             <%= f.filepicker_field :filepicker_url , class: 'mini button ui' %>
           </center>
 
@@ -41,38 +40,26 @@
       <% end %>
       <i class="<%= is_verify(@user[:phone_number]) %>"></i><br>
 
-      <i class="map big icon"></i>
-      &nbsp;&nbsp;&nbsp;&nbsp;<b><%= show_value(@user.address) %></b>
-      <i class="<%= is_verify(@user[:address]) %>"></i>
-      <br>
       <i class="other gender big icon"></i>  
-      &nbsp;&nbsp;&nbsp;&nbsp;<b><%= show_value(@user.sex) %> </b>
-      <i class="<%= is_verify(@user[:sex]) %>"></i>
-      <br>
+      &nbsp;&nbsp;&nbsp;&nbsp;<b>
+      <%= show_value(@user.sex) %> </b>
+      <i class="<%= is_verify(@user[:sex]) %>"></i><br>
+      
       <i class="birthday big icon"></i>  
-      &nbsp;&nbsp;&nbsp;&nbsp;<b><%= show_value(@user.date_of_birth) %></b>
-      <i class="<%= is_verify(@user[:date_of_birth]) %>"></i><br>
-      <br>
-      <b>Zalo:</b>
-      &nbsp;&nbsp;&nbsp;&nbsp;<%= show_value(@user.zalo) %>
-      <i class="<%= is_verify(@user[:zalo]) %>"></i>
-      <br>
-      <b>Career:</b>
-      &nbsp;&nbsp;&nbsp;&nbsp;<%= show_value(@user.career) %>
-      <i class="<%= is_verify(@user[:career]) %>"></i>
-      <br>
-      <b>Indentity_No:</b>
+      &nbsp;&nbsp;&nbsp;&nbsp;<b>
+      <%= show_value(@user.date_of_birth) %></b>
+      <i class="<%= is_verify(@user[:date_of_birth]) %>"></i><br><br>
+      
+      <b>Indentity No. :</b>
       &nbsp;&nbsp;&nbsp;&nbsp;<%= show_value(@user.identity_number) %>
       <i class="<%= is_verify(@user[:identity_number]) %>"></i><br>
-
+      
       <b>Hometown:</b>  
       &nbsp;&nbsp;&nbsp;&nbsp;<%= show_value(@user.hometown) %>
-      <i class="<%= is_verify(@user[:hometown]) %>"></i>
-      <br>
-      <b>Work place:</b>  
-      &nbsp;&nbsp;&nbsp;&nbsp;<%= show_value(@user.work_place) %>
-      <i class="<%= is_verify(@user[:work_place]) %>"></i><br>
+      <i class="<%= is_verify(@user[:hometown]) %>"></i><br>
 
+      <b>Description</b><br>
+      <br>
 
     </ul>
   </div>
@@ -91,7 +78,49 @@
 
 </div>
 
-<div class="ui fluid card">
+<div class="ui fluid raised card">
+  <div class="content header">
+    <div class="ui header">
+    <center> <i class="home icon"></i> Contact Information
+ </center>
+    </div>
+  </div>
+  <div class="content">
+    <div class="container p3" id='bankaccount'>
+      <i class="call big icon"></i> &nbsp;&nbsp;&nbsp;&nbsp;<% @user.phone_numbers.each do |p|  %>
+      <b><%= p.value %></b> &nbsp;&nbsp;
+      <% end %>
+      <i class="<%= is_verify(@user[:phone_number]) %>"></i><br>
+      
+      <i class="tag icon"></i>
+      <b>Address:</b>&nbsp;&nbsp;&nbsp;&nbsp;
+      <%= show_value(@user.address) %>
+      <br>
+      
+       <i class="tag icon"></i><b>Zalo:</b>
+      &nbsp;&nbsp;&nbsp;&nbsp;<%= show_value(@user.zalo) %>
+      <br>
+
+       <i class="tag icon"></i><b>Career:</b>
+      &nbsp;&nbsp;&nbsp;&nbsp;<%= show_value(@user.career) %>
+      <br>
+  
+       <i class="tag icon"></i><b>Work place:</b>  
+      &nbsp;&nbsp;&nbsp;&nbsp;<%= show_value(@user.work_place) %>
+      <br>
+      </div>
+
+ </div>
+
+ <div class="extra content">
+   <a class="right floated editbank" data-toggle="ui modal" data-target="#modaleditbank">
+    <i class="edit bank icon"></i>
+    Add
+  </a>
+</div>
+</div>
+
+<div class="ui fluid raised card">
   <div class="content header">
     <div class="ui header">
       <center> <i class="credit card alternative icon"></i> Bank Account </center>
@@ -113,9 +142,9 @@
 </div>
 
 <div class="five wide column p2">
- <div class="ui fluid card">
+ <div class="ui fluid raised card">
    <div class="content header">
-     <div class="ui header">Account Status</div>
+     <div class="ui header"><i class="protect icon"></i>Account Status</div>
    </div>
    <div class="content">
     <ul><h4>Your verify status: <font color="red"><%= @is_verified  %></font></h4></ul>
@@ -125,14 +154,14 @@
     <ul><h4>Negative Feedback: </h4></ul>
   </div>
 </div>
-<div class="ui fluid card">
+<div class="ui fluid raised card">
  <div class="content header">
-   <div class="ui header">Feedback</div>
+   <div class="ui header"><i class="feed icon"></i>Feedback</div>
  </div>
  <div class="content">
    <div class="ui comments">
     <% @feedbacks.each do |feed| %>
-     <div class="comment">
+    <div class="comment">
 
       <a class="avatar">
         <img src="<%= avatar(feed.guest.filepicker_url) %>">

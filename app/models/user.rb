@@ -24,7 +24,7 @@ class User < ApplicationRecord
   	where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
   		user.email = auth.info.email
       puts auth.info.name
-  		user.password = Devise.friendly_token[0,20]
+      user.password = Devise.friendly_token[0,20]
       user.user_name = auth.info.name
       user.filepicker_url = auth.info.image
     # assuming the user model has a name
@@ -35,21 +35,27 @@ class User < ApplicationRecord
   end
 end
 
-	def self.new_with_session(params, session)
-    super.tap do |user|
-      if data = session["devise.facebook_data"] && session["devise.facebook_data"]["extra"]["raw_info"]
-        user.email = data["email"] if user.email.blank?
-      end
+def self.new_with_session(params, session)
+  super.tap do |user|
+    if data = session["devise.facebook_data"] && session["devise.facebook_data"]["extra"]["raw_info"]
+      user.email = data["email"] if user.email.blank?
     end
   end
-  
-  def self.has_seen
-  end
+end
 
-  def self.search(search)
-    where("user_name ILIKE ?","%#{search}%").or(where("email ILIKE ?","%#{search}%"))
+def self.has_seen
+end
+
+def self.search(search)
+  where("user_name ILIKE ?","%#{search}%").or(where("email ILIKE ?","%#{search}%"))
+end
+def self.is_verified(b)
+  if b  == true
+    return "checkmark icon verified"
+  else
+    return "help circle icon"
   end
-  
+end
 
 
 end
