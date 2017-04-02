@@ -1,12 +1,12 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
+  devise :database_authenticatable, :registerable, :confirmable,
   :recoverable, :rememberable, :trackable, :validatable, :omniauthable, :omniauth_providers => [:facebook]
   has_many :feedbacks
   has_many :received_feedbacks, class_name: "Feedback", foreign_key: "user_id"
   has_many :bank_accounts, dependent: :destroy
-  validates_uniqueness_of :indentity_number
+  # validates_uniqueness_of :identity_number
 
 
   def self.from_omniauth(auth)
@@ -44,6 +44,11 @@ def self.is_verified(b)
   else
     return "help circle icon"
   end
+end
+
+def self.to_date
+  return "" if user.date_of_birth == nil
+  user.date_of_birth
 end
 
 

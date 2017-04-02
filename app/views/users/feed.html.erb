@@ -15,8 +15,6 @@
 				<div class="content">
 					<big>Your verify status: <font color="red"><%= @is_verified  %></font></big><br>
 					<big>Your account status: <font color="green"> <%= @account_status.status %> </font></big>
-					<li>sdfsdfsdf</li>
-					<li>sdfsdfsdf</li>
 				</div>
 				<div class="extra content">
 					<span class="right floated">
@@ -55,24 +53,7 @@
 			</div>
 			<div class="content">
 				<div class="ui comments">
-					<% @feedbacks.each do |feed| %>
-					<div class="comment">
-
-						<a class="avatar">
-							<img src="<%= avatar(feed.guest.filepicker_url) %>">
-						</a>
-
-						<div class="content">
-							<a class="author"><%= feed.guest.user_name %></a>
-							<div class="metadata">
-								<span class="date"><%= feed.created_at %></span> 
-							</div>
-							<div class="text">
-								<%= feed.content %>
-							</div>
-						</div>
-					</div>
-					<% end %>
+					<%= render @feedbacks %>
 				</div>
 			</div>
 		</div>

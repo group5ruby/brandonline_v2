@@ -46,7 +46,7 @@
       
       <i class="birthday big icon"></i>  
       &nbsp;&nbsp;&nbsp;&nbsp;<b>
-      <%= show_value(@user.date_of_birth.to_date) %></b>
+      <%= show_value(@user.date_of_birth) %></b>
       <br><br>
       
       <b>Indentity No. :</b>
@@ -90,7 +90,7 @@
     </div>
   </div>
   <div class="content">
-    <div class="container p3" id='bankaccount'>
+    <div class="container p3">
       <i class="call big icon"></i> &nbsp;&nbsp;&nbsp;&nbsp;
       <b><%= show_value(@user.phone_number) %> </b>
       &nbsp;&nbsp;    
@@ -164,26 +164,7 @@
  </div>
  <div class="content">
    <div class="ui comments">
-    <% @feedbacks.each do |feed| %>
-    <div class="comment">
-
-      <a class="avatar">
-        <img src="<%= avatar(feed.guest.filepicker_url) %>">
-      </a>
-
-      <div class="content">
-        <a class="author"><%= feed.guest.user_name %></a>
-        <div class="metadata">
-          <span class="date"><%= feed.created_at %></span> 
-        </div>
-        <div class="text">
-          <%= feed.content %>
-        </div>
-      </div>
-    </div>
-    <% end %>
-
-
+    <%= render @feedbacks %> 
   </div>
 </div>
 </div>	
