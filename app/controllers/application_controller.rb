@@ -30,7 +30,7 @@ class ApplicationController < ActionController::Base
 
   def show_value(value)
       return "Not available" if value == nil
-      value.value || "Not available"
+      value || "Not available"
   end
 
   def account_status(status)

@@ -10,11 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 20170401133014) do
-=======
-ActiveRecord::Schema.define(version: 20170401103047) do
->>>>>>> d3ba5757a641631bca59ead339da4ebe3061d0ec
+ActiveRecord::Schema.define(version: 20170402061902) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,14 +19,6 @@ ActiveRecord::Schema.define(version: 20170401103047) do
     t.string   "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "addresses", force: :cascade do |t|
-    t.string   "value"
-    t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_addresses_on_user_id", using: :btree
   end
 
   create_table "admins", force: :cascade do |t|
@@ -58,22 +46,6 @@ ActiveRecord::Schema.define(version: 20170401103047) do
     t.index ["user_id"], name: "index_bank_accounts_on_user_id", using: :btree
   end
 
-  create_table "careers", force: :cascade do |t|
-    t.string   "value"
-    t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_careers_on_user_id", using: :btree
-  end
-
-  create_table "date_of_births", force: :cascade do |t|
-    t.datetime "value"
-    t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_date_of_births_on_user_id", using: :btree
-  end
-
   create_table "feedbacks", force: :cascade do |t|
     t.integer  "guest_id"
     t.integer  "user_id"
@@ -83,71 +55,40 @@ ActiveRecord::Schema.define(version: 20170401103047) do
     t.datetime "accepted_at"
   end
 
-  create_table "hometowns", force: :cascade do |t|
-    t.string   "value"
-    t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_hometowns_on_user_id", using: :btree
-  end
-
-  create_table "identity_numbers", force: :cascade do |t|
-    t.string   "value"
-    t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_identity_numbers_on_user_id", using: :btree
-  end
-
-  create_table "phone_numbers", force: :cascade do |t|
-    t.string   "value"
-    t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_phone_numbers_on_user_id", using: :btree
-  end
-
-  create_table "sexes", force: :cascade do |t|
-    t.string   "value"
-    t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_sexes_on_user_id", using: :btree
-  end
-
   create_table "users", force: :cascade do |t|
-    t.string   "email",                  default: "",    null: false
-    t.string   "encrypted_password",     default: "",    null: false
+    t.string   "email",                  default: "",      null: false
+    t.string   "encrypted_password",     default: "",      null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,     null: false
+    t.integer  "sign_in_count",          default: 0,       null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
-    t.datetime "created_at",                             null: false
-    t.datetime "updated_at",                             null: false
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
     t.string   "user_name"
     t.string   "provider"
     t.string   "uid"
     t.string   "filepicker_url"
     t.string   "facebook_link"
-    t.boolean  "identity_number",        default: false
-    t.boolean  "phone_number",           default: false
-    t.boolean  "date_of_birth",          default: false
-    t.boolean  "work_place",             default: false
-    t.boolean  "career",                 default: false
+    t.string   "identity_number",        default: "false"
+    t.string   "phone_number",           default: "false"
+    t.string   "work_place",             default: "false"
+    t.string   "career",                 default: "false"
     t.string   "business"
-    t.boolean  "sex",                    default: false
-    t.boolean  "address",                default: false
-    t.boolean  "hometown",               default: false
+    t.string   "sex",                    default: "false"
+    t.string   "address",                default: "false"
+    t.string   "hometown",               default: "false"
     t.integer  "positive_count"
     t.integer  "negative_count"
     t.string   "zalo"
     t.boolean  "is_verified",            default: false
     t.integer  "account_status",         default: 1
     t.datetime "seen"
+    t.datetime "date_of_birth"
+    t.string   "description"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
@@ -160,13 +101,6 @@ ActiveRecord::Schema.define(version: 20170401103047) do
     t.index ["user_id"], name: "index_work_places_on_user_id", using: :btree
   end
 
-  add_foreign_key "addresses", "users"
   add_foreign_key "bank_accounts", "users"
-  add_foreign_key "careers", "users"
-  add_foreign_key "date_of_births", "users"
-  add_foreign_key "hometowns", "users"
-  add_foreign_key "identity_numbers", "users"
-  add_foreign_key "phone_numbers", "users"
-  add_foreign_key "sexes", "users"
   add_foreign_key "work_places", "users"
 end

@@ -18,6 +18,16 @@ $(document).ready(function(){
   
   });
 
+  $('.right.floated.editinfo').on('click', function() {
+    $('.ui.modal.editinfo').modal('show');
+  
+  });
+
+  $('.floated.editdescription').on('click', function() {
+    $('.ui.modal.editdescription').modal('show');
+  
+  });
+
   $('.right.floated.editbank').on('click', function() {
     $('.ui.modal.editbank').modal('show');
   

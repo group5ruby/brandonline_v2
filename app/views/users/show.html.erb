@@ -35,30 +35,34 @@
       <b><%= @user.email %></b>
       <i class="checkmark icon verified"> </i><br>
 
-      <i class="call big icon"></i> &nbsp;&nbsp;&nbsp;&nbsp;<% @user.phone_numbers.each do |p|  %>
-      <b><%= p.value %></b> &nbsp;&nbsp;
-      <% end %>
-      <i class="<%= is_verify(@user[:phone_number]) %>"></i><br>
+      <i class="call big icon"></i> &nbsp;&nbsp;&nbsp;&nbsp;
+      <b><%= show_value(@user.phone_number) %> </b> &nbsp;&nbsp;
+      <br>
 
       <i class="other gender big icon"></i>  
-      &nbsp;&nbsp;&nbsp;&nbsp;<b>
-      <%= show_value(@user.sex) %> </b>
-      <i class="<%= is_verify(@user[:sex]) %>"></i><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;
+      <b><%= show_value(@user.sex) %> </b>
+      <br>
       
       <i class="birthday big icon"></i>  
       &nbsp;&nbsp;&nbsp;&nbsp;<b>
-      <%= show_value(@user.date_of_birth) %></b>
-      <i class="<%= is_verify(@user[:date_of_birth]) %>"></i><br><br>
+      <%= show_value(@user.date_of_birth.to_date) %></b>
+      <br><br>
       
       <b>Indentity No. :</b>
       &nbsp;&nbsp;&nbsp;&nbsp;<%= show_value(@user.identity_number) %>
-      <i class="<%= is_verify(@user[:identity_number]) %>"></i><br>
+      <br>
       
       <b>Hometown:</b>  
       &nbsp;&nbsp;&nbsp;&nbsp;<%= show_value(@user.hometown) %>
-      <i class="<%= is_verify(@user[:hometown]) %>"></i><br>
+      <br>
 
-      <b>Description</b><br>
+      <b>Description:</b>
+      <br>
+      <a class="floated editdescription">
+      <i class="edit bank small icon"></i>
+      </a>
+      <%= show_value(@user.description) %>
       <br>
 
     </ul>
@@ -81,41 +85,41 @@
 <div class="ui fluid raised card">
   <div class="content header">
     <div class="ui header">
-    <center> <i class="home icon"></i> Contact Information
- </center>
+      <center> <i class="home icon"></i> Contact Information
+      </center>
     </div>
   </div>
   <div class="content">
     <div class="container p3" id='bankaccount'>
-      <i class="call big icon"></i> &nbsp;&nbsp;&nbsp;&nbsp;<% @user.phone_numbers.each do |p|  %>
-      <b><%= p.value %></b> &nbsp;&nbsp;
-      <% end %>
-      <i class="<%= is_verify(@user[:phone_number]) %>"></i><br>
+      <i class="call big icon"></i> &nbsp;&nbsp;&nbsp;&nbsp;
+      <b><%= show_value(@user.phone_number) %> </b>
+      &nbsp;&nbsp;    
+      <br>
       
       <i class="tag icon"></i>
       <b>Address:</b>&nbsp;&nbsp;&nbsp;&nbsp;
       <%= show_value(@user.address) %>
       <br>
       
-       <i class="tag icon"></i><b>Zalo:</b>
+      <i class="tag icon"></i><b>Zalo:</b>
       &nbsp;&nbsp;&nbsp;&nbsp;<%= show_value(@user.zalo) %>
       <br>
 
-       <i class="tag icon"></i><b>Career:</b>
+      <i class="tag icon"></i><b>Career:</b>
       &nbsp;&nbsp;&nbsp;&nbsp;<%= show_value(@user.career) %>
       <br>
-  
-       <i class="tag icon"></i><b>Work place:</b>  
+
+      <i class="tag icon"></i><b>Work place:</b>  
       &nbsp;&nbsp;&nbsp;&nbsp;<%= show_value(@user.work_place) %>
       <br>
-      </div>
+    </div>
 
- </div>
+  </div>
 
- <div class="extra content">
-   <a class="right floated editbank" data-toggle="ui modal" data-target="#modaleditbank">
+  <div class="extra content">
+   <a class="right floated editinfo" data-toggle="ui modal" data-target="#modaleditbank">
     <i class="edit bank icon"></i>
-    Add
+    Edit
   </a>
 </div>
 </div>
@@ -147,8 +151,8 @@
      <div class="ui header"><i class="protect icon"></i>Account Status</div>
    </div>
    <div class="content">
-    <ul><h4>Your verify status: <font color="red"><%= @is_verified  %></font></h4></ul>
-    <ul><h4>Your account status: <font color="green"> <%= @account_status.status  %></h4> </font>
+    <ul><h4>Your verify status: <font color="<%= @verify_color %>"><%= @is_verified  %></font></h4></ul>
+    <ul><h4>Your account status: <font color="<%= @account_color %>"> <%= @account_status.status  %></h4> </font>
     </ul>
     <ul><h4>Positive Feedback: </h4></ul>
     <ul><h4>Negative Feedback: </h4></ul>
@@ -156,7 +160,7 @@
 </div>
 <div class="ui fluid raised card">
  <div class="content header">
-   <div class="ui header"><i class="feed icon"></i>Feedback</div>
+   <div class="ui header"><i class="feed icon"></i>Feedback (<%= @feedbacks.count %>) </div>
  </div>
  <div class="content">
    <div class="ui comments">
@@ -189,39 +193,40 @@
 
 <!--  Modal Javascript -->
 
-<div class="ui modal edituser">
+<div class="ui modal edituser" id="modaledituser"> 
   <i class="close icon"></i>
   <div class="header">
    Edit User
  </div>
- <div class="image content">
-   <%= form_for @user do |f| %>
-   <div>
-    <%= f.label :filepicker_url, "Upload Your Certificate" %> <br>
-    <%= f.filepicker_field :filepicker_url %>
-  </div>
-  <!--<%= f.submit "update image" %>--> 
-  <% end %>
-  <div class="description">
-    <div class="ui header">Edit your profile</div>
-    asdasdasdasdasd
-    asdasdasd
-    asdasdasd
-    asdasdasd
-    asdasdasd
-  </div>
+ <div class="content">
   <center>
+    <%= form_for @user do |f| %>
+    <div class="ui form">
+      <div class="field">
+        <%= f.text_field :user_name, autofocus: true, placeholder: 'Name', class: 'user_name' %>
+      </div><br>
+      <div class="field">
+        <%= f.text_field :identity_number, autofocus: true, placeholder: 'Identity Number', class: 'identity_number' %>
+      </div><br>
+      <div class="field">
+        <%= f.text_field :hometown, autofocus: true, placeholder: 'Home Town', class: 'hometown' %>
+      </div><br>
+      <div class="field">
+        <%= f.select :sex, %w{ Male Female }, :include_blank => false %>
+      </div><br>
+      <div class="field">
+        <%= f.text_field :date_of_birth, autofocus: true, placeholder: 'Date Of Birth', class: 'date_of_birth' %>
+      </div><br>
+
+    </div>
   </center>
-  <br>
-</div>
-<div class="actions">
- <div class="ui black deny button">
-  Cancle
-</div>
-<div class="ui positive right labeled icon button">
-  Update 
-  <i class="checkmark icon"></i>
-</div>
+  <div>
+    <%= f.filepicker_field :filepicker_url %>
+    <i><%= f.label :filepicker_url, " - Upload Your Certificate" %> <br></i>
+  </div>
+  <center><%= f.submit "update user", type:'submit', id:'submitUser', class: 'ui button submituser' %></center>
+  <% end %>
+  
 </div>
 </div>
 
@@ -250,5 +255,60 @@
     </div>
 
   </center>
+</div>
+</div>
+
+<div class="ui modal editinfo" id="modaleditinfor"> 
+  <i class="close icon"></i>
+  <div class="header">
+   Edit Contact Information
+ </div>
+ <div class="content">
+  <center>
+    <%= form_for @user do |f| %>
+    <div class="ui form">
+      <div class="field">
+        <%= f.text_field :phone_number, autofocus: true, placeholder: 'Phone Number', class: 'phone_number' %>
+      </div><br>
+      <div class="field">
+        <%= f.text_field :address, autofocus: true, placeholder: 'Address', class: 'identity_number' %>
+      </div><br>
+      <div class="field">
+        <%= f.text_field :zalo, autofocus: true, placeholder: 'Zalo', class: 'zalo' %>
+      </div><br>
+      <div class="field">
+        <%= f.text_field :business, autofocus: true, placeholder: 'describe your business eg: shoes seller ', class: 'business' %>
+      </div><br>
+      <div class="field">
+        <%= f.text_field :career, autofocus: true, placeholder: 'What is your job?', class: 'career' %>
+      </div><br>
+      <div class="field">
+        <%= f.text_field :work_place, autofocus: true, placeholder: 'Where are you working?', class: 'work_place' %>
+      </div><br>
+    </div>
+  </center>
+  <center><%= f.submit "update info", type:'submit', id:'submitInfo', class: 'ui button submitInfo' %></center>
+  <% end %>
+  
+</div>
+</div>
+
+<div class="ui small modal editdescription" id="modaleditdescription">
+  <i class="close icon"></i>
+  <div class="header">
+   Description
+ </div>
+ <div class="content">
+   <center>
+    <%= form_for @user do |f| %>
+    <div class="ui form">
+      <div class="field">
+        <%= f.text_area :description, autofocus: true, placeholder: 'More info about you', class: 'description' %>
+      </div><br>
+      <%= f.submit "update description", type:'submit', id:'submitdescription', class: 'ui button submitdescription' %>
+    <% end %>
+  </center>
+      
+
 </div>
 </div>
