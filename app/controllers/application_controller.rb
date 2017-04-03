@@ -30,6 +30,7 @@ class ApplicationController < ActionController::Base
 
   def show_value(value)
       return "Not available" if value == nil
+      return "Not available" if value == "false"
       value || "Not available"
   end
 

@@ -17,10 +17,10 @@
 					<big>Your account status: <font color="green"> <%= @account_status.status %> </font></big>
 				</div>
 				<div class="extra content">
-					<span class="right floated">
+					<a class="right floated" href="<%= user_path(id: current_user.id) %>">
 						<i class="arrow circle outline right icon"> </i>
-						<%= link_to "go to your settings", user_path(id: current_user.id), class:'ui' %>
-					</span>
+						Go to your settings
+					</a>
 				</div>
 			</div>
 		</div>
@@ -30,7 +30,7 @@
 	<div class="five wide column">
 		<div class="ui raised card">
 			<div class="content">
-				<div class="ui header">Messages</div>
+				<div class="ui header">Your followed list</div>
 			</div>
 		</div>
 	</div>

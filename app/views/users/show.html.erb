@@ -112,6 +112,10 @@
       <i class="tag icon"></i><b>Work place:</b>  
       &nbsp;&nbsp;&nbsp;&nbsp;<%= show_value(@user.work_place) %>
       <br>
+
+      <i class="tag icon"></i><b>Facebook:</b>  
+      &nbsp;&nbsp;&nbsp;&nbsp;<a target="_blank" href="<%= show_value(@user.facebook_link) %>"><%= show_value(@user.facebook_link) %></a>
+      <br>
     </div>
 
   </div>
@@ -132,7 +136,11 @@
   </div>
   <div class="content">
     <div class="container p3" id='bankaccount'>
+    <% if @bank_accounts.count > 0 %>
      <%= render @bank_accounts %>
+     <% else %>
+      <i>- You have not added any bank account.</i>
+     <% end %>
    </div>
  </div>
 
@@ -154,8 +162,8 @@
     <ul><h4>Your verify status: <font color="<%= @verify_color %>"><%= @is_verified  %></font></h4></ul>
     <ul><h4>Your account status: <font color="<%= @account_color %>"> <%= @account_status.status  %></h4> </font>
     </ul>
-    <ul><h4>Positive Feedback: </h4></ul>
-    <ul><h4>Negative Feedback: </h4></ul>
+    <ul><h4><font color="blue">Positive Feedback: </font></h4></ul>
+    <ul><h4><font color="grey">Negative Feedback: </font></h4></ul>
   </div>
 </div>
 <div class="ui fluid raised card">
@@ -164,7 +172,11 @@
  </div>
  <div class="content">
    <div class="ui comments">
+   <% if @feedbacks.count > 0 %>
     <%= render @feedbacks %> 
+    <% else %>
+    <i>- You have not received any feedback. </i>
+    <% end %>
   </div>
 </div>
 </div>	
@@ -184,30 +196,31 @@
     <%= form_for @user do |f| %>
     <div class="ui form">
       <div class="field">
-        <%= f.text_field :user_name, autofocus: true, placeholder: 'Name', class: 'user_name' %>
+        <%= f.text_field :user_name, autofocus: true, placeholder: 'Name', class: 'user_name', required: true %>
       </div><br>
       <div class="field">
-        <%= f.text_field :identity_number, autofocus: true, placeholder: 'Identity Number', class: 'identity_number' %>
+        <%= f.text_field :identity_number, autofocus: true, placeholder: 'Identity Number', class: 'identity_number', required: true %>
       </div><br>
       <div class="field">
-        <%= f.text_field :hometown, autofocus: true, placeholder: 'Home Town', class: 'hometown' %>
+        <%= f.text_field :hometown, autofocus: true, placeholder: 'Home Town', class: 'hometown', required: true %>
       </div><br>
       <div class="field">
-        <%= f.select :sex, %w{ Male Female }, :include_blank => false %>
+        <%= f.select :sex, %w{ Male Female }, :include_blank => false, required: true %>
       </div><br>
       <div class="field">
-        <%= f.text_field :date_of_birth, autofocus: true, placeholder: 'Date Of Birth', class: 'date_of_birth' %>
+        <%= f.text_field :date_of_birth, autofocus: true, placeholder: 'Date Of Birth', class: 'date_of_birth', required: true %>
       </div><br>
 
     </div>
   </center>
   <div>
-    <%= f.filepicker_field :filepicker_url %>
-    <i><%= f.label :filepicker_url, " - Upload Your Certificate" %> <br></i>
+    <%= f.filepicker_field :certificate_image, :value=> nil, required: true %>
+    <i><a class="note">Upload Your Certificate Image</a>
   </div>
-  <center><%= f.submit "update user", type:'submit', id:'submitUser', class: 'ui button submituser' %></center>
+  <center><%= f.submit "update user", type:'submit', id:'submitUser', class: 'ui button submituser' %>
+  </center>
   <% end %>
-  
+  <div class="meta">All fields is required. You have to upload a certificate image.</div>
 </div>
 </div>
 
@@ -265,6 +278,9 @@
       </div><br>
       <div class="field">
         <%= f.text_field :work_place, autofocus: true, placeholder: 'Where are you working?', class: 'work_place' %>
+      </div><br>
+      <div class="field">
+        <%= f.text_field :facebook_link, autofocus: true, placeholder: 'Your facebook link', class: ':facebook_link' %>
       </div><br>
     </div>
   </center>

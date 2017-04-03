@@ -1,101 +1,161 @@
-<%= filepicker_js_include_tag %>
+<%= filepicker_js_include_tag %><!--  @guest -->
 <div class="ui grid cards">
 
   <div class="ten wide column">
-    <div class="ui fluid card">
+    <div class="ui fluid raised card">
       <div class="content header">
         <div class="ui header">
-          <p><b>Profile</b></p>
-          <center> <i class="user icon"></i><%= @guest.user_name %> </center>
+          <center> <i class="user icon"></i><%= @guest.user_name %><i class="<%= is_verify(@guest[:identity_number]) %>"> </i></li></center>
         </div>
       </div>
+      <div class="content">
+       <div class="ui grid">
+        <div class="five wide column" style="padding-top: 24px;padding-left: 24px;padding-right: 0px;">
+         <div class="ui card" >
+          <div class="medium image">
+           <img src="<%= avatar(@guest.filepicker_url)%>" >
+         </div>
+       </div>
+     </div>
 
-      <div class="ui grid">
+     <div class="eleven wide column" style="padding-left: 0px;">
+      <ul>
+        <i class="mail outline big icon"></i> &nbsp;&nbsp;&nbsp;&nbsp;
+        <b><%= @guest.email %></b>
+        <i class="checkmark icon verified"> </i><br>
 
-        <div class="five wide column" style="padding-top: 24px; padding-left: 24px;">
-          <div class="card">
-            <div class="image" >
-              <img src="<%= avatar(@guest.filepicker_url)%>" style="width:170px;height:150px;">
-            </div>
-            <div class="extra">
+        <i class="call big icon"></i> &nbsp;&nbsp;&nbsp;&nbsp;
+        <b><%= show_value(@guest.phone_number) %> </b> &nbsp;&nbsp;
+        <br>
 
-            </div>
-          </div>
-        </div>
+        <i class="other gender big icon"></i>  
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <b><%= show_value(@guest.sex) %> </b>
+        <br>
 
-        <div class="eleven wide column">
-          <ul>
-            <li><b>Full name:</b> <%= @guest.user_name %>
-              <i class="<%= is_verify(@guest.identity_number) %>"> </i></li>
-              <li><b>Email:</b> <%= @guest.email %>
-                <i class="<%= is_verify(@guest.is_verified) %>"> </i></li>
-              </ul>
-            </div>
-          </div>
+        <i class="birthday big icon"></i>  
+        &nbsp;&nbsp;&nbsp;&nbsp;<b>
+        <%= show_value(@guest.date_of_birth) %></b>
+        <br><br>
 
-          <div class="extra content">
-            
-              <% if current_user %>
-              <a class="right floated edit user">
-                <button class="ui linkedin button">
-                <i class="users icon"></i>
-                Follow
-                </button>             
-              </a>
+        <b>Indentity No. :</b>
+        &nbsp;&nbsp;&nbsp;&nbsp;<%= show_value(@guest.identity_number) %>
+        <br>
 
-              <div class="right floated">
-                  <%= link_to "Feedback", new_user_feedback_path(@guest.id), class:"ui green button" %>
-                </div>
-              <% end %>
-              <span>
-                <i>Started since  <%= @guest.created_at.month %>/<%= @guest.created_at.year  %></i>
-              </span>
-              
-            </div>
+        <b>Hometown:</b>  
+        &nbsp;&nbsp;&nbsp;&nbsp;<%= show_value(@guest.hometown) %>
+        <br>
 
-          </div>
+        <b>Description:</b>
+        <br>
+        <%= show_value(@guest.description) %>
+        <br>
 
-          <div class="ui fluid card">
-            <div class="container p3">
-              <br>
-              <h4 class="ui sub header">
-                <i class="university icon"></i>
-                Bank account 
-              </h4>
-              <div class="content">
-                XXXXXXXX
-              </div>            
-              <h4 class="ui sub header">
-                <i class="university icon"></i>
-                Bank account 
-              </h4>
-              <div class="content">
-                XXXXXXXX
-              </div>
-              <br>
-            </div>           
-        </div>
-      </div>
+      </ul>
+    </div>
+  </div>
+</div>
 
-      <div class="five wide column p2">
-        <div class="ui fluid card">
-          <ul><h4>Your verify status: <font color="red"><%= account_verify(@guest) %></font></h4></ul>
-          <ul><h4>Your account status: <font color="green"> <%= account_status(@guest.account_status).status  %> </font>
-          </ul>
-          <ul><h4>Positive Feedback: </h4></ul>
-          <ul><h4>Negative Feedback: </h4></ul>
+<div class="extra content">
+  <% if @guest.facebook_link != nil %>
+  <a class="right floated edituser" target="_blank" href="<%= show_value(@guest.facebook_link) %>">
+    <i class="facebook big blue square icon"></i> &nbsp;
+  </a>
+  <% else %>
+  <a class="right floated edituser">
+    <i class="facebook big square icon"></i> &nbsp;
+    <% end %></a>
+    <span>
+      <i>Started since  <%= @guest.created_at.month %>/<%= @guest.created_at.year  %></i>
+    </span>
+  </div>
 
-        </div>
-        <div class="ui fluid card">
-          <div class="content p3">
-            <div class="row">
-              <div class="ui header">Feedback</div>              
-            </div>
-          </div>
-        </div>
-      </div>  
+</div>
+
+<div class="ui fluid raised card">
+  <div class="content header">
+    <div class="ui header">
+      <center> <i class="home icon"></i> Contact Information
+      </center>
+    </div>
+  </div>
+  <div class="content">
+    <div class="container p3">
+      <i class="call big icon"></i> &nbsp;&nbsp;&nbsp;&nbsp;
+      <b><%= show_value(@guest.phone_number) %> </b>
+      &nbsp;&nbsp;    
+      <br>
+      
+      <i class="tag icon"></i>
+      <b>Address:</b>&nbsp;&nbsp;&nbsp;&nbsp;
+      <%= show_value(@guest.address) %>
+      <br>
+      
+      <i class="tag icon"></i><b>Zalo:</b>
+      &nbsp;&nbsp;&nbsp;&nbsp;<%= show_value(@guest.zalo) %>
+      <br>
+
+      <i class="tag icon"></i><b>Career:</b>
+      &nbsp;&nbsp;&nbsp;&nbsp;<%= show_value(@guest.career) %>
+      <br>
+
+      <i class="tag icon"></i><b>Work place:</b>  
+      &nbsp;&nbsp;&nbsp;&nbsp;<%= show_value(@guest.work_place) %>
+      <br>
     </div>
 
+  </div>
 
-    <!--  Modal Javascript -->
+</div>
+
+<div class="ui fluid raised card">
+  <div class="content header">
+    <div class="ui header">
+      <center> <i class="credit card alternative icon"></i> Bank Account </center>
+    </div>
+  </div>
+  <div class="content">
+    <div class="container p3" id='bankaccount'>
+      <% if @bank_accounts.count > 0 %>
+      <%= render @bank_accounts %>
+      <% else %>
+      <i>- No information.</i>
+      <% end %>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<div class="five wide column p2">
+ <div class="ui fluid raised card">
+   <div class="content header">
+     <div class="ui header"><i class="protect icon"></i>Account Status</div>
+   </div>
+   <div class="content">
+    <ul><h4>Verify status: <font color="<%= @verify_color %>"><%= @is_verified  %></font></h4></ul>
+    <ul><h4>Account status: <font color="<%= @account_color %>"> <%= @account_status.status  %></h4> </font>
+    </ul>
+    <ul><h4><font color="blue">Positive Feedback: </font></h4></ul>
+    <ul><h4><font color="grey">Negative Feedback: </font></h4></ul>
+  </div>
+</div>
+<div class="ui fluid raised card">
+ <div class="content header">
+   <div class="ui header"><i class="feed icon"></i>Feedback (<%= @feedbacks.count %>) </div>
+ </div>
+ <div class="content">
+   <div class="ui comments">
+     <% if @feedbacks.count > 0 %>
+     <%= render @feedbacks %> 
+     <% else %>
+     <i>- This user have no feedback. </i>
+     <% end %>
+   </div>
+ </div>
+</div>  
+</div>
+</div>
+
+<!--  Modal Javascript -->
 
