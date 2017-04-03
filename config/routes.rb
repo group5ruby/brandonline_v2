@@ -13,12 +13,16 @@ Rails.application.routes.draw do
   get "control" => "admins#control"
   get "profile" => "users#profile"
   get "eprofile" => "admins#eprofile"  
-  resources :bank_accounts
+  resources :bank_accounts  
   resources :users do
     resources :feedbacks
+    resources :requests
   end
+  resources :requests do
+    put :handled
+  end 
   resources :feedbacks do
-    put :accepted
+    put :accepted   
   end
   root "home#welcome"  
 

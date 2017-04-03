@@ -5,6 +5,8 @@ class AdminsController < ApplicationController
     @users = @users.order("created_at DESC")
     @feedback = Feedback.where(accepted_at: nil)
     @feedback = @feedback.order("created_at DESC")
+    @requests = Request.where(handle_at: nil)
+    @requests = @requests.order("created_at DESC")
   end
 
   def eprofile
