@@ -15,6 +15,30 @@ class FeedbacksController < ApplicationController
     redirect_to root_path
   end
 
+  def show 
+    @feedback = Feedback.find(params[:id])
+  end
+
+   def accepted
+    @feedback = Feedback.find(params[:feedback_id])
+    if @feedback.accept
+      redirect_to root_path
+      flash[:success] = "update success" 
+    else
+      flash[:error] = "Error #{@feedback.error.full_messages.to_sentence}"
+      redirect_to root_path
+    end    
+  end
+
+  def destroy
+      @feedback = Feedback.find(params[:feedback_id])
+      @feedback.destroy
+      respond_to do |format|
+        format.html { redirect_to root_path, notice: 'Feedback was successfully destroyed.' }
+        format.json { head :no_content }
+      end
+    end
+
   private
 
   def feedback_params

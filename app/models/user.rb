@@ -3,7 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :confirmable,
   :recoverable, :rememberable, :trackable, :validatable, :omniauthable, :omniauth_providers => [:facebook]
-  has_many :feedbacks
+  has_many :feedbacks, dependent: :destroy
   has_many :received_feedbacks, class_name: "Feedback", foreign_key: "user_id"
   has_many :bank_accounts, dependent: :destroy
   # validates_uniqueness_of :identity_number
