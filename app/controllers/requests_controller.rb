@@ -13,6 +13,11 @@ class RequestsController < ApplicationController
     redirect_to root_path
   end
 
+  def show
+    @request = Request.find(params[:id])
+
+  end
+
   private
   def request_params
     params.require(:request).permit(:title, :user_id, :body, :image, :handle_at)
