@@ -1,23 +1,26 @@
 	<br>
 	<div id="bank_account_<%= bank_account.id %>">
-	<span>
-		<h4 class="ui sub header">
-			<i class="university icon"></i>
-			<%= bank_account.bank_name %>
-		</h4>
-	</span>
-	<span>
-		<a class="right floated" style="padding-right: 5px;" rel="nofollow" data-method="delete" href="<%= bank_account_path(bank_account.id) %>">
-			<i class="erase icon" ></i>
-			delete
-		</a>
-	</span>
-	<div class="content">
-		<b>Account Number:</b> 
-		<%= bank_account.account_number  %>
-		<br>
-		<b>Account Holder:</b>
-		<%= bank_account.name  %>
-	</div>	
+		<span>
+			<h4 class="ui sub header">
+				<i class="university icon"></i>
+				<%= bank_account.bank_name %>
+			</h4>
+		</span>
+		<% if @guest %>
+		<% else %>
+		<span>
+			<a class="right floated" style="padding-right: 5px;" rel="nofollow" data-method="delete" href="<%= bank_account_path(bank_account.id) %>">
+				<i class="erase icon" ></i>
+				delete
+			</a>
+		</span>
+		<% end %>
+		<div class="content">
+			<b>Account Number:</b> 
+			<%= bank_account.account_number  %>
+			<br>
+			<b>Account Holder:</b>
+			<%= bank_account.name  %>
+		</div>	
 	</div>
 	

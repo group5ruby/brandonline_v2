@@ -25,7 +25,7 @@ class UsersController < ApplicationController
 		
 
 		@account_status = AccountStatus.find(current_user.account_status)
-		@feedbacks = Feedback.where(user_id: current_user.id)
+		@feedbacks = Feedback.where(user_id: current_user.id).order("created_at desc")
 		
 		
 		# @user.toggle :identity_number
@@ -43,8 +43,25 @@ class UsersController < ApplicationController
 				return redirect_to user_path(params[:id])			
 			end
 		end 	
-		@guest = User.find(params[:id])			
+		@guest = User.find(params[:id])
+		@bank_accounts = @guest.bank_accounts
+		@account_status = AccountStatus.find(@guest.account_status)	
+		@feedbacks = Feedback.where(user_id: @guest.id).order("created_at desc")
 		@icon = User.is_verified(@guest.identity_number)
+		if @guest.is_verified == true
+			@is_verified = "Verified" 
+			@verify_color = "green"
+		else
+			@is_verified = "Unverified"
+			@verify_color = "red"
+		end
+
+		@account_color = "green" if @guest.account_status == 1
+		@account_color = "blue" if @guest.account_status == 2
+		@account_color = "yellow" if @guest.account_status == 3
+		@account_color = "orange" if @guest.account_status == 4
+		@account_color = "gray" if @guest.account_status == 5
+		@account_color = "red" if @guest.account_status == 6
 	end
 
 	def index
@@ -59,21 +76,38 @@ class UsersController < ApplicationController
 		@user = User.find(current_user.id)
 		if params[:commit] == "update image"
 			if @user.update(filepicker_url: params[:user][:filepicker_url])
+				flash[:notice] = "Update Successful"
+				redirect_back(fallback_location: root_path)
+			else
+				flash[:error] = "Update failed"
 				redirect_back(fallback_location: root_path)
 			end
 		end
 		if params[:commit] == "update user"
 			if @user.update(user_params)
+				flash[:notice] = "Update Successful. Your verify request will be considered within 24 hours"
+				redirect_back(fallback_location: root_path)
+
+			else
+				flash[:error] = "Update failed"
 				redirect_back(fallback_location: root_path)
 			end
 		end
 		if params[:commit] == "update info"
 			if @user.update(user_contact_params)
+				flash[:notice] = "Update Successful"
+				redirect_back(fallback_location: root_path)
+			else
+				flash[:error] = "Update failed"
 				redirect_back(fallback_location: root_path)
 			end
 		end
 		if params[:commit] == "update description"
 			if @user.update(description: params[:user][:description])
+				flash[:notice] = "Update Successful"
+				redirect_back(fallback_location: root_path)
+			else
+				flash[:error] = "Update failed"
 				redirect_back(fallback_location: root_path)
 			end
 		end
@@ -81,7 +115,7 @@ class UsersController < ApplicationController
 
 		def feed
 			check_session
-			@feedbacks = Feedback.where(user_id: current_user.id)
+			@feedbacks = Feedback.where(user_id: current_user.id).order("created_at DESC")
 			if current_user.is_verified == true
 				@is_verified = "Verified" 
 			else
@@ -111,11 +145,11 @@ class UsersController < ApplicationController
 		end
 
 		def user_params
-			params.require(:user).permit(:user_name, :identity_number, :date_of_birth, :sex, :hometown)
+			params.require(:user).permit(:user_name, :identity_number, :date_of_birth, :sex, :hometown, :certificate_image)
 		end
 
 		def user_contact_params
-			params.require(:user).permit(:phone_number, :address, :zalo, :career, :work_place, :business)
+			params.require(:user).permit(:phone_number, :address, :zalo, :career, :work_place, :business, :facebook_link)
 		end
 
 
