@@ -44,8 +44,8 @@
       <hr>
       <strong>This user is: <font color="<%= @verify_color %>"><%= @is_verified %></font> </strong><br>
       <strong>This account status is: <font color="<%= @account_color %>"><%= @account_status.status  %></font></strong><br>
-      <strong>This user received <font color="blue"> (104) positive </font> feebacks </strong><br>
-      <strong>This user received <font color="red"> (4) negative </font>  feebacks </strong>
+      <strong>This user received <font color="blue"> (<%= @positive_feedbacks.count %>) positive </font> feebacks </strong><br>
+      <strong>This user received <font color="red"> (<%= @negative_feedbacks.count %>) negative </font>  feebacks </strong>
     </ul>
   </div>
   <div class="three wide column" style="padding-left: 0px;">
@@ -181,9 +181,9 @@
           <div class="content">
            <div class="ui comments">
              <% if @feedbacks.count > 0 %>
-             <%= render @feedbacks %> 
+             <%= render @positive_feedbacks %> 
              <% else %>
-             <i>- This user have no feedback. </i>
+             <i>- This user have no positive feedback. </i>
              <% end %>
            </div>
          </div>               
@@ -193,14 +193,14 @@
      <div class="five wide column" >  
       <div class="grid">   
         <div class="content header">
-          <div class="ui header"><i class="feed icon"></i>Negative Feedback (<%= @feedbacks.count %>)</div>
+          <div class="ui header"><i class="feed icon"></i>Negative Feedback (<%= @negative_feedbacks.count %>)</div>
         </div>
         <div class="content">
          <div class="ui comments">
-           <% if @feedbacks.count > 0 %>
-           <%= render @feedbacks %> 
+           <% if @negative_feedbacks.count > 0 %>
+           <%= render @negative_feedbacks %> 
            <% else %>
-           <i>- This user have no feedback. </i>
+           <i>- This user have no negative feedback. </i>
            <% end %>
          </div>
        </div>               
