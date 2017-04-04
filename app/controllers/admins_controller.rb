@@ -10,7 +10,11 @@ class AdminsController < ApplicationController
   end
 
   def eprofile
-     @guest = User.find(params[:id])   
+     @guest = User.find(params[:id])  
+     @bank_accounts = @guest.bank_accounts
+     @account_status = AccountStatus.find(@guest.account_status)  
+     @feedbacks = Feedback.where(user_id: @guest.id).order("created_at desc")
+      @icon = User.is_verified(@guest.identity_number) 
   end
 
 end

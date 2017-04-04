@@ -1,1 +1,17 @@
-<%= render 'feedback' %>
+<div class="description">
+
+  <div class="content">
+    <a class="author"><%= @feedback.guest.user_name %></a>
+    <div class="metadata">
+      <div class="ui meta right floated"><%= distance_of_time_in_words(Time.now,(@feedback.created_at)) %> ago 
+    </div>
+    <div class="text">Content: 
+      <%= @feedback.content %>
+    </div>
+  </div>
+</div>
+
+<% if current_admin %>
+  <%= link_to "Accept" ,feedback_accepted_path(feedback_id: @feedback.id),method: :put, class:"ui green button" %>
+  <%= link_to "Delete", feedback_path(feedback_id: @feedback.id), method: :delete, data: {confirm: 'Are you sure?'} ,class:"ui youtube button" %> 
+<% end %>
