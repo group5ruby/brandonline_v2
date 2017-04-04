@@ -44,6 +44,7 @@
       <hr>
       <strong>This user is: <font color="<%= @verify_color %>"><%= @is_verified %></font> </strong><br>
       <strong>This account status is: <font color="<%= @account_color %>"><%= @account_status.status  %></font></strong><br>
+      <strong>This user received <font color="blue"> (<%= @feedbacks.count %>) </font> feebacks </strong><br>
       <strong>This user received <font color="blue"> (<%= @positive_feedbacks.count %>) positive </font> feebacks </strong><br>
       <strong>This user received <font color="red"> (<%= @negative_feedbacks.count %>) negative </font>  feebacks </strong>
     </ul>
