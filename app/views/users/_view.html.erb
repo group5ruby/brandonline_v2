@@ -18,6 +18,10 @@
      <div class="card" >
       <img class="ui medium circular image" src="<%= avatar(@guest.filepicker_url)%>">
     </div>
+    <center>
+      <br>
+      <%= link_to "Follow","", class: "ui blue button" %>
+    </center>
   </div>
 
   <div class="three wide column" style="padding-left: 0px;padding-right: 0px;">
@@ -124,16 +128,16 @@
        <div class="eight wide column" >      
         <div class="grid">             
           <h5>Phone Number:</h5><%= @guest.phone_number %>
-         <h5>Email:&nbsp;&nbsp; </h5><%= @guest.email %>
-         <h5>Zalo: &nbsp;&nbsp;</h5><%= @guest.zalo %>
-         <h5>Facebook:&nbsp;&nbsp; </h5><a target="_blank" href="<%= @guest.facebook_link %>"><%= @guest.facebook_link %></a>
-         <h5>Address:&nbsp;&nbsp;</h5><%= @guest.address %>
+          <h5>Email:&nbsp;&nbsp; </h5><%= @guest.email %>
+          <h5>Zalo: &nbsp;&nbsp;</h5><%= @guest.zalo %>
+          <h5>Facebook:&nbsp;&nbsp; </h5><a target="_blank" href="<%= @guest.facebook_link %>"><%= @guest.facebook_link %></a>
+          <h5>Address:&nbsp;&nbsp;</h5><%= @guest.address %>
         </div>
       </div>
 
-     <div class="eight wide column" >  
-      <div class="grid">   
-        <% if @bank_accounts.count > 0 %>
+      <div class="eight wide column" >  
+        <div class="grid">   
+          <% if @bank_accounts.count > 0 %>
           <div class="ui card">
             <div class="ui hearder">
               <center><b>Bank account</b></center>
@@ -149,14 +153,64 @@
       </div>
 
     </div>
-    </div>
-
   </div>
+
+</div>
 </div>
 
 <div class="ui tab" data-tab="tab-name4">
   Tab 4s
 </div>
 <div class="ui tab" data-tab="tab-name5">
-  Tab 5
+  <div class="ui fluid raised card">
+
+    <div class="content header">
+      <div class="ui header">
+      <center><%= @guest.user_name %>'s received feedbacks</center>
+      </div>
+    </div>
+
+    <div class="content">
+     <div class="ui grid">
+
+       <div class="five wide column" >  
+        <div class="grid">   
+          <div class="content header">
+          <div class="ui header"><i class="feed icon"></i>Positive Feedback (<%= @feedbacks.count %>)</div>
+        </div>
+        <div class="content">
+         <div class="ui comments">
+           <% if @feedbacks.count > 0 %>
+           <%= render @feedbacks %> 
+           <% else %>
+           <i>- This user have no feedback. </i>
+           <% end %>
+         </div>
+       </div>               
+     </div>
+   </div>
+
+      <div class="five wide column" >  
+        <div class="grid">   
+          <div class="content header">
+          <div class="ui header"><i class="feed icon"></i>Negative Feedback (<%= @feedbacks.count %>)</div>
+        </div>
+        <div class="content">
+         <div class="ui comments">
+           <% if @feedbacks.count > 0 %>
+           <%= render @feedbacks %> 
+           <% else %>
+           <i>- This user have no feedback. </i>
+           <% end %>
+         </div>
+       </div>               
+     </div>
+   </div>
+
+ </div>
 </div>
+
+</div>
+</div>
+
+
