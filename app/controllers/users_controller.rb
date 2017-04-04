@@ -53,7 +53,7 @@ class UsersController < ApplicationController
 			@verify_color = "green"
 		else
 			@is_verified = "Unverified"
-			@verify_color = "red"
+			@verify_color = "orange"
 		end
 
 		@account_color = "green" if @guest.account_status == 1
@@ -79,7 +79,7 @@ class UsersController < ApplicationController
 				flash[:notice] = "Update Successful"
 				redirect_back(fallback_location: root_path)
 			else
-				flash[:error] = "Update failed"
+				flash[:error] = "Update image failed"
 				redirect_back(fallback_location: root_path)
 			end
 		end

@@ -47,14 +47,14 @@ $(document).ready(function(){
     .dropdown();
   
   $("input[name='user[filepicker_url]']").change(function() { 
-    $("input[name='commit']").click();
-    
+    $("#submitImage").click();
+
   });
   $('.special.cards .image').dimmer({
   on: 'hover'
   });
 
-  
+  $('.tabular.menu .item').tab();
   // $('.ui.button.submitbank').on('click',function(){
   //   $('.ui.modal.editbank').modal('hide');
   // });
