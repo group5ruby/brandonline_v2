@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  before_action :authenticate, :except=> [:welcome]
+  before_action :authenticate, :except=> [:welcome, :profile,:index]
   #before_action :check_admin_logged_in!, :except => [:index]
   helper_method :avatar
   helper_method :is_verify

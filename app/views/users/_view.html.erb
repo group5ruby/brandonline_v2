@@ -40,7 +40,7 @@
       <h4><%= @guest.email %></h4>
       <h4><%= @guest.address %></h4>
       <h4><%= @guest.business %></h4>
-      <h4><%= @guest.created_at.month %>/<%= @guest.created_at.year %></h4>
+      
       <hr>
       <strong>This user is: <font color="<%= @verify_color %>"><%= @is_verified %></font> </strong><br>
       <strong>This account status is: <font color="<%= @account_color %>"><%= @account_status.status  %></font></strong><br>
@@ -92,8 +92,7 @@
        <h5>Business:&nbsp;&nbsp; </h5><%= @guest.business %>
        <h5>Facebook:&nbsp;&nbsp; </h5><a target="_blank" href="<%= @guest.facebook_link %>"><%= @guest.facebook_link %></a>
        <h5>Zalo: &nbsp;&nbsp;</h5><%= @guest.zalo %>
-       <h5>Started since:&nbsp;&nbsp;</h5><%= @guest.created_at.month %>/<%= @guest.created_at.year %>
-
+       
      </div>
    </div>
    <div class="six wide column" >      
@@ -101,7 +100,7 @@
      <h5>Phone Number:</h5><%= @guest.phone_number %>
      <h5>Identity Number:&nbsp;&nbsp;</h5><%= @guest.identity_number %>
      <h5>Gender: &nbsp;&nbsp;</h5><%= @guest.sex %>
-     <h5>Date Of Birth: &nbsp;&nbsp;</h5><%= @guest.date_of_birth.month %> - <%= @guest.date_of_birth.year %>
+     
      <h5>Hometown: &nbsp;&nbsp;</h5><%= @guest.hometown %>
      <h5>Career: &nbsp;&nbsp;</h5><%= @guest.career %>
      <h5>Work Place: &nbsp;&nbsp;</h5><%= @guest.work_place %>          
@@ -231,6 +230,7 @@
   <div class="header">
    Send Feedback
  </div>
+ <% if current_user != nil %>
  <div class="content">
       <%= form_for Feedback.new, url: user_feedbacks_path(:user_id => @guest.id) do |f| %>
     <%= f.hidden_field :guest_id, :value => current_user.id %>
@@ -243,6 +243,7 @@
           </center>
       </div>
     <% end %>
+  <% end %>
 
      
 </div>

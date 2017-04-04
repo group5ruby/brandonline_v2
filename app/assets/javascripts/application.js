@@ -13,6 +13,12 @@ $(document).ready(function(){
     ;
   });
 
+$(document).ready(function()  {  
+    if($('element').attr('phone') == "false"){
+      $('.ui.modal.instruction').modal('show')  
+    }
+});
+
   $('.ui.rating')
   .rating('setting', 'onRate', function(value) {
       document.getElementById("rating value").value = value;
@@ -67,5 +73,6 @@ $(document).ready(function(){
   // $('.ui.button.submitbank').on('click',function(){
   //   $('.ui.modal.editbank').modal('hide');
   // });
+
 
 })

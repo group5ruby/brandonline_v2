@@ -62,4 +62,29 @@
 		</div>
 	</div>
 </div>
+	:phone => current_user.phone_number
 
+
+
+<div class="ui modal instruction">
+  <% if current_user.phone_number == "false" %>
+  	<i class="close icon"></i>
+  <div class="header">
+    Improve Your Profile!
+  </div>
+  <div class="image content">    
+    <div class="description">    	
+      <div class="ui content">Hello<b> <%= current_user.user_name %>! </b>Let's improve your profile with some info to show who you are !</p>
+    </div>
+  </div>
+  <div class="actions">
+    <div class="ui black deny button">
+      No! another time
+    </div>
+    <div class="ui positive right labeled icon button">
+      Next
+      <i class="checkmark icon"></i>
+    </div>
+  </div>
+  <% end %>
+</div>

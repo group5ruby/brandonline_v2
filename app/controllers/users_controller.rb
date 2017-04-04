@@ -139,6 +139,7 @@ class UsersController < ApplicationController
 		private
 		def check_session
 			redirect_to root_path unless current_user
+			
 		end
 
 		def set_user
