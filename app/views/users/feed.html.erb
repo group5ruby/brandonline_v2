@@ -62,29 +62,39 @@
 		</div>
 	</div>
 </div>
-	:phone => current_user.phone_number
 
 
 
-<div class="ui modal instruction">
-  <% if current_user.phone_number == "false" %>
+<div class="ui modal instruction">  
   	<i class="close icon"></i>
   <div class="header">
     Improve Your Profile!
-  </div>
-  <div class="image content">    
+  </div>   
     <div class="description">    	
       <div class="ui content">Hello<b> <%= current_user.user_name %>! </b>Let's improve your profile with some info to show who you are !</p>
     </div>
   </div>
+  	<div class="ui form">
+  	<%= form_for @user do |f| %>
+      <div class="field">
+      	<%= f.label:"Your phone_number" %>
+        <%= f.text_field :phone_number, autofocus: true, placeholder: 'Phone Number', class:"text" %>
+      </div><br>
+      <div class="field">
+      	<%= f.label:"Where do you live ?" %>
+        <%= f.text_field :address, autofocus: true, placeholder: 'Address', class:"text" %>
+      </div><br>
+    </div>
+    
   <div class="actions">
     <div class="ui black deny button">
       No! another time
     </div>
-    <div class="ui positive right labeled icon button">
-      Next
+    
+    <%= f.submit "update info", type:'submit', id:'submitInfo', class: 'ui button submitInfo' %>
+      
       <i class="checkmark icon"></i>
     </div>
-  </div>
-  <% end %>
+    <% end %>
+  </div>  
 </div>

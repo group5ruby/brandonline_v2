@@ -14,7 +14,7 @@ $(document).ready(function(){
   });
 
 $(document).ready(function()  {  
-    if($('element').attr('phone') == "false"){
+    if(gon.person_info == "false"){
       $('.ui.modal.instruction').modal('show')  
     }
 });

@@ -116,13 +116,20 @@ class UsersController < ApplicationController
 
 		def feed
 			check_session
+			@user = current_user	
 			@feedbacks = Feedback.where(user_id: current_user.id).order("created_at DESC")
 			if current_user.is_verified == true
 				@is_verified = "Verified" 
 			else
 				@is_verified = "Unverified"
-			end
+			end			
 			@account_status = AccountStatus.find(current_user.account_status)
+			if @user.phone_number == "false" || @user.address = "false" 
+				gon.person_info = "false"
+			else
+				gon.person_info = "true"
+			end
+
 		end
 
 		def destroy
@@ -139,7 +146,7 @@ class UsersController < ApplicationController
 		private
 		def check_session
 			redirect_to root_path unless current_user
-			
+
 		end
 
 		def set_user
