@@ -1,9 +1,9 @@
 <div class="ui tabular menu">
-  <div class="item active" data-tab="tab-name">Overview</div>
-  <div class="item" data-tab="tab-name2">Verified Information</div>
-  <div class="item" data-tab="tab-name3">Contact Info</div>
-  <div class="item" data-tab="tab-name4">Connection</div>
-  <div class="item" data-tab="tab-name5">Feedbacks</div>
+  <a class="item active" data-tab="tab-name">Overview</a>
+  <a class="item" data-tab="tab-name2">Verified Information</a>
+  <a class="item" data-tab="tab-name3">Contact Info</a>
+  <a class="item" data-tab="tab-name4">Connection</a>
+  <a class="item" data-tab="tab-name5">Feedbacks</a>
 </div>
 <div class="ui tab active" data-tab="tab-name">
  <div class="ui fluid raised card">
@@ -166,7 +166,7 @@
 
     <div class="content header">
       <div class="ui header">
-      <center><%= @guest.user_name %>'s received feedbacks</center>
+        <center><%= @guest.user_name %>'s received feedbacks</center>
       </div>
     </div>
 
@@ -176,23 +176,23 @@
        <div class="five wide column" >  
         <div class="grid">   
           <div class="content header">
-          <div class="ui header"><i class="feed icon"></i>Positive Feedback (<%= @feedbacks.count %>)</div>
-        </div>
-        <div class="content">
-         <div class="ui comments">
-           <% if @feedbacks.count > 0 %>
-           <%= render @feedbacks %> 
-           <% else %>
-           <i>- This user have no feedback. </i>
-           <% end %>
-         </div>
-       </div>               
+            <div class="ui header"><i class="feed icon"></i>Positive Feedback (<%= @feedbacks.count %>)</div>
+          </div>
+          <div class="content">
+           <div class="ui comments">
+             <% if @feedbacks.count > 0 %>
+             <%= render @feedbacks %> 
+             <% else %>
+             <i>- This user have no feedback. </i>
+             <% end %>
+           </div>
+         </div>               
+       </div>
      </div>
-   </div>
 
-      <div class="five wide column" >  
-        <div class="grid">   
-          <div class="content header">
+     <div class="five wide column" >  
+      <div class="grid">   
+        <div class="content header">
           <div class="ui header"><i class="feed icon"></i>Negative Feedback (<%= @feedbacks.count %>)</div>
         </div>
         <div class="content">
@@ -207,10 +207,43 @@
      </div>
    </div>
 
+   <div class="five wide column" >  
+    <div class="grid">   
+      <div class="content header">
+        <a class="ui inverted blue button sendfeedback"><b>Send feedback</b></a>
+        <a class="ui inverted blue button report"><b>Report user</b></a>
+      <div class="content">
+       <div class="ui comments">
+       </div>
+     </div>               
+   </div>
  </div>
-</div>
 
 </div>
 </div>
 
+</div>
+</div>
 
+<div class="ui small modal sendfeedback" id="modalsendfeedback">
+  <i class="close icon"></i>
+  <div class="header">
+   Send Feedback
+ </div>
+ <div class="content">
+   <center>
+      <%= form_for Feedback.new, url: user_feedbacks_path(:user_id => @guest.id) do |f| %>
+    <%= f.hidden_field :guest_id, :value => current_user.id %>    
+    <div class="form-group">
+      <%= f.label :content %>
+      <%= f.text_area :content, size: "50x10",class:"form-control" %>
+    </div>    
+    <div class="form-group row" style="padding-top:20px; margin-left: 10%;">
+      <%= f.submit "Send", class:"ui green button" %> 
+      </div>
+      <% end %>
+  </center>
+      
+
+</div>
+</div>

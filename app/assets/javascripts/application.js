@@ -33,6 +33,10 @@ $(document).ready(function(){
   
   });
 
+  $('.ui.inverted.blue.button.sendfeedback').on('click', function(){
+    $('.ui.modal.sendfeedback').modal('show');
+  });
+
   $('.icon.remove').on('click',function(){
     $('.content.notification').slideUp()
     $('.icon.remove').fadeOut(800)
