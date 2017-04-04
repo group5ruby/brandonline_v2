@@ -6,7 +6,7 @@
 		<div class="ui fluid raised card">
 			<div class="content header">
 				<div class="ui header">
-					<center> <i class="user icon"></i><%= @user.user_name %><i class="<%= is_verify(@user[:identity_number]) %>"> </i></li></center>
+					<center> <i class="user icon"></i><%= @user.user_name %><i class="<%= is_verify(@user[:is_verified]) %>"> </i></li></center>
 				</div>
 			</div>
       <div class="content">
@@ -73,7 +73,7 @@
 <div class="extra content">
  <a class="right floated edituser">
   <i class="edit icon"></i>
-  Edit
+  Edit your profile
 </a>
 <span>
   <i>Started since  <%= @user.created_at.month %>/<%= @user.created_at.year  %></i>
@@ -265,7 +265,7 @@
         <%= f.text_field :phone_number, autofocus: true, placeholder: 'Phone Number', class: 'phone_number' %>
       </div><br>
       <div class="field">
-        <%= f.text_field :address, autofocus: true, placeholder: 'Address', class: 'identity_number' %>
+        <%= f.text_field :address, autofocus: true, placeholder: 'Address', class: 'address' %>
       </div><br>
       <div class="field">
         <%= f.text_field :zalo, autofocus: true, placeholder: 'Zalo', class: 'zalo' %>

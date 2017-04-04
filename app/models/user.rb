@@ -6,7 +6,7 @@ class User < ApplicationRecord
   has_many :feedbacks, dependent: :destroy
   has_many :received_feedbacks, class_name: "Feedback", foreign_key: "user_id"
   has_many :bank_accounts, dependent: :destroy
-  validates_uniqueness_of :identity_number, :on => :update
+  # validates_uniqueness_of :identity_number
 
 
   def self.from_omniauth(auth)

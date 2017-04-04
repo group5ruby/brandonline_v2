@@ -9,10 +9,11 @@ class FeedbacksController < ApplicationController
     @feedback = @guest.feedbacks.build feedback_params  
     if @feedback.save
       flash[:sucess] = "Success!"
+      redirect_to :back
     else
-      flash[:error] = "Erors!"
+      flash[:error] = "Error!"
+      redirect_to :back
     end
-    redirect_to root_path
   end
 
   def show 
@@ -42,6 +43,6 @@ class FeedbacksController < ApplicationController
   private
 
   def feedback_params
-    params.require(:feedback).permit(:user_id, :guest_id, :content)
+    params.require(:feedback).permit(:user_id, :guest_id, :content, :rating)
   end
 end

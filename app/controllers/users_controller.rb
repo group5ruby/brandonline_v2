@@ -27,7 +27,6 @@ class UsersController < ApplicationController
 		@account_status = AccountStatus.find(current_user.account_status)
 		@feedbacks = Feedback.where(user_id: current_user.id).order("created_at desc")
 		
-		
 		# @user.toggle :identity_number
 		# @user.toggle :phone_number
 		# @user.toggle :date_of_birth
@@ -47,13 +46,15 @@ class UsersController < ApplicationController
 		@bank_accounts = @guest.bank_accounts
 		@account_status = AccountStatus.find(@guest.account_status)	
 		@feedbacks = Feedback.where(user_id: @guest.id).order("created_at desc")
+		@positive_feedbacks = Feedback.where(user_id: @guest.id, rating: '3').order("created_at desc")
+		@negative_feedbacks = Feedback.where(user_id: @guest.id, rating: '1').order("created_at desc")
 		@icon = User.is_verified(@guest.identity_number)
 		if @guest.is_verified == true
 			@is_verified = "Verified" 
 			@verify_color = "green"
 		else
 			@is_verified = "Unverified"
-			@verify_color = "red"
+			@verify_color = "orange"
 		end
 
 		@account_color = "green" if @guest.account_status == 1
@@ -79,7 +80,7 @@ class UsersController < ApplicationController
 				flash[:notice] = "Update Successful"
 				redirect_back(fallback_location: root_path)
 			else
-				flash[:error] = "Update failed"
+				flash[:error] = "Update image failed"
 				redirect_back(fallback_location: root_path)
 			end
 		end
