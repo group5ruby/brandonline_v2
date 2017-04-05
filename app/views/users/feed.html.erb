@@ -15,7 +15,7 @@
 					<big>Your verify status: <font color="<%= @verify_color %>"><%= @is_verified  %></font></big><br>
 					<big>Your account status: <font color="<%= @account_color %>"> <%= @account_status.status  %></font></big><br>
 					<% if @user.is_verified == false %>
-					<font color="orange"> For others to get to know and building trust in you, please fill in your information and verify it.</font>
+					<a href="<%= user_path(id: current_user.id) %>"><h3><font color="orange"> For others to get to know and building trust in you, please fill in your information and verify it.</font></h3></a>
 					<% end %>
 				</div>
 				<div class="extra content">
@@ -31,14 +31,17 @@
 <div class="ui grid">
 	<div class="five wide column">
 		<div class="ui fluid raised card">
-			<div class="content">
+			<div class="content header">
 				<div class="ui header">Your followed list</div>
-				<div class="ui list">
-				<%= render @follows  %>
+				</div>
+				<div class="content">
+					<div class="ui list">
+					<%= render @follows  %>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
+	
 
 	<div class="six wide column">
 		<div class="ui fluid raised card">
