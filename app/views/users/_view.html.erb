@@ -3,7 +3,7 @@
   <a class="item" data-tab="tab-name2">Verified Information</a>
   <a class="item" data-tab="tab-name3">Contact Info</a>
   <a class="item" data-tab="tab-name4">Connection</a>
-  <a class="item" data-tab="tab-name5">Feedbacks</a>
+  <a class="item" data-tab="tab-name5">Feedback</a>
 </div>
 <div class="ui tab active" data-tab="tab-name">
  <div class="ui fluid raised card">
@@ -47,14 +47,14 @@
       <h3><%= @guest.user_name %></h3>
       <h4><%= @guest.email %></h4>
       <h4><%= @guest.address %></h4>
-      <h4><%= @guest.business %></h4>
+      <h4><%= @guest.business %>&nbsp;</h4>
       <h4><%= @guest.created_at.to_date %></h4>
       <hr>
       <strong>This user is: <font color="<%= @verify_color %>"><%= @is_verified %></font> </strong><br>
       <strong>This account status is: <font color="<%= @account_color %>"><%= @account_status.status  %></font></strong><br>
-      <strong>This user received <font color="blue"> (<%= @feedbacks.count %>) </font> feebacks </strong><br>
-      <strong>This user received <font color="blue"> (<%= @positive_feedbacks.count %>) positive </font> feebacks </strong><br>
-      <strong>This user received <font color="red"> (<%= @negative_feedbacks.count %>) negative </font>  feebacks </strong>
+      <strong>This user received <font color="blue"> (<%= @feedbacks.count %>) </font> feeback </strong><br>
+      <strong>This user received <font color="blue"> (<%= @positive_feedbacks.count %>) positive </font> feeback </strong><br>
+      <strong>This user received <font color="red"> (<%= @negative_feedbacks.count %>) negative </font>  feeback </strong>
     </ul>
   </div>
   <div class="three wide column" style="padding-left: 0px;">
@@ -190,7 +190,7 @@
           <div class="ui list">
           <% @follows.each do |follow| %>
           <div class="item">
-            <img class="ui avatar image" src="<%= avatar(follow.user.filepicker_url)  %>">
+            <img class="ui avatar image" src="<%= avatar(follow.follower.filepicker_url)  %>">
             <div class="content">
             <div class="header">
             <a href="<%= profile_path(id: follow.follower.id)  %>"><%= follow.follower.user_name %></a>
@@ -215,7 +215,7 @@
 
     <div class="content header">
       <div class="ui header">
-        <center><%= @guest.user_name %>'s received feedbacks</center>
+        <center><%= @guest.user_name %>'s received feedback</center>
       </div>
     </div>
 
@@ -261,7 +261,9 @@
     <div class="grid">   
       <div class="content header">
         <a class="ui inverted blue button sendfeedback"><b>Send feedback</b></a>
+        <% if current_user %>
         <a class="ui inverted blue button report" href="<%= new_user_request_path(current_user.id, :guest_id=>@guest.id) %>"><b>Report user</b></a>
+        <% end %>
       <div class="content">
        <div class="ui comments">
        </div>

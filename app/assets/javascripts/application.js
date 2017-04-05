@@ -24,6 +24,10 @@ $(document).ready(function()  {
       document.getElementById("rating value").value = value;
   });
 
+  $('.ui.rating.disable')
+  .rating('disable')
+  ;
+
   $('.right.floated.edituser').on('click', function() {
     $('.ui.modal.edituser').modal('show');
   

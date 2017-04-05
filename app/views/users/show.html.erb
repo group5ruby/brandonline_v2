@@ -214,7 +214,7 @@
     </div>
   </center>
   <div>
-    <%= f.filepicker_field :certificate_image, :value=> nil, required: true %>
+    <%= f.filepicker_field :certificate_image %> <!-- , :value=> nil, required: true -->
     <i><a class="note">Upload Your Certificate Image</a>
   </div>
   <center><%= f.submit "update user", type:'submit', id:'submitUser', class: 'ui button submituser' %>

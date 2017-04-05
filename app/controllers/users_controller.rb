@@ -52,7 +52,11 @@ class UsersController < ApplicationController
 		@positive_feedbacks = Feedback.where(user_id: @guest.id, rating: '3').order("created_at desc")
 		@negative_feedbacks = Feedback.where(user_id: @guest.id, rating: '1').order("created_at desc")
 		@icon = User.is_verified(@guest.identity_number)
-		@follow = Follow.where(user_id: @guest.id, follower_id: current_user.id).count		
+		if current_user
+		@follow = Follow.where(user_id: @guest.id, follower_id: current_user.id).count
+		else
+		@follow = 0		
+		end
 		@is_followed = true if @follow == 1
 		if @guest.is_verified == true
 			@is_verified = "Verified" 
