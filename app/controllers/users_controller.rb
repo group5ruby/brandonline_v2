@@ -51,9 +51,8 @@ class UsersController < ApplicationController
 		@positive_feedbacks = Feedback.where(user_id: @guest.id, rating: '3').order("created_at desc")
 		@negative_feedbacks = Feedback.where(user_id: @guest.id, rating: '1').order("created_at desc")
 		@icon = User.is_verified(@guest.identity_number)
-		@a = Follow.where(user_id: @guest.id, follower_id: current_user.id)
-		
-		@is_followed = true if @a.count == 1
+		@follow = Follow.where(user_id: @guest.id, follower_id: current_user.id).count		
+		@is_followed = true if @follow == 1
 		if @guest.is_verified == true
 			@is_verified = "Verified" 
 			@verify_color = "green"
@@ -132,6 +131,7 @@ class UsersController < ApplicationController
 		def feed
 			check_session
 			@follows = current_user.follows
+			@followed = Follow.where(follower_id: current_user.id)
 			@user = current_user	
 			@feedbacks = Feedback.where(user_id: current_user.id).order("created_at DESC")
 			if current_user.is_verified == true

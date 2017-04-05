@@ -32,25 +32,38 @@
 	<div class="five wide column">
 		<div class="ui fluid raised card">
 			<div class="content header">
-				<div class="ui header">Your followed list</div>
-				</div>
-				<div class="content">
-					<div class="ui list">
+				<div class="ui header">Your follower users</div>
+			</div>
+			<div class="content">
+				<div class="ui list">
 					<%= render @follows  %>
-					</div>
 				</div>
 			</div>
 		</div>
+	</div>
 	
 
 	<div class="six wide column">
 		<div class="ui fluid raised card">
 			<div class="content header">
-				<div class="ui header">Your friends activities</div>
+				<div class="ui header">Your followed users</div>
 			</div>
 			<div class="content">
-			</div>
+				<div class="ui list">
+					<% @followed.each do |follow| %>
+					<div class="item">
+						<img class="ui avatar image" src="<%= avatar(follow.user.filepicker_url)  %>">
+						<div class="content">
+						<div class="header">You has followed 
+						<a href="<%= profile_path(id: follow.user.id)  %>"><%= follow.user.user_name %></a>
+						</div>
+							<div class="description">since <%= follow.created_at.to_date %></div>
+						</div>
+					</div>
+					<% end %>
 
+				</div>
+			</div>
 		</div>
 	</div>
 
@@ -75,21 +88,21 @@
 
 
 <div class="ui modal instructions">  
-  	<i class="close icon"></i>
-  <div class="header">
-    Please complete your information!
-  </div>   
-    <div class="description">    	
-      <div class="ui content">Hello<b> <%= current_user.user_name %>! </b>
-      Let's improve your profile with some info to show who you are !</p>
-    </div>
-  </div>
-  	
-    
-  <div class="actions">
-    <div class="ui black deny button">
-      No! another time
-    </div>
+	<i class="close icon"></i>
+	<div class="header">
+		Please complete your information!
+	</div>   
+	<div class="description">    	
+		<div class="ui content">Hello<b> <%= current_user.user_name %>! </b>
+			Let's improve your profile with some info to show who you are !</p>
+		</div>
+	</div>
 
-  </div>  
+
+	<div class="actions">
+		<div class="ui black deny button">
+			No! another time
+		</div>
+
+	</div>  
 </div>
