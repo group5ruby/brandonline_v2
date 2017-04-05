@@ -59,7 +59,7 @@ class UsersController < ApplicationController
 			@verify_color = "green"
 		else
 			@is_verified = "Unverified"
-			@verify_color = "orange"
+			@verify_color = "red"
 		end
 
 		@account_color = "green" if @guest.account_status == 1
