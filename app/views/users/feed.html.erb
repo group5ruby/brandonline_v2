@@ -12,8 +12,11 @@
 			</div>
 			<div class="content notification">
 				<div class="content">
-					<big>Your verify status: <font color="red"><%= @is_verified  %></font></big><br>
-					<big>Your account status: <font color="green"> <%= @account_status.status %> </font></big>
+					<big>Your verify status: <font color="<%= @verify_color %>"><%= @is_verified  %></font></big><br>
+					<big>Your account status: <font color="<%= @account_color %>"> <%= @account_status.status  %></font></big><br>
+					<% if @user.is_verified == false %>
+					<font color="orange"> For others to get to know and building trust in you, please fill in your information and verify it.</font>
+					<% end %>
 				</div>
 				<div class="extra content">
 					<a class="right floated" href="<%= user_path(id: current_user.id) %>">
@@ -30,6 +33,7 @@
 		<div class="ui raised card">
 			<div class="content">
 				<div class="ui header">Your followed list</div>
+				<%= render @follows  %>
 			</div>
 		</div>
 	</div>
@@ -48,7 +52,7 @@
 	<div class="five wide column">
 		<div class="ui fluid raised card">
 			<div class="content header">
-				<div class="ui header">Feedback</div>
+				<div class="ui header">Feedback - (<%= @feedbacks.count %>)</div>
 			</div>
 			<div class="content">
 				<div class="ui comments">
@@ -65,36 +69,22 @@
 
 
 
-<div class="ui modal instruction">  
+<div class="ui modal instructions">  
   	<i class="close icon"></i>
   <div class="header">
-    Improve Your Profile!
+    Please complete your information!
   </div>   
     <div class="description">    	
-      <div class="ui content">Hello<b> <%= current_user.user_name %>! </b>Let's improve your profile with some info to show who you are !</p>
+      <div class="ui content">Hello<b> <%= current_user.user_name %>! </b>
+      Let's improve your profile with some info to show who you are !</p>
     </div>
   </div>
-  	<div class="ui form">
-  	<%= form_for @user do |f| %>
-      <div class="field">
-      	<%= f.label:"Your phone_number" %>
-        <%= f.text_field :phone_number, autofocus: true, placeholder: 'Phone Number', class:"text" %>
-      </div><br>
-      <div class="field">
-      	<%= f.label:"Where do you live ?" %>
-        <%= f.text_field :address, autofocus: true, placeholder: 'Address', class:"text" %>
-      </div><br>
-    </div>
+  	
     
   <div class="actions">
     <div class="ui black deny button">
       No! another time
     </div>
-    
-    <%= f.submit "update info", type:'submit', id:'submitInfo', class: 'ui button submitInfo' %>
-      
-      <i class="checkmark icon"></i>
-    </div>
-    <% end %>
+
   </div>  
 </div>

@@ -162,8 +162,8 @@
     <ul><h4>Your verify status: <font color="<%= @verify_color %>"><%= @is_verified  %></font></h4></ul>
     <ul><h4>Your account status: <font color="<%= @account_color %>"> <%= @account_status.status  %></h4> </font>
     </ul>
-    <ul><h4><font color="blue">Positive Feedback: </font></h4></ul>
-    <ul><h4><font color="grey">Negative Feedback: </font></h4></ul>
+    <ul><h4><font color="blue">Positive Feedback: (<%= @positive_feedbacks.count  %>) </font></h4></ul>
+    <ul><h4><font color="grey">Negative Feedback: (<%= @negative_feedbacks.count  %>) </font></h4></ul>
   </div>
 </div>
 <div class="ui fluid raised card">

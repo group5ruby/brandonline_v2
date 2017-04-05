@@ -26,13 +26,15 @@ class UsersController < ApplicationController
 
 		@account_status = AccountStatus.find(current_user.account_status)
 		@feedbacks = Feedback.where(user_id: current_user.id).order("created_at desc")
+		@positive_feedbacks = Feedback.where(user_id: @user.id, rating: '3').order("created_at desc")
+		@negative_feedbacks = Feedback.where(user_id: @user.id, rating: '1').order("created_at desc")
 		
 		# @user.toggle :identity_number
 		# @user.toggle :phone_number
 		# @user.toggle :date_of_birth
 		# @user.toggle :work_place
 		# @user.toggle :career
-		# @user.toggle :hometown
+		# @user.toggle :is_verified
 		# @user.save
 	end
 
@@ -116,6 +118,7 @@ class UsersController < ApplicationController
 
 		def feed
 			check_session
+			@follows = current_user.follows
 			@user = current_user	
 			@feedbacks = Feedback.where(user_id: current_user.id).order("created_at DESC")
 			if current_user.is_verified == true
@@ -129,6 +132,20 @@ class UsersController < ApplicationController
 			else
 				gon.person_info = "true"
 			end
+			if @user.is_verified == true
+			@is_verified = "Verified" 
+			@verify_color = "green"
+			else
+			@is_verified = "Unverified"
+			@verify_color = "red"
+			end
+			@account_status = AccountStatus.find(current_user.account_status)
+			@account_color = "green" if @user.account_status == 1
+			@account_color = "blue" if @user.account_status == 2
+			@account_color = "yellow" if @user.account_status == 3
+			@account_color = "orange" if @user.account_status == 4
+			@account_color = "gray" if @user.account_status == 5
+			@account_color = "red" if @user.account_status == 6
 
 		end
 

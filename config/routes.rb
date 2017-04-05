@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   resources :feedbacks do
     put :accepted   
   end
+  resources :follows
   root "home#welcome"  
 
   

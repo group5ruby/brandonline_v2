@@ -1,23 +1,19 @@
 <div class="comment">
 	<a class="avatar">
 		<img src="<%= avatar(feedback.guest.filepicker_url) %>">
-	</a>
-
-	<div class="content">
-
-		<a class="author"><%= feedback.guest.user_name %></a>
-		<div class="metadata">
-			<div class="ui meta right floated"><%= distance_of_time_in_words(Time.now,(feedback.created_at)) %> ago 
-		</div>
-		<div class="text">Content: 
+	</a>		
+		<div class="content">
 
 		<a class="author" href="<%= profile_path(id: feedback.guest.id) %>"><%= feedback.guest.user_name %></a>
 		<div class="metadata">
 			<span class="date"><%= feedback.created_at %></span> 
 		</div>
 		<div class="text">
-
+		<% if feedback.rating == 1 %>
+			<font color="orange"><%= feedback.content %></font>
+			<% else %>
 			<%= feedback.content %>
+			<% end %>
 		</div>
 	</div>
 </div>
