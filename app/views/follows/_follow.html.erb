@@ -1,1 +1,7 @@
-<%= follow.user.user_name  %>
+<div class="item">
+    <img class="ui avatar image" src="<%= avatar(follow.user.filepicker_url)  %>">
+    <div class="content">
+      <a class="header"><%= follow.follower.user_name %></a>
+      <div class="description">Followed you since <%= follow.created_at.to_date %></div>
+    </div>
+  </div>
