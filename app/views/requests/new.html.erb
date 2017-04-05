@@ -2,24 +2,24 @@
 
 <div class="ui grid">
   <div class="six wide column">
-    <%= form_for(@request) do |f| %>
+    <%= form_for @request do |f| %>
     <div class="ui form">
       <div class="field">
         <%= f.label :title %>
-        <%= f.text_field :title, class:"text", value:"Report user : #{@guest.user_name} _ id: #{@guest.id}" %>
+        <%= f.text_field :title, value:"Report user : #{@guest.user_name} _ id: #{@guest.id}", required: true, class: "text" %>
       </div>
     </div>
 
     <div class="ui form">
       <div class="field">
         <%= f.label :body %>
-        <%= f.text_area :body, class:"area" %>
+        <%= f.text_area :body, required: true, class: "area" %>
       </div>
     </div>
 
    
     <%= f.hidden_field :user_id, :value => current_user.id %>
-
+    <%= f.hidden_field :guest_id, :value => @guest.id %>
     <div class="ui form" style="margin-top: 8px">
       <div class="field">
         <%= f.submit "Send", class:"ui blue button" %>

@@ -20,7 +20,15 @@
     </div>
     <center>
       <br>
+
+      <% if @is_followed == true %>
+
+      <%= link_to "Followed", "", class: "ui disabled button" %>
+      <% else %>
+
       <%= link_to "Follow", follows_path(followed_id: @guest.id), method: 'post', class: "ui blue button" %>
+      <% end %>
+
     </center>
   </div>
 
