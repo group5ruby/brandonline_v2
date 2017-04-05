@@ -45,6 +45,7 @@ class UsersController < ApplicationController
 			end
 		end 	
 		@guest = User.find(params[:id])
+		@follows = @guest.follows
 		@bank_accounts = @guest.bank_accounts
 		@account_status = AccountStatus.find(@guest.account_status)	
 		@feedbacks = Feedback.where(user_id: @guest.id).order("created_at desc")
