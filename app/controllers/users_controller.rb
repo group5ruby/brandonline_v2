@@ -105,6 +105,16 @@ class UsersController < ApplicationController
 				redirect_back(fallback_location: root_path)
 			end
 		end
+
+		if params[:commit] == "instructions"
+			if @user.update(user_contact_params)
+				flash[:notice] = "Update Successful"				
+			else
+				flash[:error] = "Update failed"
+				redirect_back(fallback_location: root_path)
+			end
+		end
+
 		if params[:commit] == "update description"
 			if @user.update(description: params[:user][:description])
 				flash[:notice] = "Update Successful"

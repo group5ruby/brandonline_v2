@@ -7,5 +7,6 @@ class HomeController < ApplicationController
   def check_session
     redirect_to feed_path if current_user
     redirect_to control_path if current_admin
+    redirect_to new_user_session_path
   end
 end

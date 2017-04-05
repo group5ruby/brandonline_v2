@@ -1,6 +1,7 @@
 class RequestsController < ApplicationController
   def new
     @request = Request.new
+    @guest = User.find(params[:guest_id])
   end
 
   def create

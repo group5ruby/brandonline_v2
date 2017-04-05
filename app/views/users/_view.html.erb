@@ -212,7 +212,7 @@
     <div class="grid">   
       <div class="content header">
         <a class="ui inverted blue button sendfeedback"><b>Send feedback</b></a>
-        <a class="ui inverted blue button report"><b>Report user</b></a>
+        <a class="ui inverted blue button report" href="<%= new_user_request_path(current_user.id, :guest_id=>@guest.id) %>"><b>Report user</b></a>
       <div class="content">
        <div class="ui comments">
        </div>
