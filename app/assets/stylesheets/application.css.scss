@@ -12,7 +12,7 @@ $font-url: 'http://fonts.useso.com/css?family=Lato:400,700,400italic,700italic&s
 
 body
 {
-  background-color: #ffdfb3;
+  background-color: #ffdfb3 ;
   color: #222831;
 
 
@@ -153,7 +153,7 @@ a:hover {
   overflow: hidden;
   top:0; left:0;
   background:red;
-  background: url("http://www.traemcneely.com/wp-content/uploads/2015/01/wpid-wp-1422653086698.jpeg");
+  background: url("profile.jpg");
   z-index:-1;
  
   transform: skewY(-2.2deg);
@@ -166,12 +166,12 @@ a:hover {
 
 .cover {
   position: absolute;
-  top: 180px;
-  left: 40px;
+  top: 210px;
+  left: 70px;
   z-index: 2;
 }
 
-.social
+.social1
 {
   padding-top: 13%;
   padding-left: 50%;
@@ -180,7 +180,7 @@ a:hover {
 .details {  
   
    padding-top: 10%;
-   padding-left: 20%;
+   padding-left: 80px;
   .title1 {
     color: white;
     font-size: 44px;

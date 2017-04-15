@@ -10,7 +10,9 @@
 <div class="ui tab active" data-tab="tab-name"> 
   <div class="movie-card">  
     <div class="container1">    
-     <img src="<%= avatar(@guest.filepicker_url)%>" alt="cover" class="small circular image cover" />
+    <div class="cover">
+      <img class="ui small circular image" src="<%= avatar(@guest.filepicker_url)%>">
+    </div>
      <div class="hero">            
       <div class="details">      
         <h1 class="title1"><%= @guest.user_name %></h1>             
@@ -18,7 +20,7 @@
         <span class="likes" style="color: springgreen"><b><<%= @follows.count  %> Follow</b>></span>
         
       </div> <!-- end details -->
-      <div class="social" %>
+      <div class="social1" %>
         <div class="ui grid">
           <div class="five column row">
             <div class="column">
@@ -154,19 +156,28 @@
     <div class="column">
       <% case connect.type_web %>
       <% when "1" %>
-      <div class="ui card" style="border-style: solid; border-color: blue ">
+      <div class="ui card" style="margin-top:10px; margin-bottom:10px;border-style: solid; border-color: blue ">
         <% when "2" %>
-        <div class="ui card" style="border-style: solid; border-color: orange ">
+        <div class="ui card" style="margin-top:10px; margin-bottom:10px;border-style: solid; border-color: orange ">
           <% when "3" %>
-          <div class="ui card" style="border-style: solid; border-color: teal ">
+          <div class="ui card" style="margin-top:10px; margin-bottom:10px;border-style: solid; border-color: teal ">
             <% else %>
-            <div class="ui card" style="border-style: solid; border-color: springgreen">
+            <div class="ui card" style="margin-top:10px; margin-bottom:10px;border-style: solid; border-color: springgreen">
               <% end %>
-              <div class="content">
+               <div class="content">
                 <%= connect.title %>              
-                <a href="<%= connect.image_url %>"><img class="ui medium image" src="<%= avatar(connect.image_url)%>"></a>
-                <a href="http://<%= connect.link %>"><%= connect.link %></a>                  
-                </a>
+                <% if !connect.image_url.empty? %>
+                  <a href="<%= connect.image_url %>"><img class="ui medium image" src="<%= avatar(connect.image_url)%>"></a>
+                <% end %>
+               <%if !connect.link.empty? %>
+                   <a href="https://<%= connect.link %>">
+                <button class="ui blue mini button">
+                  Go to link
+                </button>
+                </a>   
+               <% end %>               
+               
+              
               </div>
               <div class="extra content">
                 <div class="right floated">
