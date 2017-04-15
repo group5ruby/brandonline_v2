@@ -18,7 +18,7 @@
 					<a href="<%= user_path(id: current_user.id) %>"><h3><font color="orange"> For others to get to know and building trust in you, please fill in your information and verify it.</font></h3></a>
 					<% end %>
 				</div>
-				<div class="extra content">
+				<div class="extra content">				
 					<a class="right floated" href="<%= user_path(id: current_user.id) %>">
 						<i class="arrow circle outline right icon"> </i>
 						Go to your settings
@@ -27,6 +27,17 @@
 			</div>
 		</div>
 	</div>
+</div>
+<div class="ui grid">
+	<div class="five wide column">
+	
+</div>
+<div class="three wide column">
+	<%= link_to "Share some review", new_user_connect_path(user_id: current_user.id), class:"ui green button" %>
+</div>
+<div class="three wide column"  data-tooltip="Way how to people see you">
+	<%= link_to "Your card" , users_mine_path(id: @user.id) ,class:"ui blue button"%>
+</div>
 </div>
 <div class="ui grid">
 	<div class="five wide column">

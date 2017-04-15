@@ -1,4 +1,4 @@
-Rails.application.routes.draw do
+Rails.application.routes.draw do  
   devise_for :admins, controllers: {
         sessions: 'admins/sessions'               
       } 
@@ -13,10 +13,15 @@ Rails.application.routes.draw do
   get "control" => "admins#control"
   get "profile" => "users#profile"
   get "eprofile" => "admins#eprofile"  
+  get "personal" => "users#personal"
+  get "extend" => "users#extend"
+  get "social"  => "users#social"
+  get "users/mine" => "users#mine"
   resources :bank_accounts  
   resources :users do
     resources :feedbacks
     resources :requests
+    resources :connects
   end
   resources :requests do
     put :handled

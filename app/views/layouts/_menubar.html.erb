@@ -1,4 +1,4 @@
-<div class="ui green inverted menu">
+<div class="ui teal inverted menu" style="background-color:#415865">
   <div class="ui container">
     <a class="header item" href="/">
      <%= image_tag "logo.png" %>
@@ -18,11 +18,7 @@
     <% if !(current_user || current_admin) %>
     <a class="item ui inverted blue button" style="width: 85px; padding-left: 25px;" href="/users/sign_in" ><b>Login</b></a>
     <a class="item ui inverted black button" style="width: 85px; padding-left: 20px;" href="/users/sign_up"><b>Sign up</b></a>
-
-    <% elsif current_user %>
-     
-
-    
+    <% elsif current_user %>     
     <div class="ui icon item">
       <span>       
         <div class="ui inline dropdown">

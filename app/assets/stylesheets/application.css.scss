@@ -9,6 +9,19 @@ $font-url: 'http://fonts.useso.com/css?family=Lato:400,700,400italic,700italic&s
   word-wrap: break-word;  
 }
 
+
+body
+{
+  background-color: #FFE1B6;
+  color: #222831;
+
+
+}
+.ui.form .field > label
+{
+  color: #222831;
+}
+
 .ui.card {
   max-width: 100%;
   position: relative;
@@ -26,11 +39,13 @@ $font-url: 'http://fonts.useso.com/css?family=Lato:400,700,400italic,700italic&s
   border: none;
   border-radius: 0.1rem;
   box-shadow: 0px 0px 0px 1px #D4D4D5, 0px 0px 0px 1px #D4D4D5;
-  -webkit-transition: box-shadow 0.1s ease, -webkit-transform 0.1s ease;
+  -webkit-transition: box-shadow 0.1s ease, -webkit-transform 0.5s ease;
   transition: box-shadow 0.1s ease, -webkit-transform 0.1s ease;
   transition: box-shadow 0.1s ease, transform 0.1s ease;
   transition: box-shadow 0.1s ease, transform 0.1s ease, -webkit-transform 0.1s ease;
+  background-color: #ffffff;
   z-index: '';
+  color: #000000;
 }
 
 .verified {
@@ -69,12 +84,186 @@ $font-url: 'http://fonts.useso.com/css?family=Lato:400,700,400italic,700italic&s
   min-height: 66%;
   background: rgba(216, 247, 237, 0.12);
   padding: 0em;
-  border: none;
+  border: 10px;
   border-radius: 0.28571429rem;
   box-shadow: -3px 3px 1px 1px #D4D4D5, 0px 0px 0px 1px #D4D4D5;
   -webkit-transition: box-shadow 0.1s ease, -webkit-transform 0.1s ease;
   transition: box-shadow 0.1s ease, -webkit-transform 0.1s ease;
   transition: box-shadow 0.1s ease, transform 0.1s ease;
-  transition: box-shadow 0.1s ease, transform 0.1s ease, -webkit-transform 0.1s ease;
+  transition: box-shadow 0.1s ease, transform 0.1s ease, -webkit-transform 0.5s ease;
   z-index: '';
+}
+
+.col1
+{
+  margin-left:30%;
+  margin-top:2%;
+}
+tab
+{
+  color: #000000;
+}
+
+tab a.item.active
+{
+  color: #000000;
+}
+
+
+
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+
+a:hover {
+  text-decoration: underline;
+}
+
+.movie-card {
+  font: 14px/22px "Lato", Arial, sans-serif;
+  color: #A9A8A3;
+  padding: 40px 0;
+}
+
+.container1 {
+  margin: 0 auto;
+  width: 780px;
+  height: 640px;
+  background: #F0F0ED;
+  border-radius: 5px;
+  position: relative;
+}
+
+.hero {
+  height: 342px;  
+  margin:0;
+  position: relative;
+  overflow: hidden;
+  z-index:1;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+    
+}
+
+.hero:before {
+  content:'';
+  width:100%; height:100%;
+  position:absolute;
+  overflow: hidden;
+  top:0; left:0;
+  background:red;
+  background: url("http://www.traemcneely.com/wp-content/uploads/2015/01/wpid-wp-1422653086698.jpeg");
+  z-index:-1;
+ 
+  transform: skewY(-2.2deg);
+  transform-origin:0 0;
+  
+  //chrome antialias fix
+  -webkit-backface-visibility: hidden; 
+  
+}
+
+.cover {
+  position: absolute;
+  top: 180px;
+  left: 40px;
+  z-index: 2;
+}
+
+.social
+{
+  padding-top: 13%;
+  padding-left: 50%;
+}
+
+.details {  
+  
+   padding-top: 10%;
+   padding-left: 20%;
+  .title1 {
+    color: white;
+    font-size: 44px;
+    margin-bottom: 13px;
+    position: relative;
+    
+    span {
+      position: absolute;
+      top: 3px;
+      margin-left: 12px;
+      background: #C4AF3D;
+      border-radius: 5px;
+      color: #544C21;
+      font-size: 14px;
+      padding: 0px 4px;
+      
+    }
+  }
+
+  .title2 {    
+    color: #C7C1BA;
+    font-size: 23px;    
+    font-weight: 300;
+    margin-bottom: 15px;
+  }
+  
+}
+
+
+.description {
+  
+  bottom: 0px;
+  height: 200px;
+  font-size: 16px;
+  line-height: 26px;
+  
+  
+}
+
+.column1{
+  padding-left: 50px;
+  padding-top: 50px;
+  width: 220px;
+  float: left;
+  text-align: center;
+} 
+
+.tag{
+  background: white;
+  border-radius: 10px;
+  padding: 3px 8px;
+  font-size: 16px;
+  margin-right: 4px;
+  line-height: 35px;
+  cursor: pointer;
+  
+}
+
+.tag:hover {
+  background: #ddd;
+}
+
+.column2 {
+  padding-left: 41px;
+  padding-top: 80px;
+  margin-left: 20px;
+  width: 480px;
+  float: left;
+  color: #415865;
+}
+
+.avatars {
+  margin-top: 23px;
+  
+  img {
+    cursor: pointer;
+  }
+  
+  img:hover {
+    opacity: 0.6;
+  }
+  
+  a:hover {
+    text-decoration: none;
+  }
 }

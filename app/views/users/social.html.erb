@@ -1,0 +1,23 @@
+<div class="ui one column grid">
+	<div class="column six wide form-holder col1">
+
+		<%= form_for(@user) do |f| %>	
+		<div class="ui form">
+			<div class="field inline">
+				<i class="circular inverted blue large facebook f icon"></i>
+				<%= f.text_field :facebook_link, class:"text" %>
+			</div>
+			<div class="field inline">
+				<i class="circular inverted orange large amazon icon"></i>
+				<%= f.text_field :zalo , class:"text" %>
+			</div>
+			<div class="field inline">
+				<i class="circular inverted blue large linkedin icon"></i>				
+				<%= f.text_field :zalo, class:"text" %>				
+			</div>
+
+			<%= f.submit "Finish", class:"ui green button", style:"padding-right:50%" %>			
+			<% end %>			
+		</div>
+	</div>
+</div>

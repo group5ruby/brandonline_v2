@@ -1,0 +1,42 @@
+
+
+<h1>Hello, <%= @user.user_name %></h1>
+
+<h3> Let's us know more about you !</h3>
+
+<div class="ui one column grid">
+	<div class="column six wide form-holder col1">
+
+		<%= form_for(@user) do |f| %>	
+		<div class="ui form">
+			<div class="field">
+				<%= f.label :phone %>
+				<%= f.text_field :phone_number, class:"text" %>
+			</div>
+			<div class="field">
+				<%= f.label :address %>
+				<%= f.text_field :address, class:"text" %>
+			</div>
+			<div class="filed">
+				<%= f.label :career%>
+				<%= f.text_field :career , class:"text" %>
+			</div>
+	
+			<div class="field">
+				<label>Gender</label>
+				<div class="ui selection dropdown">
+					<input type="hidden" name="user[sex]">
+					<i class="dropdown icon"></i>
+					<div class="default text">Gender</div>
+					<div class="menu">
+						<div class="item" data-value="male">Male</div>
+						<div class="item" data-value="female">Female</div>
+					</div>
+				</div>
+			</div>
+				<%= f.submit "Next", class:"ui green button" %>
+			<% end %>
+				<%= link_to "Not now", user_path(id: current_user.id), class:"ui button" %>
+		</div>
+	</div>
+</div>

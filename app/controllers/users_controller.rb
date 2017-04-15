@@ -52,20 +52,33 @@ class UsersController < ApplicationController
 		@positive_feedbacks = Feedback.where(user_id: @guest.id, rating: '3').order("created_at desc")
 		@negative_feedbacks = Feedback.where(user_id: @guest.id, rating: '1').order("created_at desc")
 		@icon = User.is_verified(@guest.identity_number)
+
 		if current_user
-		@follow = Follow.where(user_id: @guest.id, follower_id: current_user.id).count
+			@follow = Follow.where(user_id: @guest.id, follower_id: current_user.id).count
 		else
-		@follow = 0		
-		end
-		@is_followed = true if @follow == 1
-		if @guest.is_verified == true
-			@is_verified = "Verified" 
-			@verify_color = "green"
-		else
-			@is_verified = "Unverified"
-			@verify_color = "red"
+			@follow = 0		
 		end
 
+		@is_followed = true if @follow == 1
+		@account_color = "green" if @guest.account_status == 1
+		@account_color = "blue" if @guest.account_status == 2
+		@account_color = "yellow" if @guest.account_status == 3
+		@account_color = "orange" if @guest.account_status == 4
+		@account_color = "gray" if @guest.account_status == 5
+		@account_color = "red" if @guest.account_status == 6
+		@connects = Connect.where(user_id:@guest.id)
+	end
+
+	def mine			
+		@guest = User.find(params[:id])
+		@follows = @guest.follows
+		@bank_accounts = @guest.bank_accounts
+		@account_status = AccountStatus.find(@guest.account_status)	
+		@feedbacks = Feedback.where(user_id: @guest.id).order("created_at desc")
+		@positive_feedbacks = Feedback.where(user_id: @guest.id, rating: '3').order("created_at desc")
+		@negative_feedbacks = Feedback.where(user_id: @guest.id, rating: '1').order("created_at desc")
+		@icon = User.is_verified(@guest.identity_number)
+		
 		@account_color = "green" if @guest.account_status == 1
 		@account_color = "blue" if @guest.account_status == 2
 		@account_color = "yellow" if @guest.account_status == 3
@@ -93,6 +106,7 @@ class UsersController < ApplicationController
 				redirect_back(fallback_location: root_path)
 			end
 		end
+
 		if params[:commit] == "update user"
 			if @user.update(user_params)
 				flash[:notice] = "Update Successful. Your verify request will be considered within 24 hours"
@@ -103,6 +117,7 @@ class UsersController < ApplicationController
 				redirect_back(fallback_location: root_path)
 			end
 		end
+
 		if params[:commit] == "update info"
 			if @user.update(user_contact_params)
 				flash[:notice] = "Update Successful"
@@ -113,9 +128,30 @@ class UsersController < ApplicationController
 			end
 		end
 
-		if params[:commit] == "instructions"
-			if @user.update(user_contact_params)
-				flash[:notice] = "Update Successful"				
+		if params[:commit] == "Next"
+			if @user.update(params_personal)
+				flash[:notice] = "Update Successful"
+				return redirect_to extend_path			
+			else
+				flash[:error] = "Update failed"
+				redirect_back(fallback_location: root_path)
+			end
+		end
+
+		if params[:commit] == "Next "
+			if @user.update(params_extend)
+				flash[:notice] = "Update Successful"
+				return redirect_to social_path			
+			else
+				flash[:error] = "Update failed"
+				redirect_back(fallback_location: root_path)
+			end
+		end
+
+		if params[:commit] == "Finish"
+			if @user.update(params_social)
+				flash[:notice] = "Thank for your info"
+				return redirect_to user_path(id: current_user.id)			
 			else
 				flash[:error] = "Update failed"
 				redirect_back(fallback_location: root_path)
@@ -167,6 +203,18 @@ class UsersController < ApplicationController
 
 		end
 
+		def personal
+			local_user
+		end
+
+		def extend
+			local_user
+		end
+
+		def social
+			local_user
+		end
+
 		def destroy
 			set_user
 			@user.destroy
@@ -188,13 +236,30 @@ class UsersController < ApplicationController
 			@user = User.find(params[:id])
 		end
 
+		def local_user
+			@user = current_user
+		end
+
+		def params_social
+			params.require(:user).permit(:facebook_link, :zalo)
+		end
+
 		def user_params
 			params.require(:user).permit(:user_name, :identity_number, :date_of_birth, :sex, :hometown, :certificate_image)
 		end
 
 		def user_contact_params
-			params.require(:user).permit(:phone_number, :address, :zalo, :career, :work_place, :business, :facebook_link)
+			params.require(:user).permit(:phone_number, :address, :zalo, :career, :work_place, :business, :facebook_link, :sex)
 		end
+
+		def params_personal
+			params.require(:user).permit(:phone_number, :sex, :address, :career )
+		end
+
+		def params_extend
+			params.require(:user).permit(:business, :identity_number, :work_place)
+		end
+
 
 
 	end

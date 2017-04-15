@@ -1,23 +1,22 @@
+//= require turbolinks
 //= require jquery
 //= require jquery_ujs
+//= require jquery-readyselector
+//= require jquery.turbolinks
 //= require semantic-ui
-//=require_self
+//= require_self
+//= require_tree .
 
 
-$(document).ready(function(){
-
-	$('.ui .message .close').on('click', function() {
+var ready = function() {
+    $('.ui .message .close').on('click', function() {
     $(this)
       .closest('.message')
       .transition('fade')
     ;
-  });
+     });
 
-$(document).ready(function()  {  
-    if(gon.person_info == "false"){
-      $('.ui.modal.instruction').modal('show')  
-    }
-});
+
 
   $('.ui.rating')
   .rating('setting', 'onRate', function(value) {
@@ -25,7 +24,7 @@ $(document).ready(function()  {
   });
 
   $('.ui.rating.disable')
-  .rating('disable')
+    .rating('disable')
   ;
 
   $('.right.floated.edituser').on('click', function() {
@@ -70,13 +69,11 @@ $(document).ready(function()  {
 
   });
   $('.special.cards .image').dimmer({
-  on: 'hover'
+    on: 'hover'
   });
 
   $('.tabular.menu .item').tab();
-  // $('.ui.button.submitbank').on('click',function(){
-  //   $('.ui.modal.editbank').modal('hide');
-  // });
+};
 
-
-})
+$(document).ready(ready);
+$(document).on('turbolinks:load', ready);
