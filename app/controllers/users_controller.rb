@@ -85,6 +85,7 @@ class UsersController < ApplicationController
 		@account_color = "orange" if @guest.account_status == 4
 		@account_color = "gray" if @guest.account_status == 5
 		@account_color = "red" if @guest.account_status == 6
+		@connects = Connect.where(user_id:@guest.id)
 	end
 
 	def index

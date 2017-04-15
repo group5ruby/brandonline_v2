@@ -1,81 +1,95 @@
+
+
 <div class="ui tabular menu">
   <a class="item active" style="color: #000000;" data-tab="tab-name">Overview</a>
   <a class="item" style="color: #000000;" data-tab="tab-name2">Verified Information</a>
-  <a class="item" style="color: #000000;" data-tab="tab-name3">Contact Info</a>
+  <a class="item" style="color: #000000;" data-tab="tab-name3">Network</a>
   <a class="item" style="color: #000000;" data-tab="tab-name4">Connection</a>
   <a class="item" style="color: #000000;" data-tab="tab-name5">Feedback</a>
 </div>
-<div class="ui tab active" data-tab="tab-name">
- <div class="ui fluid raised card">
-  <div class="content header">
-    <div class="ui header">
-      <center>Overview</center>
-    </div>
-  </div>
-  <div class="content">
-   <div class="ui grid">    
-    <div class="four wide column" style="padding-top: 24px;padding-left: 24px;padding-right: 0px;padding-bottom: 24px;">
-     <div class="card" >      
-      <div class="content">        
-        <img class="ui medium circular image" src="<%= avatar(@guest.filepicker_url)%>">
-      </div>
-      <div class="extra content right floated">
-        <% if @guest.is_verified %>
-           <div class="ui icon"  data-tooltip="Verified User" data-position="top left">
-          <i class=" big green check circle icon"></i>
-          </div>
-        <% else %>
-          <div class="ui icon"  data-tooltip="Unverified User" data-position="top left">
-          <i class=" big red warning icon"></i>
-        </div>
-        <% end %>
+<div class="ui tab active" data-tab="tab-name"> 
+  <div class="movie-card">  
+    <div class="container1">    
+     <img src="<%= avatar(@guest.filepicker_url)%>" alt="cover" class="small circular image cover" />
+     <div class="hero">            
+      <div class="details">      
+        <h1 class="title1"><%= @guest.user_name %></h1>             
+
+        <span class="likes" style="color: springgreen"><b><<%= @follows.count  %> Follow</b>></span>
         
+      </div> <!-- end details -->
+      <div class="social" %>
+        <div class="ui grid">
+          <div class="five column row">
+            <div class="column">
+              <a href="/">
+                <i class="circular inverted blue large facebook f icon"></i> 
+              </a>           
+            </div>
+            <div class="column">
+              <a href ="/">
+                <i class="circular inverted orange large amazon icon"></i>
+              </a>            
+            </div>
+            <div class="column">
+             <a href ="/">
+              <i class="circular inverted black large linkedin icon"></i>
+            </a> 
+          </div>
+        </div>
       </div>
-    </div>    
-  </div>
-
-  <div class="three wide column" style="padding-left: 0px;padding-right: 0px;">
-    <ul>
-      <h3>Full Name: </h3>
-      <h4>Email: </h4>
-      <h4>Location: </h4>
-      <h4>Business: </h4>
-      <h4>Started since</h4>
-      <hr>
-    </ul>
-  </div>
-  <div class="four wide column" style="padding-left: 0px;">
-    <ul style="padding-left: 0px;">
-      <h3><%= @guest.user_name %></h3>
-      <h4><%= @guest.email %></h4>
-      <h4><%= show_value(@guest.address) %></h4>
-      <h4><%= show_value(@guest.business) %>&nbsp;</h4>
-      <h4><%= @guest.created_at.to_date %></h4>
-      <hr>
       
-      <strong>This account status is: <font color="<%= @account_color %>"><%= @account_status.status  %></font></strong><br>
-      <strong>This user received <font color="blue"> (<%= @feedbacks.count %>) </font> feeback </strong><br>
-      <strong>This user received <font color="blue"> (<%= @positive_feedbacks.count %>) positive </font> feeback </strong><br>
-      <strong>This user received <font color="red"> (<%= @negative_feedbacks.count %>) negative </font>  feeback </strong>
-    </ul>
-  </div>
-  <div class="three wide column" style="padding-left: 0px;">
-    <ul>
-      <h3><i class="call icon"></i><%= @guest.phone_number %></h3>
-      <h4>Social Network: </h4>
-      <% if @guest.facebook_link != nil %>
-      <a class="floated" target="_blank" href="<%= show_value(@guest.facebook_link) %>">
-        <i class="facebook large blue square icon"></i> &nbsp;
-      </a>
-      <% end %><br>
-      <h4>Description:</h4><%= @guest.description %>
+    </div>
+  </div> <!-- end hero -->
 
-    </ul>
+  <div class="description">      
+    <div class="column1">
+     <% if @guest.is_verified %>
+     <span class="tag" style="color:green">Verfied</span>
+     <% else %>
+     <span class="tag" style="color:red">Unverfied</span>
+     <% end %>
+     <span class="tag">
+      <font color="<%= @account_color %>"><%= @account_status.status  %></font></strong>
+    </span>    
+    
+
+  </div> <!-- end column1 -->
+  <div class="ui grid" style="padding-top: 50px; padding-left: 90px;">
+    <div class="column2 two column row">
+      <div class="column">
+        <p><i class="mail icon"></i><%= @guest.email %><p>
+          <p><i class="call icon"></i><%= show_value(@guest.phone_number) %></p>
+          <p><i class="marker icon"></i><%= show_value(@guest.address) %></p>
+          <p><i class="birthday icon"></i><%= show_value(@guest.date_of_birth) %></p>
+        </div>
+        <div class="column">
+          <div class="ui icon"  data-tooltip="Business" data-position="top left">
+            <p><i class="travel icon"></i><%= show_value(@guest.business) %></p>
+          </div>
+          <p></p> 
+          <div class="ui icon"  data-tooltip="work place" data-position="top left">
+            <p><i class="building icon"></i></i></i><%= show_value(@guest.identity_number) %></p>
+          </div>
+          <p></p>         
+          <div class="ui icon"  data-tooltip="identity number" data-position="top left">
+            <p><i class="credit card alternative icon"></i></i><%= show_value(@guest.identity_number) %></p>
+          </div>
+          <p></p>
+
+        </div>
+            
+      </div> 
   </div>
+    <hr>
+          <h5 style="padding-left: 20px;">Go to tab "Network" to see more he/she share </h5>  
+</div> 
+
+
+</div> 
 </div>
 </div>
-</div>
-</div>
+
 
 
 <div class="ui tab" data-tab="tab-name2">
@@ -93,9 +107,9 @@
        </div>
        <center><%= @guest.user_name %></center>
      </div>
-      <div class="one wide column">        
-      </div>
-       <div class="five wide column" >      
+     <div class="one wide column">        
+     </div>
+     <div class="five wide column" >      
       <div class="grid">             
        <p><b>Full Name: &nbsp;&nbsp;</b><%= @guest.user_name %></p>
        <p><b>Email:&nbsp;&nbsp; </b><%= @guest.email %></p>
@@ -117,149 +131,143 @@
      <p><b>Work Place: &nbsp;&nbsp;</b><%= @guest.work_place %></p>          
    </div>
  </div>
-     </div>      
-     
-</div>
+</div>      
 
 </div>
+
+</div>
 </div>
 
 
 
-<div class="ui tab" data-tab="tab-name3">
-  <div class="ui fluid raised card">
-
-    <div class="content header">
-      <div class="ui header">
-        <center>Contact Information</center>
-      </div>
-    </div>
-
-    <div class="content">
-     <div class="ui grid">
-
-       <div class="eight wide column" >      
-        <div class="grid">             
-          <h5>Phone Number:</h5><%= @guest.phone_number %>
-          <h5>Email:&nbsp;&nbsp; </h5><%= @guest.email %>
-          <h5>Zalo: &nbsp;&nbsp;</h5><%= @guest.zalo %>
-          <h5>Facebook:&nbsp;&nbsp; </h5><a target="_blank" href="<%= @guest.facebook_link %>"><%= @guest.facebook_link %></a>
-          <h5>Address:&nbsp;&nbsp;</h5><%= @guest.address %>
-        </div>
-      </div>
-
-      <div class="eight wide column" >  
-        <div class="grid">   
-          <% if @bank_accounts.count > 0 %>
-          <div class="ui card">
-            <div class="ui hearder">
-              <center><b>Bank account</b></center>
-            </div>
-            <div class = "ui content">  
-              <%= render @bank_accounts %>
+<div class="ui tab" data-tab="tab-name3">  
+ <div class="ui grid">
+  <div class="three column row">
+    <% @connects.each do |connect| %>
+    <div class="column">
+      <% case connect.type_web %>
+      <% when "1" %>
+      <div class="ui card" style="border-style: solid; border-color: blue ">
+        <% when "2" %>
+        <div class="ui card" style="border-style: solid; border-color: orange ">
+          <% when "3" %>
+          <div class="ui card" style="border-style: solid; border-color: teal ">
+            <% else %>
+            <div class="ui card" style="border-style: solid; border-color: springgreen">
+              <% end %>
+              <div class="content">
+                <%= connect.title %>              
+                <a href="<%= connect.image_url %>"><img class="ui medium image" src="<%= avatar(connect.image_url)%>"></a>
+                <a href="http://<%= connect.link %>"><%= connect.link %></a>
+              </div>
+              <div class="extra content">
+                <div class="right floated">
+                  <i class="<%= type_icon(connect.type_web) %>"></i>
+                </div>
+              </div>
             </div>
           </div>
-          <% else %>
-          <i>- No information.</i>
-          <% end %>                
-        </div>
-      </div>
 
-    </div>
-  </div>
-
-</div>
-</div>
-
-<div class="ui tab" data-tab="tab-name4">
-  
-  <div class="ui fluid raised card">
-
-    <div class="content header">
-      <div class="ui header">
-        <center>Follower</center>
-      </div>
-    </div>
-
-    <div class="content">
-     <div class="ui grid">
-
-       <div class="eight wide column" >      
-        <div class="grid">             
-          <h3> <%= @guest.user_name %> is followed by <%= @follows.count  %> people </h3>
-          </div>
-      </div>
-
-      <div class="eight wide column" >  
-        <div class="grid">   
-          <div class="ui list">
-          <% @follows.each do |follow| %>
-          <div class="item">
-            <img class="ui avatar image" src="<%= avatar(follow.follower.filepicker_url)  %>">
-            <div class="content">
-            <div class="header">
-            <a href="<%= profile_path(id: follow.follower.id)  %>"><%= follow.follower.user_name %></a>
-            </div>
-              <div class="description">has followed <%= @guest.user_name  %> since <%= follow.created_at.to_date %></div>
-            </div>
-          </div>
           <% end %>
-        </div>        
+        </div>    
+      </div>
+    </div>
+
+
+    <div class="ui tab" data-tab="tab-name4">
+
+      <div class="ui fluid raised card">
+
+        <div class="content header">
+          <div class="ui header">
+            <center>Follower</center>
+          </div>
+        </div>
+
+        <div class="content">
+         <div class="ui grid">
+
+           <div class="eight wide column" >      
+            <div class="grid">             
+              <h3> <%= @guest.user_name %> is followed by <%= @follows.count  %> people </h3>
+            </div>
+          </div>
+
+          <div class="eight wide column" >  
+            <div class="grid">   
+              <div class="ui list">
+                <% @follows.each do |follow| %>
+                <div class="item">
+                  <img class="ui avatar image" src="<%= avatar(follow.follower.filepicker_url)  %>">
+                  <div class="content">
+                    <div class="header">
+                      <a href="<%= profile_path(id: follow.follower.id)  %>"><%= follow.follower.user_name %></a>
+                    </div>
+                    <div class="description">has followed <%= @guest.user_name  %> since <%= follow.created_at.to_date %></div>
+                  </div>
+                </div>
+                <% end %>
+              </div>        
+            </div>
+          </div>
+
         </div>
       </div>
 
     </div>
+
   </div>
 
-</div>
+  <div class="ui tab" data-tab="tab-name5">
+    <div class="ui fluid raised card">
 
-</div>
-
-<div class="ui tab" data-tab="tab-name5">
-  <div class="ui fluid raised card">
-
-    <div class="content header">
-      <div class="ui header">
-        <center><%= @guest.user_name %>'s received feedback</center>
+      <div class="content header">
+        <div class="ui header">
+          <center><%= @guest.user_name %>'s received feedback</center>
+        </div>
       </div>
-    </div>
 
-    <div class="content">
-     <div class="ui grid">
+      <div class="content">
+       <div class="ui grid">
+
+         <div class="five wide column" >  
+          <div class="grid">   
+            <div class="content header">
+              <div class="ui header"><i class="feed icon"></i>Positive Feedback(<%= @positive_feedbacks.count %>)</div>
+            </div>
+            <div class="content">
+             <div class="ui comments">
+               <% if @positive_feedbacks.count > 0 %>
+               <%= render @positive_feedbacks %> 
+               <% else %>
+               <i>- This user have no positive feedback. </i>
+               <% end %>
+             </div>
+           </div>               
+         </div>
+       </div>
 
        <div class="five wide column" >  
         <div class="grid">   
           <div class="content header">
-            <div class="ui header"><i class="feed icon"></i>Positive Feedback(<%= @positive_feedbacks.count %>)</div>
-          </div>
-          <div class="content">
-           <div class="ui comments">
-             <% if @positive_feedbacks.count > 0 %>
-             <%= render @positive_feedbacks %> 
-             <% else %>
-             <i>- This user have no positive feedback. </i>
-             <% end %>
-           </div>
-         </div>               
-       </div>
-     </div>
-
-     <div class="five wide column" >  
-      <div class="grid">   
-        <div class="content header">
-          <div class="ui header">
-          <i class="feed icon"></i>Negative Feedback (<%= @negative_feedbacks.count %>)</div>
-        </div>
-        <div class="content">
-         <div class="ui comments">
-           <% if @negative_feedbacks.count > 0 %>
-           <%= render @negative_feedbacks %> 
-           <% else %>
-           <i>- This user have no negative feedback. </i>
-           <% end %>
+            <div class="ui header">
+              <i class="feed icon"></i>Negative Feedback (<%= @negative_feedbacks.count %>)</div>
+            </div>
+            <div class="content">
+             <div class="ui comments">
+               <% if @negative_feedbacks.count > 0 %>
+               <%= render @negative_feedbacks %> 
+               <% else %>
+               <i>- This user have no negative feedback. </i>
+               <% end %>
+             </div>
+           </div>               
          </div>
-       </div>               
-     </div>
+       </div>
+
+       
    </div>
 
-    
+ </div>
+</div>
+
